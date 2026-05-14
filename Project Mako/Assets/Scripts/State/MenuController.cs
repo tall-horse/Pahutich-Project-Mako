@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,8 @@ namespace Mako.State
   {
     public static MenuController instance;
     public GameObject sideWindow = null;
+    [SerializeField] private LoadingScreen _loadingScreen;
+    [SerializeField] private CoroutinePerformer _coroutinePerformer;
     private void Awake()
     {
       //Singleton method
@@ -51,6 +54,29 @@ namespace Mako.State
     {
       Time.timeScale = 1;
       SceneManager.LoadScene(sceneIndex);
+    }
+    public void GoToSceneAsync(int sceneIndex)
+    {
+      StartCoroutine(LoadAsync(sceneIndex));
+    }
+
+    public IEnumerator LoadAsync(int sceneIndex)
+    {
+      AsyncOperation waitLoading = SceneManager.LoadSceneAsync(sceneIndex);
+      yield return new WaitUntil(() => waitLoading.isDone);
+    }
+    public void TransitToNewScene(int index)
+    {
+      _coroutinePerformer.StartCoroutine(ProcessSwitchScene(index));
+    }
+    private IEnumerator ProcessSwitchScene(int sceneIndex)
+    {
+      _loadingScreen.Show();
+      _loadingScreen.ShowMessage("Loading...");
+
+      yield return LoadAsync(sceneIndex);
+
+      _loadingScreen.Hide();
     }
 
     public void GoToScene(string sceneName)
