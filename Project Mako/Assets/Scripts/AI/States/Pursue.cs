@@ -18,6 +18,7 @@ namespace Mako.AI
     {
       anim.SetTrigger("isWalking");
       base.Enter();
+      
     }
     public override void Update()
     {

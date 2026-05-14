@@ -29,7 +29,7 @@ namespace Mako.Miscellaneous
       {
         if (Vector3.Distance(transform.position, sl.transform.position) <= range)
         {
-          OnSoundDistributed.Occurred(gameObject);
+          //OnSoundDistributed.Occurred(gameObject);
         }
       }
     }
