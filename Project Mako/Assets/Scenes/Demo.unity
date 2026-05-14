@@ -926,6 +926,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 287420708}
   pauseOrLossText: {fileID: 2049019895}
+  _resumeButton: {fileID: 291255247}
+  _settingsButton: {fileID: 1420090769}
 --- !u!4 &155669162
 Transform:
   m_ObjectHideFlags: 0
@@ -10788,10 +10790,6 @@ PrefabInstance:
       propertyPath: targetTransform
       value: 
       objectReference: {fileID: 5883057705004049406}
-    - target: {fileID: 6069102001118439334, guid: b0781d7212be836b9972fbe7a4480fed, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

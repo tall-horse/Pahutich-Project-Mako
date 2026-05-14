@@ -1,15 +1,20 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace Mako.State
 {
   public class GameManager : MonoBehaviour
   {
+    private bool gameOver = false;
     public bool GameIsPaused { get; private set; } = false;
     private GameObject player;
     private Health.Health playerHealth;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI pauseOrLossText;
+    [SerializeField] private Button _resumeButton; 
+    [SerializeField] private Button _settingsButton; 
+
     PlayerInputActions playerInputActions;
     private const string PauseText = "Pause";
     private const string LossText = "You lost";
@@ -30,6 +35,7 @@ namespace Mako.State
     // Update is called once per frame
     void Update()
     {
+      if (gameOver) return;
       bool pauseTime = playerInputActions.Player.Pause.triggered;
       if (pauseTime)
       {
@@ -57,10 +63,14 @@ namespace Mako.State
     }
     private void GameOver()
     {
+      Debug.Log("game over");
       Time.timeScale = 0;
       pauseOrLossText.text = LossText;
       pauseOrLossText.color = Color.red;
+      _resumeButton.gameObject.SetActive(false);
+      _settingsButton.gameObject.SetActive(false);
       gameOverPanel.SetActive(true);
+      gameOver = true;
     }
   }
 }
