@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4524803223407858836}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 40, y: 2.9499998, z: 65.181}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7440641470042681270
 MonoBehaviour:
@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f671151661d0ab18b56d8c6d61168c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletsFired: 0
   cooldown: 0.1
   overheatThreshold: 50
   overheatPerShot: 2
@@ -69,7 +68,7 @@ MonoBehaviour:
   spawnPosition: {fileID: 0}
   aimColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 4294967295
   <WeaponType>k__BackingField: 0
   currentOverheat: 0
 --- !u!82 &3332209954474916770

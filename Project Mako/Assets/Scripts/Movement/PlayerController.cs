@@ -37,19 +37,19 @@ namespace Mako.Movement
       //overheatBar = FindObjectOfType<OverheatBar>();
     }
 
-    private void OnEnable()
-    {
-      if(Inventory.instance == null)
-      {
-        Inventory.instance = FindObjectOfType(typeof(Inventory)) as Inventory;
-      }
-      GameObject primaryWeapon = Instantiate(Inventory.instance.GetPrimaryWeapon().gameObject,
-      weaponHolder.transform.position, Quaternion.identity);
-      GameObject secondaryWeapon = Instantiate(Inventory.instance.GetSecondaryWeapon().gameObject,
-      weaponHolder.transform.position, Quaternion.identity);
-      primaryWeapon.transform.parent = weaponHolder.transform;
-      secondaryWeapon.transform.parent = weaponHolder.transform;
-    }
+    // private void OnEnable()
+    // {
+    //   if(Inventory.instance == null)
+    //   {
+    //     Inventory.instance = FindObjectOfType(typeof(Inventory)) as Inventory;
+    //   }
+    //   GameObject primaryWeapon = Instantiate(Inventory.instance.GetPrimaryWeapon().gameObject,
+    //   weaponHolder.transform.position, Quaternion.identity);
+    //   GameObject secondaryWeapon = Instantiate(Inventory.instance.GetSecondaryWeapon().gameObject,
+    //   weaponHolder.transform.position, Quaternion.identity);
+    //   primaryWeapon.transform.parent = weaponHolder.transform;
+    //   secondaryWeapon.transform.parent = weaponHolder.transform;
+    // }
     private void Start()
     {
       playerRigidbody.centerOfMass = centerOfMass.transform.localPosition;
