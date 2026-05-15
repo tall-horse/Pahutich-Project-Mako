@@ -128,22 +128,22 @@ namespace Mako.Shooting
       if (spawnedProjectile)
       {
         spawnedProjectile.transform.position = spawnPosition.position;
-        spawnedProjectile.transform.rotation = Quaternion.identity;
+        Vector3 horizontalAimDir = new Vector3(aimDir.x, 0, aimDir.z);
+        spawnedProjectile.transform.rotation = Quaternion.LookRotation(horizontalAimDir);   
         spawnedProjectile.SetActive(true);
         //workaround for bullet having children
-        if (spawnedProjectile.transform.childCount > 0)
-        {
-          foreach (Transform child in spawnedProjectile.transform)
-          {
-            child.gameObject.SetActive(true);
-          }
-        }
-        spawnedProjectile.transform.LookAt(aimDir);
-        spawnedProjectile.transform.forward = transform.right * -1;
+        // Replace both lines with:
         spawnedProjectile.GetComponentInChildren<Projectile>().OnShot(aimDir);
         currentOverheat += overheatPerShot;
         canShoot = false;
         cooldownTimer = cooldown;
+        // if (spawnedProjectile.transform.childCount > 0)
+        // {
+        //   foreach (Transform child in spawnedProjectile.transform)
+        //   {
+        //     child.gameObject.SetActive(true);
+        //   }
+        // }
       }
     }
     public bool GetOverhearStatus()

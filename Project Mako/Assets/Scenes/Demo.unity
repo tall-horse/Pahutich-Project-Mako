@@ -2598,6 +2598,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7369413714623699565}
     m_Modifications:
+    - target: {fileID: 1213135231779275363, guid: 5ca59010204aa45a1beff9468378c41a, type: 3}
+      propertyPath: cooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213135231779275363, guid: 5ca59010204aa45a1beff9468378c41a, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 8742691410914181158, guid: b23148035cc0675a3ab0e070f6c6ad90, type: 3}
+    - target: {fileID: 1213135231779275363, guid: 5ca59010204aa45a1beff9468378c41a, type: 3}
+      propertyPath: overheatPerShot
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1402095773957041197, guid: 5ca59010204aa45a1beff9468378c41a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4717,6 +4729,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sideWindow: {fileID: 0}
+  _loadingScreen: {fileID: 0}
+  _coroutinePerformer: {fileID: 0}
 --- !u!4 &1114120206
 Transform:
   m_ObjectHideFlags: 0
@@ -10571,6 +10585,18 @@ PrefabInstance:
     - target: {fileID: 4725599791394527282, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967259618000717, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967259618000717, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967259618000717, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5883057705004049411, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
       propertyPath: m_Camera
