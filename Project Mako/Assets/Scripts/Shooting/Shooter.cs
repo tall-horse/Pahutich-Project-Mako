@@ -42,7 +42,7 @@ namespace Mako.Shooting
       projectilesPool = GetComponent<ProjectilesPool>();
       gameManager = FindObjectOfType<GameManager>();
       playerInputActions.Player.Enable();
-      projectilesPool.projectilePrefab = projectile;
+      //projectilesPool.projectilePrefab = projectile;
     }
 
     void Start()

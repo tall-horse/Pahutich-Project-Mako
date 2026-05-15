@@ -8,7 +8,7 @@ namespace Mako.Shooting
   {
     private List<GameObject> pooledProjectiles = new List<GameObject>();
     [SerializeField] private int numberToPool = 12;
-    [HideInInspector] public GameObject projectilePrefab;
+    public GameObject projectilePrefab;
     // Start is called before the first frame update
     void Start()
     {

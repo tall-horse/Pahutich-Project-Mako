@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292094239079320850}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.00002621549, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 12.77, y: -0.025800211, z: -9.450016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235633644621504}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1882130100503437142
 AudioSource:
@@ -153,13 +153,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443551888300129003}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1.624975, y: 0.08661116, z: 1.624975}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235633644621504}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6528803736984334258
 MeshFilter:
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5980376292191133310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,13 +234,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4996389517237739845}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.972, z: 2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235637266966552}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8898974127851608442
 GameObject:
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 8895235634463496316}
   - component: {fileID: 8865671240524229920}
   - component: {fileID: 8875955157368593084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_v1_doorL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,13 +267,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974127851608442}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.5031114, y: 0.38921738, z: 0.00121758}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235635787738388}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8865671240524229920
 MeshFilter:
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 8895235634296897728}
   - component: {fileID: 8865671240204614802}
   - component: {fileID: 8875955159465737380}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_v1_hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,13 +350,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974128424050374}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.157, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235633644621504}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8865671240204614802
 MeshFilter:
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 8898000514943784000}
   - component: {fileID: 33000012573083880}
   - component: {fileID: 3385953204133499566}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_v1_tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,6 +439,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974128436714510}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.5, z: 0.00000018799308}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -447,7 +448,6 @@ Transform:
   - {fileID: 5980376292191133310}
   - {fileID: 8895235633911300214}
   m_Father: {fileID: 8895235635787738388}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8865671240917127716
 MeshFilter:
@@ -506,10 +506,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974128436714510}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -523,9 +534,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974128436714510}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.0056276, y: 1.5814333, z: 2.9643168}
   m_Center: {x: -0.00029706955, y: 0.85412455, z: 0.018238842}
 --- !u!82 &8898000514943784001
@@ -654,7 +673,7 @@ MonoBehaviour:
   range: 15
   fireRate: 1
   turnSpeed: 10
-  bulletPrefab: {fileID: 5486341854167531161, guid: dd0eb78d040bf8f5ba4c60ad5743adc3, type: 3}
+  bulletPrefab: {fileID: 8742691410914181158, guid: b23148035cc0675a3ab0e070f6c6ad90, type: 3}
   firePoint: {fileID: 5980376292191133310}
 --- !u!114 &3385953204133499566
 MonoBehaviour:
@@ -679,7 +698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8895235633644621504}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,6 +712,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974130094118354}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.5, y: 0, z: 61.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -703,7 +723,6 @@ Transform:
   - {fileID: 369318018455149540}
   - {fileID: 444104721002928435}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8898974130458897082
 GameObject:
@@ -716,7 +735,7 @@ GameObject:
   - component: {fileID: 8895235633911300214}
   - component: {fileID: 8865671239336512356}
   - component: {fileID: 8875955156240222424}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_v1_guns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,13 +749,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974130458897082}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.004514547, y: 1.0205159, z: 0.7363513}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235637266966552}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8865671239336512356
 MeshFilter:
@@ -799,7 +818,7 @@ GameObject:
   - component: {fileID: 8895235635403964788}
   - component: {fileID: 8865671239405733832}
   - component: {fileID: 8875955156305936358}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_v1_doorR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,13 +832,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974130633069494}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.5025165, y: 0.38921744, z: 0.0012168052}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235635787738388}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8865671239405733832
 MeshFilter:
@@ -882,7 +901,7 @@ GameObject:
   - component: {fileID: 8895235635787738388}
   - component: {fileID: 8865671240102093026}
   - component: {fileID: 8875955157888103904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_v1_stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,6 +915,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8898974131470934992}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -905,7 +925,6 @@ Transform:
   - {fileID: 8895235635403964788}
   - {fileID: 8895235637266966552}
   m_Father: {fileID: 8895235633644621504}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8865671240102093026
 MeshFilter:
