@@ -422,9 +422,9 @@ GameObject:
   - component: {fileID: 8898000514943784006}
   - component: {fileID: 8898000514943784007}
   - component: {fileID: 8898000514943784001}
-  - component: {fileID: 8898000514943784000}
   - component: {fileID: 33000012573083880}
   - component: {fileID: 3385953204133499566}
+  - component: {fileID: 3601768209506317522}
   m_Layer: 6
   m_Name: Turret_v1_tower
   m_TagString: Untagged
@@ -643,21 +643,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8898000514943784000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898974128436714510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc535d6dd828b870497f59b4a8bfaf6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 50
-  healthHolderName: Turret J-46
-  respectiveAudioImpact: {fileID: 1882130100503437142}
 --- !u!114 &33000012573083880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,6 +658,7 @@ MonoBehaviour:
   range: 15
   fireRate: 1
   turnSpeed: 10
+  playerInRange: 0
   bulletPrefab: {fileID: 8742691410914181158, guid: b23148035cc0675a3ab0e070f6c6ad90, type: 3}
   firePoint: {fileID: 5980376292191133310}
 --- !u!114 &3385953204133499566
@@ -689,6 +675,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberToPool: 12
   projectilePrefab: {fileID: 5486341854167531161, guid: dd0eb78d040bf8f5ba4c60ad5743adc3, type: 3}
+--- !u!114 &3601768209506317522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898974128436714510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c457a3ea44fc130bccc4d61b83032c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+  healthHolderName: Turret J-46
+  respectiveAudioImpact: {fileID: 1882130100503437142}
 --- !u!1 &8898974130094118354
 GameObject:
   m_ObjectHideFlags: 0

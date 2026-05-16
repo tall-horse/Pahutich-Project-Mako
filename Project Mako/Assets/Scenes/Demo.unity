@@ -8372,6 +8372,7 @@ MonoBehaviour:
   range: 15
   fireRate: 1
   turnSpeed: 10
+  playerInRange: 0
   bulletPrefab: {fileID: 5486341854167531161, guid: dd0eb78d040bf8f5ba4c60ad5743adc3, type: 3}
   firePoint: {fileID: 1974976978}
 --- !u!65 &2001865338
@@ -10360,6 +10361,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2091859788}
+    - target: {fileID: 5883057705004049415, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: OnRespondToFire.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883057705004049415, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: OnRespondToFire.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5894502736286236141, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
       propertyPath: enemyName
       value: 

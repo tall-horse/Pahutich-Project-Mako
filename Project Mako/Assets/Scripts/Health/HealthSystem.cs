@@ -10,6 +10,7 @@ namespace Mako.Health
     private string healthHolder;
     public event Action<HealthSystem> OnHealthChanged;
     public event Action OnDead;
+    public event Action OnRespondToFire;
     public HealthSystem(int healthMax, string healthHolder)
     {
       this.healthMax = healthMax;
@@ -34,6 +35,8 @@ namespace Mako.Health
 
     public void Damage(int damageAmount)
     {
+      if (health == healthMax)
+        OnRespondToFire?.Invoke();
       health -= damageAmount;
       OnHealthChanged?.Invoke(this);
       if (health <= 0)

@@ -13,19 +13,42 @@ namespace Mako.Health
     [SerializeField] protected int health;
     [SerializeField] protected string healthHolderName;
     [SerializeField] protected AudioSource respectiveAudioImpact;
-    private void Awake()
+    protected virtual void Awake()
     {
       SetupHealthObject();
     }
 
+    protected virtual void OnEnable()
+    {
+      SubscribeEvents();
+    }
+
+    protected virtual void SubscribeEvents()
+    {
+      if (healthSystem == null)
+        SetupHealthObject();
+      healthSystem.OnHealthChanged += StartDestructionProcess;
+      healthSystem.OnDead += StartCorSelfDestroy;
+    }
+
+    protected virtual void OnDisable()
+    {
+      UnsubscribeEvents();
+    }
+
+    protected virtual void UnsubscribeEvents()
+    {
+      healthSystem.OnHealthChanged -= StartDestructionProcess;
+      healthSystem.OnDead -= StartCorSelfDestroy;
+    }
+
     protected void SetupHealthObject()
     {
+      healthSystem = new HealthSystem(health, healthHolderName);
+
       hitBox = GetComponentInChildren<Collider>();
       audioSource = GetComponentInChildren<AudioSource>();
       meshRenderer = GetComponentInChildren<MeshRenderer>();
-      healthSystem = new HealthSystem(health, healthHolderName);
-      healthSystem.OnHealthChanged += StartDestructionProcess;
-      healthSystem.OnDead += () => StartCoroutine(SelfDestroy());
     }
 
     public HealthSystem GetHealthSystem()
@@ -40,6 +63,10 @@ namespace Mako.Health
     public void PlayImpactSound()
     {
       respectiveAudioImpact.Play();
+    }
+    protected void StartCorSelfDestroy()
+    {
+      StartCoroutine(SelfDestroy());
     }
     protected virtual IEnumerator SelfDestroy()
     {

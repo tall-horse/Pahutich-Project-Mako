@@ -8,8 +8,8 @@ namespace Mako.Shooting
     private const string PLAYERTAG = "Player";
 
     [Header("Attributes")]
-
     [SerializeField] private float range = 15f;
+    private float initialRange;
     [SerializeField] private float fireRate = 1f;
 
     [Header("Unity setup fields")]
@@ -18,7 +18,7 @@ namespace Mako.Shooting
     private float fireCountdown = 0f;
     private float distanceToPlayer;
     private GameObject player;
-    private bool playerInRange = false;
+    public bool playerInRange = false;
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
@@ -27,6 +27,7 @@ namespace Mako.Shooting
     {
       player = GameObject.FindGameObjectWithTag(PLAYERTAG);
       projectilesPool = GetComponent<ProjectilesPool>();
+      initialRange = range;
     }
     // Start is called before the first frame update
     void Start()
@@ -89,6 +90,11 @@ namespace Mako.Shooting
         }
         spawnedProjectile.GetComponent<Projectile>().OnShot(player.transform.position - transform.position);
       }
+    }
+
+    public void ExtendRange()
+    {
+      range = initialRange * 1.5f;
     }
 
     private void OnDrawGizmos()

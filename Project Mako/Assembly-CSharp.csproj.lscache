@@ -75,6 +75,7 @@ Assets/
    HealthSystem.cs
    NormalHealth.cs
    OneShotObject.cs
+   TurretHealth.cs
   Miscellaneous/
    ButtonSoundEffects.cs
    CameraFollow.cs

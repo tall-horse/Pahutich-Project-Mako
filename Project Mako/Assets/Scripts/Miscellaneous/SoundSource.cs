@@ -11,11 +11,11 @@ namespace Mako.Miscellaneous
     private List<SoundListener> soundListeners;
     public CustomEvent OnSoundDistributed;
 
-    void Start()
+    void OnEnable()
     {
       GetListeners();
     }
-
+    
     private void GetListeners()
     {
       soundListeners = FindObjectsOfType<SoundListener>().ToList();
@@ -45,7 +45,7 @@ namespace Mako.Miscellaneous
     private void OnCollisionEnter(Collision other) {
         DistributeSound();
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
       RemoveThisListener();
     }
