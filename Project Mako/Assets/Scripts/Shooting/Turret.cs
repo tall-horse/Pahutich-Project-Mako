@@ -9,6 +9,8 @@ namespace Mako.Shooting
 
     [Header("Attributes")]
     [SerializeField] private float range = 15f;
+    [SerializeField] private float rangeExtensinIndex = 1.5f;
+    private float extendedRange;
     private float initialRange;
     [SerializeField] private float fireRate = 1f;
 
@@ -33,6 +35,7 @@ namespace Mako.Shooting
     void Start()
     {
       InvokeRepeating("UpdateTarget", 0, 0.5f);
+      extendedRange = range * rangeExtensinIndex;
     }
     private void UpdateTarget()
     {
@@ -94,7 +97,7 @@ namespace Mako.Shooting
 
     public void ExtendRange()
     {
-      range = initialRange * 1.5f;
+      range = extendedRange;
     }
 
     private void OnDrawGizmos()
