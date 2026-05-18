@@ -790,7 +790,6 @@ GameObject:
   - component: {fileID: 3330919925356366133}
   - component: {fileID: 3414550071583066383}
   - component: {fileID: 3431790086942627675}
-  - component: {fileID: 3431790086942627674}
   - component: {fileID: 3431790086942627673}
   - component: {fileID: 3431790086942627672}
   - component: {fileID: 3431790086942627677}
@@ -799,6 +798,7 @@ GameObject:
   - component: {fileID: 6184636867864027780}
   - component: {fileID: 8008771724123116558}
   - component: {fileID: 6069102001118439334}
+  - component: {fileID: 6657651805336528065}
   m_Layer: 6
   m_Name: CrabMonster
   m_TagString: Untagged
@@ -868,21 +868,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.5992317, y: 2.7595763, z: 2.8880463}
   m_Center: {x: 0.022691727, y: 1.3377249, z: 0.42707062}
---- !u!114 &3431790086942627674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328286910605114547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc535d6dd828b870497f59b4a8bfaf6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 50
-  healthHolderName: Crab Monster
-  respectiveAudioImpact: {fileID: 9102765509606559572}
 --- !u!82 &3431790086942627673
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1125,6 +1110,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   OnSoundDistributed: {fileID: 11400000, guid: 6a29a5d8f65db6d6bafacef8c4200655, type: 2}
+--- !u!114 &6657651805336528065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328286910605114547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1b1d8102fcdf0e88d87e44a530aff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+  healthHolderName: Crab Monster
+  respectiveAudioImpact: {fileID: 9102765509606559572}
 --- !u!1 &3328290116296841903
 GameObject:
   m_ObjectHideFlags: 0
