@@ -8370,6 +8370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
+  rangeExtensinIndex: 1.5
   fireRate: 1
   turnSpeed: 10
   playerInRange: 0
