@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mako.AI;
 using Mako.Health;
-using Mako.Shooting;
 using UnityEngine;
 
 namespace Mako
 {
-    public class TurretHealth : NormalHealth
+    public class CrabHealth : NormalHealth
     {
-        private Turret _turret;
+        private CrabMonsterAI _crabMonsterAI;
         protected override void Awake()
         {
             base.Awake();
-            _turret = GetComponent<Turret>();
+            _crabMonsterAI = GetComponent<CrabMonsterAI>();
         }
         protected override void OnEnable()
         {
@@ -28,8 +28,7 @@ namespace Mako
 
         private void RespondToFire()
         {
-            _turret.playerInRange = true;
-            _turret.ExtendRange();
+            _crabMonsterAI.GoOnSound();
         }
     }
 }
