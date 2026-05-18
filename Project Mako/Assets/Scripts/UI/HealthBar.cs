@@ -14,7 +14,7 @@ namespace Mako.UI
     {
       if (player != null)
       {
-        healthSystem = player.GetComponent<Health.Health>().GetHealthSystem();
+        healthSystem = player.GetComponent<Health.BasicHealth>().GetHealthSystem();
         healthSystem.OnHealthChanged += UpdateHealthStatus;
       }
     }
@@ -23,7 +23,7 @@ namespace Mako.UI
     {
       healthBarImage.fillAmount = hs.GetPercent();
     }
-    public void ReconfigureHealthHolder(Health.Health holder)
+    public void ReconfigureHealthHolder(Health.BasicHealth holder)
     {
       healthSystem = holder.GetHealthSystem();
       UpdateHealthStatus(healthSystem);

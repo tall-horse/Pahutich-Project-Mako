@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mako.Shooting
@@ -21,8 +23,8 @@ namespace Mako.Shooting
     private float distanceToPlayer;
     private GameObject player;
     public bool playerInRange = false;
-
-    [SerializeField] private GameObject bulletPrefab;
+    public bool dead = false;
+    [SerializeField] private List<MeshRenderer> _turretVisuals;
     [SerializeField] private Transform firePoint;
     private ProjectilesPool projectilesPool;
     private void Awake()
@@ -34,11 +36,13 @@ namespace Mako.Shooting
     // Start is called before the first frame update
     void Start()
     {
+      if (dead) return;
       InvokeRepeating("UpdateTarget", 0, 0.5f);
       extendedRange = range * rangeExtensinIndex;
     }
     private void UpdateTarget()
     {
+      if (dead) return;
       if (player == null)
         return;
       distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
@@ -55,6 +59,7 @@ namespace Mako.Shooting
     // Update is called once per frame
     void Update()
     {
+      if (dead) return;
       if (player == null)
         return;
 
@@ -77,6 +82,7 @@ namespace Mako.Shooting
 
     private void Shoot()
     {
+      if (dead) return;
       var spawnedProjectile = projectilesPool.GetPooledProjectiles();
       if (spawnedProjectile)
       {
@@ -98,6 +104,11 @@ namespace Mako.Shooting
     public void ExtendRange()
     {
       range = extendedRange;
+    }
+
+    public IEnumerable GetTurretVisuals()
+    {
+      return _turretVisuals;
     }
 
     private void OnDrawGizmos()

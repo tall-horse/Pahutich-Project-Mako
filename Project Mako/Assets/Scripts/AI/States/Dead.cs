@@ -13,15 +13,12 @@ namespace Mako.AI
         }
         public override void Enter()
         {
+            agent.isStopped = true;
             anim.ResetTrigger("isAttacking");
             anim.ResetTrigger("isWalking");
-            anim.SetTrigger("isIdle");
-            base.Enter();
-        }
-        public override void Exit()
-        {
             anim.ResetTrigger("isIdle");
-            base.Exit();
+            anim.SetTrigger("isDead");
+            base.Enter();
         }
     }
 }

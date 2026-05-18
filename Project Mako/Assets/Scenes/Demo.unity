@@ -1114,6 +1114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7453e604e613260bba791d84a35986ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
   gameOverPanel: {fileID: 287420708}
   pauseOrLossText: {fileID: 2049019895}
   _resumeButton: {fileID: 291255247}
@@ -8307,6 +8308,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5307637227302621920, guid: 2c36d287507f73db6b7ff3949992d5eb, type: 3}
   m_PrefabInstance: {fileID: 962687618}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1811035604 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8889543809207438422, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+  m_PrefabInstance: {fileID: 7369413714623699563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1821614902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3330919925356366133, guid: b0781d7212be836b9972fbe7a4480fed, type: 3}
@@ -10686,6 +10692,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4026705608419686805, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
   m_PrefabInstance: {fileID: 7369413714623699563}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5883057705004049415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583352488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838881766591890f7a3abf11670480a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  healthHolderName: Mako
+  respectiveAudioImpact: {fileID: 1811035604}
 --- !u!1001 &6070335510406301243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10908,6 +10929,10 @@ PrefabInstance:
       propertyPath: healthBarOfScannedEnemy
       value: 
       objectReference: {fileID: 4910263628845900616}
+    - target: {fileID: 6142571137788114802, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 5883057705004049415}
     - target: {fileID: 8060410167577968485, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
       propertyPath: m_LengthScale
       value: 5
@@ -10916,10 +10941,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ee18aabe593a00f3eaa188a78bb41b6c, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5883057705004049415, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4725599791394527282, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5883057705004049415}
   m_SourcePrefab: {fileID: 100100000, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
 --- !u!1001 &8898000515896679107
 PrefabInstance:

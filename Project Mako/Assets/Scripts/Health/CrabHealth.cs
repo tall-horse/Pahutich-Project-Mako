@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Mako
 {
-    public class CrabHealth : NormalHealth
+    public class CrabHealth : BasicHealth
     {
         private CrabMonsterAI _crabMonsterAI;
         protected override void Awake()
@@ -37,6 +37,20 @@ namespace Mako
                 _crabMonsterAI.SetDeadState();
                 StartCoroutine(SelfDestroy());
             }
+        }
+
+        protected override IEnumerator SelfDestroy()
+        {
+            audioSource.Play();
+            //animator.enabled = false;
+            yield return new WaitForSeconds(1f);
+            meshRenderer.enabled = false;
+            hitBox.enabled = false;
+            // foreach (Transform item in transform)
+            // {
+            //     Destroy(item.gameObject);
+            // }
+            // Destroy(gameObject);
         }
     }
 }

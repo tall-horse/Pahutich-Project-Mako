@@ -6,9 +6,10 @@ using UnityEngine;
 
 namespace Mako
 {
-    public class TurretHealth : NormalHealth
+    public class TurretHealth : BasicHealth
     {
         private Turret _turret;
+        private IEnumerable _turretVisuals;
         protected override void Awake()
         {
             base.Awake();
@@ -18,6 +19,7 @@ namespace Mako
         {
             base.SubscribeEvents();
             healthSystem.OnRespondToFire += RespondToFire;
+            _turretVisuals = _turret.GetTurretVisuals();
         }
 
         protected override void OnDisable()
@@ -30,6 +32,18 @@ namespace Mako
         {
             _turret.playerInRange = true;
             _turret.ExtendRange();
+        }
+
+        protected override IEnumerator SelfDestroy()
+        {
+            audioSource.Play();
+            _turret.dead = true;
+            hitBox.enabled = false;
+            foreach (MeshRenderer t in _turretVisuals)
+            {
+                t.enabled = false;
+            }
+            yield return null;
         }
     }
 }

@@ -10,13 +10,13 @@ namespace Mako.Collectables
     private MeshRenderer meshRenderer;
     private Collider hitBox;
     private AudioSource audioSource;
-    private Health.Health playerHealth;
+    private Health.BasicHealth playerHealth;
     private void Awake()
     {
       meshRenderer = GetComponent<MeshRenderer>();
       hitBox = GetComponent<Collider>();
       audioSource = GetComponent<AudioSource>();
-      playerHealth = FindObjectOfType<PlayerController>().gameObject.GetComponent<Health.Health>();
+      playerHealth = FindObjectOfType<PlayerController>().gameObject.GetComponent<Health.BasicHealth>();
     }
     public void Collect()
     {
@@ -34,7 +34,7 @@ namespace Mako.Collectables
     }
     private void OnTriggerEnter(Collider other)
     {
-      var encounteredHealthEntity = other.GetComponent<Health.Health>();
+      var encounteredHealthEntity = other.GetComponent<Health.BasicHealth>();
       if (encounteredHealthEntity == playerHealth)
       {
         Collect();

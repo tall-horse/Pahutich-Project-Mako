@@ -12,11 +12,11 @@ namespace Mako.VehicleDevices
     [SerializeField] private float regenerationSpeed;
     [SerializeField] private float timeSinceLastHit;
     [SerializeField] private AudioSource respectiveSoundEffect;
-    private Health.Health health;
+    [SerializeField] private Health.BasicHealth health;
     public event Action OnShieldCapacityChanged;
     private void Awake()
     {
-      health = GetComponent<Health.Health>();
+      health = GetComponent<Health.BasicHealth>();
       shieldCapacity = maxShieldCapacity;
       timeSinceLastHit = timeToStartRegenerating;
     }

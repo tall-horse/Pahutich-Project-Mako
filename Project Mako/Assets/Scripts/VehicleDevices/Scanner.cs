@@ -10,7 +10,7 @@ namespace Mako.VehicleDevices
     [SerializeField] private Mako.UI.HealthBar healthBarOfScannedEnemy;
     [SerializeField] private TextMeshProUGUI enemyName;
     [SerializeField] private GameObject scannerPanel;
-    [field: SerializeField] public Health.Health ScannedEnemy { get; private set; }
+    [field: SerializeField] public Health.BasicHealth ScannedEnemy { get; private set; }
     private void Awake()
     {
       scannerPanel.SetActive(false);
@@ -24,8 +24,8 @@ namespace Mako.VehicleDevices
       RaycastHit hit;
       if (Physics.Raycast(ray, out hit, 999f, aimColliderLayerMask))
       {
-        ScannedEnemy = hit.collider.gameObject.GetComponentInParent<Health.Health>();
-        if (hit.collider.gameObject.GetComponentInParent<Health.Health>() != null)
+        ScannedEnemy = hit.collider.gameObject.GetComponentInParent<Health.BasicHealth>();
+        if (hit.collider.gameObject.GetComponentInParent<Health.BasicHealth>() != null)
         {
           enemyName.text = ScannedEnemy.GetHealthSystem().GetHolder();
           healthBarOfScannedEnemy.ReconfigureHealthHolder(ScannedEnemy);

@@ -1,10 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Mako.Health
 {
-  public class OneShotObject : Health
+  public class OneShotObject : BasicHealth
   {
-    private void Awake()
+        protected override IEnumerator SelfDestroy()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void Awake()
     {
       base.SetupHealthObject();
     }
@@ -12,7 +18,7 @@ namespace Mako.Health
     {
       if (other.GetComponent<Mako.Shooting.Projectile>())
       {
-        base.SelfDestroy();
+        StartCoroutine(SelfDestroy());
       }
     }
   }

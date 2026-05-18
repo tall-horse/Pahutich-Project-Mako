@@ -656,10 +656,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
+  rangeExtensinIndex: 1.5
   fireRate: 1
   turnSpeed: 10
   playerInRange: 0
-  bulletPrefab: {fileID: 8742691410914181158, guid: b23148035cc0675a3ab0e070f6c6ad90, type: 3}
+  dead: 0
+  _turretVisuals:
+  - {fileID: 8875955157368593084}
+  - {fileID: 8875955156305936358}
+  - {fileID: 8875955157552417836}
+  - {fileID: 8875955156240222424}
   firePoint: {fileID: 5980376292191133310}
 --- !u!114 &3385953204133499566
 MonoBehaviour:

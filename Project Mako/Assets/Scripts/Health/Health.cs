@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Mako.Health
 {
 
-  public abstract class Health : MonoBehaviour
+  public abstract class BasicHealth : MonoBehaviour
   {
     protected Collider hitBox;
     protected AudioSource audioSource;
@@ -43,7 +43,7 @@ namespace Mako.Health
       healthSystem.OnDead -= StartCorSelfDestroy;
     }
 
-    protected void SetupHealthObject()
+    public void SetupHealthObject()
     {
       healthSystem = new HealthSystem(health, healthHolderName);
 
@@ -70,18 +70,7 @@ namespace Mako.Health
     {
       StartCoroutine(SelfDestroy());
     }
-    protected virtual IEnumerator SelfDestroy()
-    {
-      audioSource.Play();
-      animator.enabled = false;
-      meshRenderer.enabled = false;
-      hitBox.enabled = false;
-      foreach (Transform item in transform)
-      {
-        Destroy(item.gameObject);
-      }
-      yield return new WaitForSeconds(1f);
-      Destroy(gameObject);
-    }
+    protected abstract IEnumerator SelfDestroy();
   }
+
 }

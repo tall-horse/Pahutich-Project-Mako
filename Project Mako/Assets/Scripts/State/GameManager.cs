@@ -9,7 +9,7 @@ namespace Mako.State
     private bool gameOver = false;
     public bool GameIsPaused { get; private set; } = false;
     private GameObject player;
-    private Health.Health playerHealth;
+    [SerializeField] private Health.BasicHealth playerHealth;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI pauseOrLossText;
     [SerializeField] private Button _resumeButton; 
@@ -21,15 +21,27 @@ namespace Mako.State
     private void Awake()
     {
       player = GameObject.FindGameObjectWithTag("Player");
-      playerHealth = player.GetComponent<Health.Health>();
+      playerHealth = player.GetComponent<Health.BasicHealth>();
       gameOverPanel.SetActive(false);
       playerInputActions = new PlayerInputActions();
       playerInputActions.Player.Enable();
     }
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+      if(playerHealth == null)
+      {
+        Debug.LogWarning("Player health not found");
+        return;
+      }
+      if (playerHealth.GetHealthSystem() == null)
+      {
+        playerHealth.SetupHealthObject();
+      }
       playerHealth.GetHealthSystem().OnDead += GameOver;
+    }
+    private void OnDisable() {
+      playerHealth.GetHealthSystem().OnDead -= GameOver;
     }
 
     // Update is called once per frame

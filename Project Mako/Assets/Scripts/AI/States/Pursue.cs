@@ -34,6 +34,7 @@ namespace Mako.AI
     }
     public override void Exit()
     {
+      agent.isStopped = true;
       anim.ResetTrigger("isWalking");
       base.Exit();
     }
