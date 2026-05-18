@@ -818,8 +818,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 155669161}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1114120205}
+        m_TargetAssemblyTypeName: Mako.State.MenuController, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
