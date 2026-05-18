@@ -8,7 +8,7 @@ namespace Mako.AI
   {
     public enum STATE
     {
-      IDLE, PURSUE, ATTACK
+      IDLE, PURSUE, ATTACK, DEAD
     }
 
     public enum EVENT

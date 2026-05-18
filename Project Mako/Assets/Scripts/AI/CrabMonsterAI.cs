@@ -29,5 +29,10 @@ namespace Mako.AI
     {
       currentState.heardPlayer = true;
     }
+    public void SetDeadState()
+    {
+      var nextState = new Dead(gameObject, agent, anim, player);
+      currentState = nextState;
+    }
   }
 }

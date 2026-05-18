@@ -10,6 +10,7 @@ namespace Mako.Health
     protected AudioSource audioSource;
     protected MeshRenderer meshRenderer;
     protected HealthSystem healthSystem;
+    protected Animator animator;
     [SerializeField] protected int health;
     [SerializeField] protected string healthHolderName;
     [SerializeField] protected AudioSource respectiveAudioImpact;
@@ -49,13 +50,14 @@ namespace Mako.Health
       hitBox = GetComponentInChildren<Collider>();
       audioSource = GetComponentInChildren<AudioSource>();
       meshRenderer = GetComponentInChildren<MeshRenderer>();
+      animator = GetComponent<Animator>();
     }
 
     public HealthSystem GetHealthSystem()
     {
       return healthSystem;
     }
-    protected void StartDestructionProcess(HealthSystem hs)
+    protected virtual void StartDestructionProcess(HealthSystem hs)
     {
       if (hs.GetHealth() <= 0)
         StartCoroutine(SelfDestroy());
@@ -71,6 +73,7 @@ namespace Mako.Health
     protected virtual IEnumerator SelfDestroy()
     {
       audioSource.Play();
+      animator.enabled = false;
       meshRenderer.enabled = false;
       hitBox.enabled = false;
       foreach (Transform item in transform)

@@ -30,5 +30,13 @@ namespace Mako
         {
             _crabMonsterAI.GoOnSound();
         }
+        protected override void StartDestructionProcess(HealthSystem hs)
+        {
+            if (hs.GetHealth() <= 0)
+            {
+                _crabMonsterAI.SetDeadState();
+                StartCoroutine(SelfDestroy());
+            }
+        }
     }
 }

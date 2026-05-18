@@ -7,30 +7,21 @@ namespace Mako.Shooting
 {
   public class MeleeAttack : MonoBehaviour
   {
+    [SerializeField] private int _attackPower = 8;
     [SerializeField] private Transform targetTransform;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void DealDamage()
     {
+      Debug.Log("dealing damage");
       Health.Health health = targetTransform.gameObject.GetComponent<Health.Health>();
       Shields shields = targetTransform.gameObject.GetComponent<Shields>();
       if (shields != null)
       {
         if (shields.GetShieldCapacity() >= 0)
-          shields.OnHitReceived(8);
+          shields.OnHitReceived(_attackPower);
       }
       if (health != null && shields == null || shields != null && shields.GetShieldCapacity() <= 0)
       {
-        health.GetHealthSystem().Damage(8);
+        health.GetHealthSystem().Damage(_attackPower);
         health.PlayImpactSound();
       }
     }
