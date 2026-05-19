@@ -5,49 +5,50 @@ using UnityEngine;
 
 namespace Mako.Miscellaneous
 {
-  public class SoundSource : MonoBehaviour
-  {
-    [SerializeField] private float range;
-    private List<SoundListener> soundListeners;
-    public CustomEvent OnSoundDistributed;
+    public class SoundSource : MonoBehaviour
+    {
+        [SerializeField] private float range;
+        private List<SoundListener> soundListeners;
+        public CustomEvent OnSoundDistributed;
 
-    void OnEnable()
-    {
-      GetListeners();
-    }
-    
-    private void GetListeners()
-    {
-      soundListeners = FindObjectsOfType<SoundListener>().ToList();
-      RemoveThisListener();
-    }
-
-    public void DistributeSound()
-    {
-      GetListeners();
-      foreach (SoundListener sl in soundListeners)
-      {
-        if (Vector3.Distance(transform.position, sl.transform.position) <= range)
+        void OnEnable()
         {
-          //OnSoundDistributed.Occurred(gameObject);
+            GetListeners();
         }
-      }
+
+        private void GetListeners()
+        {
+            soundListeners = FindObjectsOfType<SoundListener>().ToList();
+            RemoveThisListener();
+        }
+
+        public void DistributeSound()
+        {
+            GetListeners();
+            foreach (SoundListener sl in soundListeners)
+            {
+                if (Vector3.Distance(transform.position, sl.transform.position) <= range)
+                {
+                    //OnSoundDistributed.Occurred(gameObject);
+                }
+            }
+        }
+        private void RemoveThisListener()
+        {
+            soundListeners.Remove(soundListeners.Find(sl => sl == this));
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, range);
+        }
+        private void OnCollisionEnter(Collision other)
+        {
+            DistributeSound();
+        }
+        private void OnDisable()
+        {
+            RemoveThisListener();
+        }
     }
-    private void RemoveThisListener()
-    {
-      soundListeners.Remove(soundListeners.Find(sl => sl == this));
-    }
-    private void OnDrawGizmos()
-    {
-      Gizmos.color = Color.cyan;
-      Gizmos.DrawWireSphere(transform.position, range);
-    }
-    private void OnCollisionEnter(Collision other) {
-        DistributeSound();
-    }
-    private void OnDisable()
-    {
-      RemoveThisListener();
-    }
-  }
 }

@@ -33,7 +33,7 @@ namespace Mako
         public void InstantiateCurrentQuestStep(Transform parentTransform)
         {
             GameObject questStepPrefab = GetCurrentQuestStepPrefab();
-            if(questStepPrefab != null)
+            if (questStepPrefab != null)
             {
                 Object.Instantiate<GameObject>(questStepPrefab, parentTransform);
             }
@@ -42,7 +42,7 @@ namespace Mako
         private GameObject GetCurrentQuestStepPrefab()
         {
             GameObject questStepPrefab = null;
-            if(CurrentStepExists())
+            if (CurrentStepExists())
             {
                 questStepPrefab = info.questStepPrefabs[currentQuestStepIndex];
             }

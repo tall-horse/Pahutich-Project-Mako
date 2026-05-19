@@ -6,7 +6,8 @@ namespace Mako
 {
     public class CoroutinePerformer : MonoBehaviour
     {
-        private void Awake() {
+        private void Awake()
+        {
             DontDestroyOnLoad(gameObject);
         }
     }

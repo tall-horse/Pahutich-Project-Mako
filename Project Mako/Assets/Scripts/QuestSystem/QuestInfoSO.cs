@@ -7,7 +7,7 @@ namespace Mako.QuestSystem
     [CreateAssetMenu(fileName = "QuestInfoSO", menuName = "ScriptableObjects/QuestInfo", order = 1)]
     public class QuestInfoSO : ScriptableObject
     {
-        [field: SerializeField] public string Id {get; private set;}
+        [field: SerializeField] public string Id { get; private set; }
 
         [Header("General")]
         public string displayName;
@@ -22,10 +22,10 @@ namespace Mako.QuestSystem
         public int goldReward;
         private void OnValidate()
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             Id = this.name;
             UnityEditor.EditorUtility.SetDirty(this);
-            #endif
+#endif
         }
     }
 }

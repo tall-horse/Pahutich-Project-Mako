@@ -1,7 +1,7 @@
 namespace Mako.Collectables
 {
-  public interface ICollectable
-  {
-    public void Collect();
-  }
+    public interface ICollectable
+    {
+        public void Collect();
+    }
 }

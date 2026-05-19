@@ -4,18 +4,18 @@ using UnityEngine.UI;
 
 namespace Mako.UI
 {
-  public class ShieldsBar : MonoBehaviour
-  {
-    [SerializeField] private Image shieldsBarImage;
-    [SerializeField] private GameObject player;
-    private Shields shields;
-    private void Awake()
+    public class ShieldsBar : MonoBehaviour
     {
-      shields = player.GetComponent<Shields>();
+        [SerializeField] private Image shieldsBarImage;
+        [SerializeField] private GameObject player;
+        private Shields shields;
+        private void Awake()
+        {
+            shields = player.GetComponent<Shields>();
+        }
+        private void Start()
+        {
+            shields.OnShieldCapacityChanged += () => shieldsBarImage.fillAmount = shields.GetPercent();
+        }
     }
-    private void Start()
-    {
-      shields.OnShieldCapacityChanged += () => shieldsBarImage.fillAmount = shields.GetPercent();
-    }
-  }
 }

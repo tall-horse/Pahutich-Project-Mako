@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraTarget : MonoBehaviour {
+public class CameraTarget : MonoBehaviour
+{
 
-    private void Update() {
+    private void Update()
+    {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 

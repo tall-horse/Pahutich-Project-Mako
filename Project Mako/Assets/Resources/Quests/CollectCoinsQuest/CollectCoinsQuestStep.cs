@@ -19,12 +19,12 @@ namespace Mako.QuestSystem
 
         public void CoinCollected()
         {
-            if(coinsCollected < coinsToComplete)
+            if (coinsCollected < coinsToComplete)
             {
                 coinsCollected++;
             }
 
-            if(coinsCollected >= coinsToComplete)
+            if (coinsCollected >= coinsToComplete)
             {
                 FinishQuestStep();
             }

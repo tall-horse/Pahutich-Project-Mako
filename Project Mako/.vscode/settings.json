@@ -51,5 +51,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Project Mako.sln"
+    "dotnet.defaultSolution": "Project Mako.sln",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "files.autoSave": "onFocusChange"
 }

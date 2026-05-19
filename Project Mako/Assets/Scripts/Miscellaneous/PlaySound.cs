@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace Mako.Miscellaneous
 {
-  public class PlaySound : MonoBehaviour
-  {
-    private AudioSource audioSource;
-    private void Awake()
+    public class PlaySound : MonoBehaviour
     {
-      audioSource = GetComponent<AudioSource>();
+        private AudioSource audioSource;
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        public void Play()
+        {
+            audioSource.Play();
+        }
     }
-    public void Play()
-    {
-      audioSource.Play();
-    }
-  }
 }
