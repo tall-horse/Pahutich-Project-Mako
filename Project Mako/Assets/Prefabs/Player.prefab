@@ -63,7 +63,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 14da3e7b976e7314484467ac29acbec7, type: 2}
+  - {fileID: 2100000, guid: ee18aabe593a00f3eaa188a78bb41b6c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +91,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.09
   m_CameraVelocityScale: 5.76
   m_VelocityScale: 0
-  m_LengthScale: 9
+  m_LengthScale: 5
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
@@ -9741,7 +9741,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 14da3e7b976e7314484467ac29acbec7, type: 2}
+  - {fileID: 2100000, guid: ee18aabe593a00f3eaa188a78bb41b6c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9769,7 +9769,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.09
   m_CameraVelocityScale: 5.76
   m_VelocityScale: 0
-  m_LengthScale: 9
+  m_LengthScale: 5
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
@@ -20285,10 +20285,10 @@ GameObject:
   - component: {fileID: 3453318456927427485}
   - component: {fileID: 3453318456927427487}
   - component: {fileID: 5883057705004049411}
-  - component: {fileID: 5883057705004049415}
   - component: {fileID: 6142571137788114802}
   - component: {fileID: 3375649022148996000}
   - component: {fileID: 5883057705004049423}
+  - component: {fileID: 5883399244261074447}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -20429,21 +20429,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5883057705004049415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4725599791394527282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc535d6dd828b870497f59b4a8bfaf6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  healthHolderName: Player
-  respectiveAudioImpact: {fileID: 8889543809207438422}
 --- !u!114 &6142571137788114802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20462,6 +20447,7 @@ MonoBehaviour:
   regenerationSpeed: 2
   timeSinceLastHit: 0
   respectiveSoundEffect: {fileID: 7060883549678552148}
+  health: {fileID: 5883399244261074447}
 --- !u!114 &3375649022148996000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20572,6 +20558,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5883399244261074447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4725599791394527282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838881766591890f7a3abf11670480a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  healthHolderName: Mako
+  respectiveAudioImpact: {fileID: 8889543809207438422}
 --- !u!1 &4919193154983469130
 GameObject:
   m_ObjectHideFlags: 0
