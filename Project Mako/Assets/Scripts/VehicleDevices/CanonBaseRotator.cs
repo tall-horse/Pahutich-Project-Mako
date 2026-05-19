@@ -7,12 +7,15 @@ namespace Mako.VehicleDevices
         [SerializeField] private Camera playerCamera;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] public Transform gun;
+        [SerializeField] private float lowerXRotationLimit = -20f;
+        [SerializeField] private float upperXRotationLimit = 90f;
         private Ray ray;
 
         // Update is called once per frame
         void Update()
         {
             ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {
                 Vector3 raycastVector = raycastHit.point;

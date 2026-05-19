@@ -38,7 +38,7 @@ namespace Mako.Shooting
             spawnPosition = GameObject.FindGameObjectWithTag("Projectile spawn pos").transform;
             audioSource = GetComponent<AudioSource>();
             playerInputActions = new PlayerInputActions();
-            canonBaseRotator = GetComponent<CanonBaseRotator>();
+            canonBaseRotator = GetComponentInParent<CanonBaseRotator>();
             projectilesPool = GetComponent<ProjectilesPool>();
             gameManager = FindObjectOfType<GameManager>();
             playerInputActions.Player.Enable();
@@ -61,10 +61,19 @@ namespace Mako.Shooting
                 mouseWorldPosition = Vector3.zero;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 999f, aimColliderLayerMask))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, aimColliderLayerMask))
                 {
-                    mouseWorldPosition = hit.point;
-                    Shoot(mouseWorldPosition);
+                    int layerNR = hit.transform.gameObject.layer;
+                    bool aimingTooClose = layerNR == 3 || layerNR == 9;
+                    if (aimingTooClose)
+                    {
+                        Shoot(canonBaseRotator.transform.forward, true);
+                    }
+                    else
+                    {
+                        mouseWorldPosition = hit.point;
+                        Shoot(mouseWorldPosition, false); // Shoot at aim point
+                    }
                 }
             }
         }
@@ -118,20 +127,31 @@ namespace Mako.Shooting
             OnOverheatChanged?.Invoke();
         }
 
-        private void Shoot(Vector3 mousePosition)
+        private void Shoot(Vector3 directionOrTarget, bool isDirection)
         {
             ManageShootingCapability();
-            if (!canShoot)
-                return;
-            aimDir = ((mousePosition - spawnPosition.gameObject.transform.position) + new Vector3(0, 0.5f, 0)).normalized;
+            if (!canShoot) return;
+
             var spawnedProjectile = projectilesPool.GetPooledProjectiles();
             if (spawnedProjectile)
             {
                 spawnedProjectile.transform.position = spawnPosition.position;
-                Vector3 horizontalAimDir = new Vector3(aimDir.x, 0, aimDir.z);
-                spawnedProjectile.transform.rotation = Quaternion.LookRotation(horizontalAimDir);
+
+                Vector3 shootDirection;
+                if (isDirection)
+                {
+                    shootDirection = directionOrTarget;
+                    spawnedProjectile.transform.rotation = Quaternion.LookRotation(shootDirection);
+                }
+                else
+                {
+                    shootDirection = (directionOrTarget - spawnPosition.position).normalized;
+                    spawnedProjectile.transform.rotation = Quaternion.LookRotation(shootDirection);
+                }
+
                 spawnedProjectile.SetActive(true);
-                spawnedProjectile.GetComponentInChildren<Projectile>().OnShot(aimDir);
+                spawnedProjectile.GetComponentInChildren<Projectile>().OnShot(shootDirection);
+
                 currentOverheat += overheatPerShot;
                 canShoot = false;
                 cooldownTimer = cooldown;
