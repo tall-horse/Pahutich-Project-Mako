@@ -45,11 +45,6 @@ namespace Mako.VehicleDevices
                 nitroFuelCurrent = 0;
         }
 
-        private void FixedUpdate()
-        {
-
-        }
-
         private void DeactivateNitro()
         {
             enginesVisuals.ForEach(e => e.Stop());
