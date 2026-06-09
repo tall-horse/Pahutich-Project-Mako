@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-
 namespace Mako.State
 {
     public class Settings : MonoBehaviour
@@ -13,8 +12,7 @@ namespace Mako.State
         [SerializeField] private Slider generalVolumeSlider;
         [SerializeField] private Slider sfxVolumeSlider;
         [SerializeField] private Slider musicVolumeSlider;
-
-        void OnEnable()
+        private void Start()
         {
             SetupInitialSliderValue(exposedGeneralParameterName, ref generalVolumeSlider);
             SetupInitialSliderValue(exposedSfxParameterName, ref sfxVolumeSlider);
@@ -23,23 +21,39 @@ namespace Mako.State
 
         private void SetupInitialSliderValue(string parameterName, ref Slider sliderToSetup)
         {
-            float sliderStartValue = 0f;
-            mixer.GetFloat(parameterName, out sliderStartValue);
-            sliderStartValue = Mathf.Exp(sliderStartValue / 20);
+            float sliderStartValue;
+            float savedValue = PlayerPrefs.GetFloat(parameterName, 0);
+            mixer.SetFloat(parameterName, savedValue);
+            sliderStartValue = Mathf.Exp(savedValue / 20);
             sliderToSetup.value = sliderStartValue;
         }
 
         public void ConfigureGeneralVolume()
         {
-            mixer.SetFloat(exposedGeneralParameterName, Mathf.Log(generalVolumeSlider.value) * 20f);
+            float newValue = Mathf.Log(generalVolumeSlider.value) * 20f;
+            mixer.SetFloat(exposedGeneralParameterName, newValue);
+            PlayerPrefs.SetFloat(exposedGeneralParameterName, newValue);
         }
         public void ConfigureSFXVolume()
         {
-            mixer.SetFloat(exposedSfxParameterName, Mathf.Log(sfxVolumeSlider.value) * 20f);
+            float newValue = Mathf.Log(sfxVolumeSlider.value) * 20f;
+            mixer.SetFloat(exposedSfxParameterName, newValue);
+            PlayerPrefs.SetFloat(exposedSfxParameterName, newValue);
         }
         public void ConfigureMusicVolume()
         {
-            mixer.SetFloat(exposedMusicVolumeParameterName, Mathf.Log(musicVolumeSlider.value) * 20f);
+            float newValue = Mathf.Log(musicVolumeSlider.value) * 20f;
+            mixer.SetFloat(exposedMusicVolumeParameterName, newValue);
+            PlayerPrefs.SetFloat(exposedMusicVolumeParameterName, newValue);
+        }
+        public void ResetToDefaults()
+        {
+            PlayerPrefs.DeleteKey(exposedGeneralParameterName);
+            PlayerPrefs.DeleteKey(exposedSfxParameterName);
+            PlayerPrefs.DeleteKey(exposedMusicVolumeParameterName);
+            SetupInitialSliderValue(exposedGeneralParameterName, ref generalVolumeSlider);
+            SetupInitialSliderValue(exposedSfxParameterName, ref sfxVolumeSlider);
+            SetupInitialSliderValue(exposedMusicVolumeParameterName, ref musicVolumeSlider);
         }
     }
 }
