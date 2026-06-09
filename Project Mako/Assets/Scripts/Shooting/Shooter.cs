@@ -23,6 +23,7 @@ namespace Mako.Shooting
         private CanonBaseRotator canonBaseRotator;
         private ProjectilesPool projectilesPool;
         private GameManager gameManager;
+        private ParticleSystem _flash;
         [SerializeField] private float cooldown;
         [SerializeField] private float overheatThreshold;
         [SerializeField] private float overheatPerShot;
@@ -42,6 +43,7 @@ namespace Mako.Shooting
             projectilesPool = GetComponent<ProjectilesPool>();
             gameManager = FindObjectOfType<GameManager>();
             playerInputActions.Player.Enable();
+            _flash = GetComponentInChildren<ParticleSystem>();
             //projectilesPool.projectilePrefab = projectile;
         }
 
@@ -148,7 +150,7 @@ namespace Mako.Shooting
                     shootDirection = (directionOrTarget - spawnPosition.position).normalized;
                     spawnedProjectile.transform.rotation = Quaternion.LookRotation(shootDirection);
                 }
-
+                _flash.Play();
                 spawnedProjectile.SetActive(true);
                 spawnedProjectile.GetComponentInChildren<Projectile>().OnShot(shootDirection);
 

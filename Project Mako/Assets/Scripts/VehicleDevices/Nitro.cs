@@ -30,7 +30,14 @@ namespace Mako.VehicleDevices
             bool isPressingNitro = playerInputActions.Player.Nitro.ReadValue<float>() > 0.1f;
             bool hasSuffientAmountOfFuel = nitroFuelCurrent > 0;
             doingNitro = isPressingNitro && hasSuffientAmountOfFuel;
-
+            if (doingNitro)
+            {
+                ActivateNitro();
+            }
+            else
+            {
+                DeactivateNitro();
+            }
 
             if (nitroFuelCurrent > nitroFuelMax)
                 nitroFuelCurrent = nitroFuelMax;
@@ -40,14 +47,7 @@ namespace Mako.VehicleDevices
 
         private void FixedUpdate()
         {
-            if (doingNitro)
-            {
-                ActivateNitro();
-            }
-            else
-            {
-                DeactivateNitro();
-            }
+
         }
 
         private void DeactivateNitro()
