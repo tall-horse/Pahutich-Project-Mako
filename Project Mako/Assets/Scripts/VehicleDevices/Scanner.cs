@@ -17,9 +17,9 @@ namespace Mako.VehicleDevices
         {
             scannerPanel.SetActive(false);
         }
-        private void Start()
+        public void Initialize(InputManager inputManager)
         {
-            _inputManager = InputManager.Instance;
+            _inputManager = inputManager;
         }
 
         // Update is called once per frame

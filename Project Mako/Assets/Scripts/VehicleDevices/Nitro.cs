@@ -23,9 +23,9 @@ namespace Mako.VehicleDevices
             enginesVisuals.ForEach(e => e.Stop());
         }
 
-        private void Start()
+        public void Initialize(InputManager inputManager)
         {
-            _inputManager = InputManager.Instance;
+            _inputManager = inputManager;
         }
         // Update is called once per frame
         void Update()

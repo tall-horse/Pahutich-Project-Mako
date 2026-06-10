@@ -26,9 +26,9 @@ namespace Mako.State
             gameOverPanel.SetActive(false);
         }
         // Start is called before the first frame update
-        private void Start()
+        public void Initialize(InputManager inputManager)
         {
-            _inputManager = InputManager.Instance;
+            _inputManager = inputManager;
         }
         void OnEnable()
         {

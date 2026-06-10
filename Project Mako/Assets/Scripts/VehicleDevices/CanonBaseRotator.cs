@@ -12,10 +12,9 @@ namespace Mako.VehicleDevices
         [SerializeField] private float upperXRotationLimit = 90f;
         private InputManager _inputManager;
         private Ray ray;
-
-        private void Start()
+        public void Initialize(InputManager inputManager)
         {
-            _inputManager = InputManager.Instance;
+            _inputManager = inputManager;
         }
         // Update is called once per frame
         void Update()

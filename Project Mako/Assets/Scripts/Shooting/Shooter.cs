@@ -46,10 +46,12 @@ namespace Mako.Shooting
             _flash = GetComponentInChildren<ParticleSystem>();
             //projectilesPool.projectilePrefab = projectile;
         }
-
+        public void Initialize(InputManager inputManager)
+        {
+            _inputManager = inputManager;
+        }
         void Start()
         {
-            _inputManager = InputManager.Instance;
             cooldownTimer = cooldown;
         }
 

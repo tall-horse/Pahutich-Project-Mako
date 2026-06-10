@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using TMPro;
-using Mako.Miscellaneous;
 using Mako.Input;
 
 namespace Mako.Movement
@@ -22,16 +21,18 @@ namespace Mako.Movement
         private float speed = 0f;
         private float carUpsideDownTimer = 0f;
         private Rigidbody playerRigidbody;
-        private CameraFollow cameraFollow;
         private AudioSource audioSource;
         //private OverheatBar overheatBar;
         Vector2 inputVector = Vector2.zero;
         private InputManager _inputManager;
         //public event Action <Shooter> OnOverheatableWeaponSet;
+        public void Initialize(InputManager inputManager)
+        {
+            _inputManager = inputManager;
+        }
         private void Awake()
         {
             playerRigidbody = GetComponent<Rigidbody>();
-            cameraFollow = FindObjectOfType<CameraFollow>();
             audioSource = GetComponent<AudioSource>();
             //overheatBar = FindObjectOfType<OverheatBar>();
         }
@@ -51,7 +52,6 @@ namespace Mako.Movement
         // }
         private void Start()
         {
-            _inputManager = InputManager.Instance;
             playerRigidbody.centerOfMass = centerOfMass.transform.localPosition;
         }
         private void Update()
