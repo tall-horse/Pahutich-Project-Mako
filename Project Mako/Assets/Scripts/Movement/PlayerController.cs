@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using TMPro;
 using Mako.Miscellaneous;
-using UnityEngine.InputSystem;
 using Mako.Input;
 
 namespace Mako.Movement

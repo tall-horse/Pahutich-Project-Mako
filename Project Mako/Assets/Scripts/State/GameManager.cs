@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Mako.Movement;
 using Mako.Input;
 
 namespace Mako.State
