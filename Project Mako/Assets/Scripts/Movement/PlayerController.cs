@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using TMPro;
 using Mako.Miscellaneous;
+using UnityEngine.InputSystem;
 
 namespace Mako.Movement
 {
@@ -25,12 +26,14 @@ namespace Mako.Movement
         private AudioSource audioSource;
         //private OverheatBar overheatBar;
         Vector2 inputVector = Vector2.zero;
-        private PlayerInputActions playerInputActions;
+        private PlayerInput _playerInput;
+        private static PlayerInputActions _playerInputActions;
         //public event Action <Shooter> OnOverheatableWeaponSet;
         private void Awake()
         {
-            playerInputActions = new PlayerInputActions();
-            playerInputActions.Player.Enable();
+            _playerInput = GetComponent<PlayerInput>();
+            _playerInputActions = new PlayerInputActions();
+            _playerInputActions.Player.Enable();
             playerRigidbody = GetComponent<Rigidbody>();
             cameraFollow = FindObjectOfType<CameraFollow>();
             audioSource = GetComponent<AudioSource>();
@@ -56,7 +59,7 @@ namespace Mako.Movement
         }
         private void Update()
         {
-            inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
+            inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
             if (playerRigidbody != null)
             {
                 speed = playerRigidbody.velocity.magnitude * 3.6f;
@@ -70,6 +73,22 @@ namespace Mako.Movement
             else
                 audioSource.Stop();
             ClampPosition();
+        }
+        void OnEnable()
+        {
+            _playerInput.enabled = false;
+            _playerInputActions.Enable();
+        }
+        private void OnDisable()
+        {
+            _playerInput.enabled = false;
+            _playerInputActions.Disable();
+        }
+        private void OnDestroy()
+        {
+            _playerInput.enabled = false;
+            _playerInputActions.Disable();
+            _playerInputActions = null;
         }
 
         private void ClampPosition()
@@ -178,5 +197,7 @@ namespace Mako.Movement
             }
             return false;
         }
+
+        public static PlayerInputActions GetPlayerInputActions() => _playerInputActions;
     }
 }

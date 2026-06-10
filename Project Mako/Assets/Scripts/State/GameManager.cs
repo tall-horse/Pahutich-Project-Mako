@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Mako.Movement;
 
 namespace Mako.State
 {
@@ -15,7 +16,7 @@ namespace Mako.State
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _settingsButton;
 
-        PlayerInputActions playerInputActions;
+        private PlayerInputActions _playerInputActions;
         private const string PauseText = "Pause";
         private const string LossText = "You lost";
         private void Awake()
@@ -23,8 +24,11 @@ namespace Mako.State
             player = GameObject.FindGameObjectWithTag("Player");
             playerHealth = player.GetComponent<Health.BasicHealth>();
             gameOverPanel.SetActive(false);
-            playerInputActions = new PlayerInputActions();
-            playerInputActions.Player.Enable();
+        }
+        private void Start()
+        {
+            _playerInputActions = PlayerController.GetPlayerInputActions();
+            _playerInputActions.Player.Enable();
         }
         // Start is called before the first frame update
         void OnEnable()
@@ -49,7 +53,7 @@ namespace Mako.State
         void Update()
         {
             if (gameOver) return;
-            bool pauseTime = playerInputActions.Player.Pause.triggered;
+            bool pauseTime = _playerInputActions.Player.Pause.triggered;
             if (pauseTime)
             {
                 Pause();

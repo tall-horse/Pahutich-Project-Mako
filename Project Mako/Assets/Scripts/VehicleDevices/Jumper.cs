@@ -9,7 +9,7 @@ namespace Mako.VehicleDevices
         private bool isJumping = false;
         private Rigidbody jumpingRigidbody;
         private AudioSource audioSource;
-        private PlayerInputActions playerInputActions;
+        private PlayerInputActions _playerInputActions;
         private PlayerController playerController;
         [SerializeField] private float jumpForce = 10f;
         [SerializeField] private float jumpFuelMax;
@@ -20,17 +20,20 @@ namespace Mako.VehicleDevices
         {
             jumpingRigidbody = GetComponentInParent<Rigidbody>();
             audioSource = GetComponent<AudioSource>();
-            playerInputActions = new PlayerInputActions();
             playerController = GetComponentInParent<PlayerController>();
-            playerInputActions.Player.Enable();
             jumpFuelCurrent = jumpFuelMax;
             enginesVisuals.ForEach(e => e.Stop());
+        }
+        private void Start()
+        {
+            _playerInputActions = PlayerController.GetPlayerInputActions();
+            _playerInputActions.Player.Enable();
         }
 
         // Update is called once per frame
         void Update()
         {
-            bool jumpInputActivated = playerInputActions.Player.Jump.ReadValue<float>() > 0.1f;
+            bool jumpInputActivated = _playerInputActions.Player.Jump.ReadValue<float>() > 0.1f;
             bool hasSufficientAmountOfFuel = jumpFuelCurrent > 0;
 
             if (jumpInputActivated && hasSufficientAmountOfFuel)

@@ -1,4 +1,5 @@
 using System;
+using Mako.Movement;
 using Mako.State;
 using Mako.VehicleDevices;
 using UnityEngine;
@@ -38,17 +39,17 @@ namespace Mako.Shooting
         {
             spawnPosition = GameObject.FindGameObjectWithTag("Projectile spawn pos").transform;
             audioSource = GetComponent<AudioSource>();
-            playerInputActions = new PlayerInputActions();
             canonBaseRotator = GetComponentInParent<CanonBaseRotator>();
             projectilesPool = GetComponent<ProjectilesPool>();
             gameManager = FindObjectOfType<GameManager>();
-            playerInputActions.Player.Enable();
             _flash = GetComponentInChildren<ParticleSystem>();
             //projectilesPool.projectilePrefab = projectile;
         }
 
         void Start()
         {
+            playerInputActions = PlayerController.GetPlayerInputActions();
+            playerInputActions.Player.Enable();
             cooldownTimer = cooldown;
         }
 
