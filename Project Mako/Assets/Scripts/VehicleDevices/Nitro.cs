@@ -7,8 +7,8 @@ namespace Mako.VehicleDevices
     public class Nitro : MonoBehaviour
     {
         private bool doingNitro = false;
-        private Rigidbody playerRigidbody;
-        private AudioSource audioSource;
+        private Rigidbody _playerRigidbody;
+        private AudioSource _audioSource;
         private InputManager _inputManager;
         [SerializeField] private float nitroForce = 10f;
         [SerializeField] private float nitroFuelMax;
@@ -17,15 +17,15 @@ namespace Mako.VehicleDevices
         [SerializeField] private List<ParticleSystem> enginesVisuals;
         private void Awake()
         {
-            playerRigidbody = GetComponentInParent<Rigidbody>();
-            audioSource = GetComponent<AudioSource>();
             nitroFuelCurrent = nitroFuelMax;
             enginesVisuals.ForEach(e => e.Stop());
         }
 
-        public void Initialize(InputManager inputManager)
+        public void Initialize(InputManager inputManager, Rigidbody rigidbody, AudioSource audioSource)
         {
             _inputManager = inputManager;
+            _playerRigidbody = rigidbody;
+            _audioSource = audioSource;
         }
         // Update is called once per frame
         void Update()
@@ -52,18 +52,18 @@ namespace Mako.VehicleDevices
         {
             enginesVisuals.ForEach(e => e.Stop());
             nitroFuelCurrent += Time.deltaTime * nitroRegenerationAbility;
-            if (audioSource.isPlaying)
-                audioSource.Stop();
+            if (_audioSource.isPlaying)
+                _audioSource.Stop();
         }
 
         private void ActivateNitro()
         {
             Vector3 nitroVector = transform.forward * nitroForce;
-            playerRigidbody.AddForce(nitroVector, ForceMode.Acceleration);
+            _playerRigidbody.AddForce(nitroVector, ForceMode.Acceleration);
             enginesVisuals.ForEach(e => e.Play());
             nitroFuelCurrent -= Time.deltaTime * nitroRegenerationAbility;
-            if (!audioSource.isPlaying)
-                audioSource.Play();
+            if (!_audioSource.isPlaying)
+                _audioSource.Play();
         }
     }
 }

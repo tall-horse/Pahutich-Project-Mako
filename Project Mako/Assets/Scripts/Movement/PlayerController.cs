@@ -12,63 +12,41 @@ namespace Mako.Movement
         [SerializeField] private float steerAngle;
         [SerializeField] private Transform centerOfMass;
         [SerializeField] private TextMeshProUGUI speedText;
-        [SerializeField] private float airSteeringForce;
         [SerializeField] private float turnCarAfterXSeconds = 3f;
         [SerializeField] private Vector3 min;
         [SerializeField] private Vector3 max;
-        [SerializeField] private GameObject weaponHolder;
         [SerializeField] private WheelCollider[] wheelColliders = new WheelCollider[6];
         private float speed = 0f;
         private float carUpsideDownTimer = 0f;
-        private Rigidbody playerRigidbody;
-        private AudioSource audioSource;
-        //private OverheatBar overheatBar;
-        Vector2 inputVector = Vector2.zero;
+        private Rigidbody _playerRigidbody;
+        private AudioSource _audioSource;
+        private Vector2 inputVector = Vector2.zero;
         private InputManager _inputManager;
-        //public event Action <Shooter> OnOverheatableWeaponSet;
-        public void Initialize(InputManager inputManager)
+        public void Initialize(InputManager inputManager, Rigidbody rigidbody, AudioSource audioSource)
         {
             _inputManager = inputManager;
+            _playerRigidbody = rigidbody;
+            _audioSource = audioSource;
         }
-        private void Awake()
-        {
-            playerRigidbody = GetComponent<Rigidbody>();
-            audioSource = GetComponent<AudioSource>();
-            //overheatBar = FindObjectOfType<OverheatBar>();
-        }
-
-        // private void OnEnable()
-        // {
-        //   if(Inventory.instance == null)
-        //   {
-        //     Inventory.instance = FindObjectOfType(typeof(Inventory)) as Inventory;
-        //   }
-        //   GameObject primaryWeapon = Instantiate(Inventory.instance.GetPrimaryWeapon().gameObject,
-        //   weaponHolder.transform.position, Quaternion.identity);
-        //   GameObject secondaryWeapon = Instantiate(Inventory.instance.GetSecondaryWeapon().gameObject,
-        //   weaponHolder.transform.position, Quaternion.identity);
-        //   primaryWeapon.transform.parent = weaponHolder.transform;
-        //   secondaryWeapon.transform.parent = weaponHolder.transform;
-        // }
         private void Start()
         {
-            playerRigidbody.centerOfMass = centerOfMass.transform.localPosition;
+            _playerRigidbody.centerOfMass = centerOfMass.transform.localPosition;
         }
         private void Update()
         {
             inputVector = _inputManager.Actions.Player.Movement.ReadValue<Vector2>();
-            if (playerRigidbody != null)
+            if (_playerRigidbody != null)
             {
-                speed = playerRigidbody.velocity.magnitude * 3.6f;
+                speed = _playerRigidbody.velocity.magnitude * 3.6f;
                 speedText.text = "Speed: " + speed;
             }
             if (inputVector.y != 0)
             {
-                if (!audioSource.isPlaying)
-                    audioSource.Play();
+                if (!_audioSource.isPlaying)
+                    _audioSource.Play();
             }
             else
-                audioSource.Stop();
+                _audioSource.Stop();
             ClampPosition();
         }
         private void ClampPosition()
@@ -101,21 +79,21 @@ namespace Mako.Movement
                 return;
 
             Quaternion verticalAirRotation = Quaternion.AngleAxis(verticalInput * 40f, Vector3.right);
-            Quaternion targetVerticalRotation = playerRigidbody.rotation * verticalAirRotation;
+            Quaternion targetVerticalRotation = _playerRigidbody.rotation * verticalAirRotation;
 
-            playerRigidbody.MoveRotation(Quaternion.Lerp(playerRigidbody.rotation, targetVerticalRotation, 2.0f * Time.deltaTime));
+            _playerRigidbody.MoveRotation(Quaternion.Lerp(_playerRigidbody.rotation, targetVerticalRotation, 2.0f * Time.deltaTime));
 
             Quaternion horizontalAirRotation = Quaternion.AngleAxis(horizontalInput * 40f, Vector3.back);
-            Quaternion targetHorizontalRotation = playerRigidbody.rotation * horizontalAirRotation;
+            Quaternion targetHorizontalRotation = _playerRigidbody.rotation * horizontalAirRotation;
 
-            playerRigidbody.MoveRotation(Quaternion.Lerp(playerRigidbody.rotation, targetHorizontalRotation, 2.0f * Time.deltaTime));
+            _playerRigidbody.MoveRotation(Quaternion.Lerp(_playerRigidbody.rotation, targetHorizontalRotation, 2.0f * Time.deltaTime));
         }
 
         private void BreakWheels(float verticalInput, float horizontalInput)
         {
-            if (speed > 0.01f && (verticalInput == 0 && horizontalInput == 0) && Mathf.Abs(playerRigidbody.velocity.z) > 0.01f ||
-            (playerRigidbody.transform.InverseTransformDirection(playerRigidbody.velocity).z >= 0.1f && verticalInput < 0 ||
-            playerRigidbody.transform.InverseTransformDirection(playerRigidbody.velocity).z <= -0.1f && verticalInput > 0))
+            if (speed > 0.01f && (verticalInput == 0 && horizontalInput == 0) && Mathf.Abs(_playerRigidbody.velocity.z) > 0.01f ||
+            (_playerRigidbody.transform.InverseTransformDirection(_playerRigidbody.velocity).z >= 0.1f && verticalInput < 0 ||
+            _playerRigidbody.transform.InverseTransformDirection(_playerRigidbody.velocity).z <= -0.1f && verticalInput > 0))
             {
                 for (int i = 0; i < wheelColliders.Length; i++)
                 {
@@ -152,14 +130,14 @@ namespace Mako.Movement
         }
         private void CheckCarDown()
         {
-            if (Vector3.Dot(transform.up, Vector3.down) > 0 && !IsGrounded() && playerRigidbody.velocity.magnitude <= Math.Abs(0.1))
+            if (Vector3.Dot(transform.up, Vector3.down) > 0 && !IsGrounded() && _playerRigidbody.velocity.magnitude <= Math.Abs(0.1))
             {
                 carUpsideDownTimer += Time.deltaTime;
                 if (carUpsideDownTimer >= turnCarAfterXSeconds)
                 {
                     transform.rotation = Quaternion.identity;
-                    playerRigidbody.velocity = Vector3.zero;
-                    playerRigidbody.angularVelocity = Vector3.zero;
+                    _playerRigidbody.velocity = Vector3.zero;
+                    _playerRigidbody.angularVelocity = Vector3.zero;
                 }
             }
             else

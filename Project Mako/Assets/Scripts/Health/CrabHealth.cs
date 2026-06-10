@@ -13,17 +13,19 @@ namespace Mako
         {
             base.Awake();
             _crabMonsterAI = GetComponent<CrabMonsterAI>();
+            _audioSource = GetComponentInChildren<AudioSource>();
+            _hitBox = GetComponent<Collider>();
         }
         protected override void OnEnable()
         {
             base.SubscribeEvents();
-            healthSystem.OnRespondToFire += RespondToFire;
+            _healthSystem.OnRespondToFire += RespondToFire;
         }
 
         protected override void OnDisable()
         {
             base.UnsubscribeEvents();
-            healthSystem.OnRespondToFire -= RespondToFire;
+            _healthSystem.OnRespondToFire -= RespondToFire;
         }
 
         private void RespondToFire()
@@ -41,11 +43,11 @@ namespace Mako
 
         protected override IEnumerator SelfDestroy()
         {
-            audioSource.Play();
+            _audioSource.Play();
             //animator.enabled = false;
             yield return new WaitForSeconds(1f);
-            meshRenderer.enabled = false;
-            hitBox.enabled = false;
+            //_meshRenderer.enabled = false;
+            _hitBox.enabled = false;
             // foreach (Transform item in transform)
             // {
             //     Destroy(item.gameObject);

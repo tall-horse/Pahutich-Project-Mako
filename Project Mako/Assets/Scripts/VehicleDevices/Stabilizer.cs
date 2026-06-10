@@ -5,26 +5,22 @@ namespace Mako.VehicleDevices
 {
     public class Stabilizer : MonoBehaviour
     {
-        private PlayerController playerController;
-        private Rigidbody rb;
+        private PlayerController _playerController;
+        private Rigidbody _playerRigidbody;
         [SerializeField] private float stability;
         [SerializeField] private float speed;
-        private void Awake()
+        public void Initialize(PlayerController playerController, Rigidbody rigidbody)
         {
-            playerController = GetComponent<PlayerController>();
+            _playerController = playerController;
+            _playerRigidbody = rigidbody;
         }
-        private void Start()
-        {
-            rb = GetComponent<Rigidbody>();
-        }
-
         void FixedUpdate()
         {
-            if (rb != null && !playerController.IsGrounded())
+            if (_playerRigidbody != null && !_playerController.IsGrounded())
             {
-                Vector3 predictedUp = Quaternion.AngleAxis(rb.angularVelocity.magnitude * Mathf.Rad2Deg * stability / speed, rb.angularVelocity) * transform.up;
+                Vector3 predictedUp = Quaternion.AngleAxis(_playerRigidbody.angularVelocity.magnitude * Mathf.Rad2Deg * stability / speed, _playerRigidbody.angularVelocity) * transform.up;
                 Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
-                rb.AddTorque(torqueVector * speed * speed);
+                _playerRigidbody.AddTorque(torqueVector * speed * speed);
             }
         }
     }

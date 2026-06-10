@@ -8,9 +8,9 @@ namespace Mako.VehicleDevices
     public class Jumper : MonoBehaviour
     {
         private bool isJumping = false;
-        private Rigidbody jumpingRigidbody;
-        private AudioSource audioSource;
-        private PlayerController playerController;
+        private Rigidbody _jumpingRigidbody;
+        private AudioSource _audioSource;
+        private PlayerController _playerController;
         private InputManager _inputManager;
         [SerializeField] private float jumpForce = 10f;
         [SerializeField] private float jumpFuelMax;
@@ -19,15 +19,15 @@ namespace Mako.VehicleDevices
         [SerializeField] private List<ParticleSystem> enginesVisuals;
         private void Awake()
         {
-            jumpingRigidbody = GetComponentInParent<Rigidbody>();
-            audioSource = GetComponent<AudioSource>();
-            playerController = GetComponentInParent<PlayerController>();
             jumpFuelCurrent = jumpFuelMax;
             enginesVisuals.ForEach(e => e.Stop());
         }
-        public void Initialize(InputManager inputManager)
+        public void Initialize(InputManager inputManager, PlayerController playerController, Rigidbody rigidbody, AudioSource audioSource)
         {
             _inputManager = inputManager;
+            _playerController = playerController;
+            _jumpingRigidbody = rigidbody;
+            _audioSource = audioSource;
         }
 
         // Update is called once per frame
@@ -64,21 +64,21 @@ namespace Mako.VehicleDevices
         private void ActivateJump()
         {
             Vector3 jumpVector = transform.up * jumpForce;
-            jumpingRigidbody.AddForce(jumpVector, ForceMode.Impulse);
+            _jumpingRigidbody.AddForce(jumpVector, ForceMode.Impulse);
             enginesVisuals.ForEach(e => e.Play());
             jumpFuelCurrent -= Time.deltaTime * fuelRegenerationAbility;
-            if (!audioSource.isPlaying)
-                audioSource.Play();
+            if (!_audioSource.isPlaying)
+                _audioSource.Play();
         }
 
         private void DeactivateJump()
         {
             isJumping = false;
             enginesVisuals.ForEach(e => e.Stop());
-            if (playerController.IsGrounded())
+            if (_playerController.IsGrounded())
                 jumpFuelCurrent += Time.deltaTime * fuelRegenerationAbility;
-            if (audioSource.isPlaying)
-                audioSource.Stop();
+            if (_audioSource.isPlaying)
+                _audioSource.Stop();
         }
     }
 }

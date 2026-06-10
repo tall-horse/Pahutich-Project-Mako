@@ -11,12 +11,16 @@ namespace Mako.VehicleDevices
         [SerializeField] private float timeToStartRegenerating;
         [SerializeField] private float regenerationSpeed;
         [SerializeField] private float timeSinceLastHit;
-        [SerializeField] private AudioSource respectiveSoundEffect;
-        [SerializeField] private Health.BasicHealth health;
+        private AudioSource _respectiveSoundEffect;
+        private Health.BasicHealth _playerHealth;
         public event Action OnShieldCapacityChanged;
+        public void Initialize(Health.BasicHealth playerHealth, AudioSource audioSource)
+        {
+            _playerHealth = playerHealth;
+            _respectiveSoundEffect = audioSource;
+        }
         private void Awake()
         {
-            health = GetComponent<Health.BasicHealth>();
             shieldCapacity = maxShieldCapacity;
             timeSinceLastHit = timeToStartRegenerating;
         }
@@ -55,10 +59,10 @@ namespace Mako.VehicleDevices
             OnShieldCapacityChanged?.Invoke();
             timeSinceLastHit = 0;
             if (damageAmount > shieldCapacity)
-                health.GetHealthSystem().Damage((int)damageAmount - (int)shieldCapacityBeforeHit);
+                _playerHealth.GetHealthSystem().Damage((int)damageAmount - (int)shieldCapacityBeforeHit);
             else
             {
-                respectiveSoundEffect.Play();
+                _respectiveSoundEffect.Play();
             }
 
         }

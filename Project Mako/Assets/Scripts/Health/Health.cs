@@ -6,14 +6,22 @@ namespace Mako.Health
 
     public abstract class BasicHealth : MonoBehaviour
     {
-        protected Collider hitBox;
-        protected AudioSource audioSource;
-        protected MeshRenderer meshRenderer;
-        protected HealthSystem healthSystem;
-        protected Animator animator;
+        protected Collider _hitBox;
+        protected AudioSource _audioSource;
+        protected MeshRenderer _meshRenderer;
+        protected HealthSystem _healthSystem;
         [SerializeField] protected int health;
         [SerializeField] protected string healthHolderName;
         [SerializeField] protected AudioSource respectiveAudioImpact;
+        public void Initialize(AudioSource audioSource)
+        {
+            if (_healthSystem == null)
+                _healthSystem = new HealthSystem(health, healthHolderName);
+
+            _audioSource = audioSource;
+            _hitBox = GetComponent<Collider>();
+            _meshRenderer = GetComponent<MeshRenderer>();
+        }
         protected virtual void Awake()
         {
             SetupHealthObject();
@@ -26,10 +34,10 @@ namespace Mako.Health
 
         protected virtual void SubscribeEvents()
         {
-            if (healthSystem == null)
+            if (_healthSystem == null)
                 SetupHealthObject();
-            healthSystem.OnHealthChanged += StartDestructionProcess;
-            healthSystem.OnDead += StartCorSelfDestroy;
+            _healthSystem.OnHealthChanged += StartDestructionProcess;
+            _healthSystem.OnDead += StartCorSelfDestroy;
         }
 
         protected virtual void OnDisable()
@@ -39,23 +47,18 @@ namespace Mako.Health
 
         protected virtual void UnsubscribeEvents()
         {
-            healthSystem.OnHealthChanged -= StartDestructionProcess;
-            healthSystem.OnDead -= StartCorSelfDestroy;
+            _healthSystem.OnHealthChanged -= StartDestructionProcess;
+            _healthSystem.OnDead -= StartCorSelfDestroy;
         }
 
         public void SetupHealthObject()
         {
-            healthSystem = new HealthSystem(health, healthHolderName);
-
-            hitBox = GetComponentInChildren<Collider>();
-            audioSource = GetComponentInChildren<AudioSource>();
-            meshRenderer = GetComponentInChildren<MeshRenderer>();
-            animator = GetComponent<Animator>();
+            _healthSystem = new HealthSystem(health, healthHolderName);
         }
 
         public HealthSystem GetHealthSystem()
         {
-            return healthSystem;
+            return _healthSystem;
         }
         protected virtual void StartDestructionProcess(HealthSystem hs)
         {

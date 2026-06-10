@@ -14,18 +14,20 @@ namespace Mako
         {
             base.Awake();
             _turret = GetComponent<Turret>();
+            _audioSource = GetComponentInChildren<AudioSource>();
+            _hitBox = GetComponent<Collider>();
         }
         protected override void OnEnable()
         {
             base.SubscribeEvents();
-            healthSystem.OnRespondToFire += RespondToFire;
+            _healthSystem.OnRespondToFire += RespondToFire;
             _turretVisuals = _turret.GetTurretVisuals();
         }
 
         protected override void OnDisable()
         {
             base.UnsubscribeEvents();
-            healthSystem.OnRespondToFire -= RespondToFire;
+            _healthSystem.OnRespondToFire -= RespondToFire;
         }
 
         private void RespondToFire()
@@ -36,9 +38,9 @@ namespace Mako
 
         protected override IEnumerator SelfDestroy()
         {
-            audioSource.Play();
+            _audioSource.Play();
             _turret.dead = true;
-            hitBox.enabled = false;
+            _hitBox.enabled = false;
             foreach (MeshRenderer t in _turretVisuals)
             {
                 t.enabled = false;

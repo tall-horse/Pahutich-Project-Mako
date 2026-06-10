@@ -13,46 +13,41 @@ namespace Mako.Shooting
     [RequireComponent(typeof(ProjectilesPool))]
     public class Shooter : MonoBehaviour
     {
-        private bool inOverheat = false;
-        private bool canShoot = false;
-        private float cooldownTimer;
-        private Vector3 mouseWorldPosition;
-        private Vector3 aimDir = Vector3.zero;
-        private Ray ray;
-        private AudioSource audioSource;
-        private PlayerInputActions playerInputActions;
+        private bool _inOverheat = false;
+        private bool _canShoot = false;
+        private float _cooldownTimer;
+        private Vector3 _mouseWorldPosition;
+        private AudioSource _audioSource;
         private InputManager _inputManager;
-        private CanonBaseRotator canonBaseRotator;
-        private ProjectilesPool projectilesPool;
-        private GameManager gameManager;
+        private CanonBaseRotator _canonBaseRotator;
+        private ProjectilesPool _projectilesPool;
+        private GameManager _gameManager;
         private ParticleSystem _flash;
         [SerializeField] private float cooldown;
         [SerializeField] private float overheatThreshold;
         [SerializeField] private float overheatPerShot;
         [SerializeField] private float coolMultiplier;
         [SerializeField] private GameObject projectile;
-        [SerializeField] private Transform spawnPosition;
+        [SerializeField] private Transform _projectileSpawnPosition;
         [SerializeField] private LayerMask aimColliderLayerMask;
         [field: SerializeField] public WeaponType WeaponType { get; private set; } = WeaponType.PRIMARY;
         public float currentOverheat = 0;
         public Action OnOverheatChanged;
-        private void Awake()
-        {
-            spawnPosition = GameObject.FindGameObjectWithTag("Projectile spawn pos").transform;
-            audioSource = GetComponent<AudioSource>();
-            canonBaseRotator = GetComponentInParent<CanonBaseRotator>();
-            projectilesPool = GetComponent<ProjectilesPool>();
-            gameManager = FindObjectOfType<GameManager>();
-            _flash = GetComponentInChildren<ParticleSystem>();
-            //projectilesPool.projectilePrefab = projectile;
-        }
-        public void Initialize(InputManager inputManager)
+        public void Initialize(InputManager inputManager, GameManager gameManager,
+        CanonBaseRotator canonBaseRotator, Transform projectileSpawnPosition, ProjectilesPool projectilesPool,
+        AudioSource audioSource, ParticleSystem flash)
         {
             _inputManager = inputManager;
+            _gameManager = gameManager;
+            _canonBaseRotator = canonBaseRotator;
+            _projectileSpawnPosition = projectileSpawnPosition;
+            _projectilesPool = projectilesPool;
+            _audioSource = audioSource;
+            _flash = flash;
         }
         void Start()
         {
-            cooldownTimer = cooldown;
+            _cooldownTimer = cooldown;
         }
 
         void Update()
@@ -63,7 +58,7 @@ namespace Mako.Shooting
 
             if (shootInputValue == 1)
             {
-                mouseWorldPosition = Vector3.zero;
+                _mouseWorldPosition = Vector3.zero;
                 Ray ray = Camera.main.ScreenPointToRay(_inputManager.Actions.Player.Aiming.ReadValue<Vector2>());
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, aimColliderLayerMask))
@@ -72,12 +67,12 @@ namespace Mako.Shooting
                     bool aimingTooClose = layerNR == 3 || layerNR == 9;
                     if (aimingTooClose)
                     {
-                        Shoot(canonBaseRotator.transform.forward, true);
+                        Shoot(_canonBaseRotator.transform.forward, true);
                     }
                     else
                     {
-                        mouseWorldPosition = hit.point;
-                        Shoot(mouseWorldPosition, false); // Shoot at aim point
+                        _mouseWorldPosition = hit.point;
+                        Shoot(_mouseWorldPosition, false); // Shoot at aim point
                     }
                 }
             }
@@ -88,16 +83,16 @@ namespace Mako.Shooting
         }
         private void ManageShootingCapability()
         {
-            if (gameManager.GameIsPaused)
+            if (_gameManager.GameIsPaused)
             {
-                canShoot = false;
+                _canShoot = false;
                 return;
             }
             float overheatCooldownMultiplier;
 
-            if (inOverheat && currentOverheat <= 0)
+            if (_inOverheat && currentOverheat <= 0)
             {
-                inOverheat = false;
+                _inOverheat = false;
             }
             currentOverheat -= Time.deltaTime * coolMultiplier;
             if (currentOverheat <= 0)
@@ -105,29 +100,29 @@ namespace Mako.Shooting
             if (currentOverheat >= overheatThreshold)
             {
                 currentOverheat = overheatThreshold;
-                inOverheat = true;
+                _inOverheat = true;
             }
-            if (inOverheat)
+            if (_inOverheat)
             {
                 overheatCooldownMultiplier = coolMultiplier;
-                if (!audioSource.isPlaying)
-                    audioSource.Play();
+                if (!_audioSource.isPlaying)
+                    _audioSource.Play();
             }
             else
             {
                 overheatCooldownMultiplier = coolMultiplier;
-                audioSource.Stop();
+                _audioSource.Stop();
             }
 
-            if (cooldownTimer > 0 || currentOverheat >= overheatThreshold || inOverheat)
+            if (_cooldownTimer > 0 || currentOverheat >= overheatThreshold || _inOverheat)
             {
-                cooldownTimer -= Time.deltaTime;
-                canShoot = false;
+                _cooldownTimer -= Time.deltaTime;
+                _canShoot = false;
             }
-            if (cooldownTimer <= 0 && currentOverheat < overheatThreshold && !inOverheat)
+            if (_cooldownTimer <= 0 && currentOverheat < overheatThreshold && !_inOverheat)
             {
-                cooldownTimer = 0f;
-                canShoot = true;
+                _cooldownTimer = 0f;
+                _canShoot = true;
             }
             OnOverheatChanged?.Invoke();
         }
@@ -135,12 +130,12 @@ namespace Mako.Shooting
         private void Shoot(Vector3 directionOrTarget, bool isDirection)
         {
             ManageShootingCapability();
-            if (!canShoot) return;
+            if (!_canShoot) return;
 
-            var spawnedProjectile = projectilesPool.GetPooledProjectiles();
+            var spawnedProjectile = _projectilesPool.GetPooledProjectiles();
             if (spawnedProjectile)
             {
-                spawnedProjectile.transform.position = spawnPosition.position;
+                spawnedProjectile.transform.position = _projectileSpawnPosition.position;
 
                 Vector3 shootDirection;
                 if (isDirection)
@@ -150,7 +145,7 @@ namespace Mako.Shooting
                 }
                 else
                 {
-                    shootDirection = (directionOrTarget - spawnPosition.position).normalized;
+                    shootDirection = (directionOrTarget - _projectileSpawnPosition.position).normalized;
                     spawnedProjectile.transform.rotation = Quaternion.LookRotation(shootDirection);
                 }
                 _flash.Play();
@@ -158,13 +153,13 @@ namespace Mako.Shooting
                 spawnedProjectile.GetComponentInChildren<Projectile>().OnShot(shootDirection);
 
                 currentOverheat += overheatPerShot;
-                canShoot = false;
-                cooldownTimer = cooldown;
+                _canShoot = false;
+                _cooldownTimer = cooldown;
             }
         }
         public bool GetOverhearStatus()
         {
-            return inOverheat;
+            return _inOverheat;
         }
     }
 }

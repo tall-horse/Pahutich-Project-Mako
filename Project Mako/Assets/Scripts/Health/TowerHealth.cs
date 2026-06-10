@@ -15,9 +15,9 @@ namespace Mako
         }
         protected override IEnumerator SelfDestroy()
         {
-            audioSource.Play();
-            hitBox.enabled = false;
-            meshRenderer.enabled = false;
+            _audioSource.Play();
+            _hitBox.enabled = false;
+            _meshRenderer.enabled = false;
             yield return new WaitForSeconds(_timeToRestoreSignal);
             Destroy(gameObject);
         }
