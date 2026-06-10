@@ -1,4 +1,5 @@
 using System;
+using Mako.Input;
 using Mako.Movement;
 using Mako.State;
 using Mako.VehicleDevices;
@@ -21,6 +22,7 @@ namespace Mako.Shooting
         private Ray ray;
         private AudioSource audioSource;
         private PlayerInputActions playerInputActions;
+        private InputManager _inputManager;
         private CanonBaseRotator canonBaseRotator;
         private ProjectilesPool projectilesPool;
         private GameManager gameManager;
@@ -48,21 +50,20 @@ namespace Mako.Shooting
 
         void Start()
         {
-            playerInputActions = PlayerController.GetPlayerInputActions();
-            playerInputActions.Player.Enable();
+            _inputManager = InputManager.Instance;
             cooldownTimer = cooldown;
         }
 
         void Update()
         {
             ManageShootingCapability();
-            float shootInputValue = WeaponType == WeaponType.PRIMARY ? playerInputActions.Player.Shooting.ReadValue<float>() :
-            playerInputActions.Player.SecondaryShooting.ReadValue<float>();
+            float shootInputValue = WeaponType == WeaponType.PRIMARY ? _inputManager.Actions.Player.Shooting.ReadValue<float>() :
+            _inputManager.Actions.Player.SecondaryShooting.ReadValue<float>();
 
             if (shootInputValue == 1)
             {
                 mouseWorldPosition = Vector3.zero;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Ray ray = Camera.main.ScreenPointToRay(_inputManager.Actions.Player.Aiming.ReadValue<Vector2>());
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, aimColliderLayerMask))
                 {

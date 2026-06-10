@@ -1,3 +1,4 @@
+using Mako.Input;
 using TMPro;
 using UnityEngine;
 
@@ -10,17 +11,22 @@ namespace Mako.VehicleDevices
         [SerializeField] private Mako.UI.HealthBar healthBarOfScannedEnemy;
         [SerializeField] private TextMeshProUGUI enemyName;
         [SerializeField] private GameObject scannerPanel;
+        private InputManager _inputManager;
         [field: SerializeField] public Health.BasicHealth ScannedEnemy { get; private set; }
         private void Awake()
         {
             scannerPanel.SetActive(false);
+        }
+        private void Start()
+        {
+            _inputManager = InputManager.Instance;
         }
 
         // Update is called once per frame
         void Update()
         {
             mouseWorldPosition = Vector3.zero;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(_inputManager.Actions.Player.Aiming.ReadValue<Vector2>());
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 999f, aimColliderLayerMask))
             {

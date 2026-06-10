@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Mako.Input;
 using Mako.Movement;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ namespace Mako.VehicleDevices
         private bool isJumping = false;
         private Rigidbody jumpingRigidbody;
         private AudioSource audioSource;
-        private PlayerInputActions _playerInputActions;
         private PlayerController playerController;
+        private InputManager _inputManager;
         [SerializeField] private float jumpForce = 10f;
         [SerializeField] private float jumpFuelMax;
         [SerializeField] private float fuelRegenerationAbility;
@@ -26,14 +27,13 @@ namespace Mako.VehicleDevices
         }
         private void Start()
         {
-            _playerInputActions = PlayerController.GetPlayerInputActions();
-            _playerInputActions.Player.Enable();
+            _inputManager = InputManager.Instance;
         }
 
         // Update is called once per frame
         void Update()
         {
-            bool jumpInputActivated = _playerInputActions.Player.Jump.ReadValue<float>() > 0.1f;
+            bool jumpInputActivated = _inputManager.Actions.Player.Jump.ReadValue<float>() > 0.1f;
             bool hasSufficientAmountOfFuel = jumpFuelCurrent > 0;
 
             if (jumpInputActivated && hasSufficientAmountOfFuel)

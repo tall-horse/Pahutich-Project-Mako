@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Mako.Input;
 using Mako.Movement;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Mako.VehicleDevices
         private bool doingNitro = false;
         private Rigidbody playerRigidbody;
         private AudioSource audioSource;
-        private PlayerInputActions _playerInputActions;
+        private InputManager _inputManager;
         [SerializeField] private float nitroForce = 10f;
         [SerializeField] private float nitroFuelMax;
         [SerializeField] private float nitroRegenerationAbility;
@@ -25,13 +26,12 @@ namespace Mako.VehicleDevices
 
         private void Start()
         {
-            _playerInputActions = PlayerController.GetPlayerInputActions();
-            _playerInputActions.Player.Enable();
+            _inputManager = InputManager.Instance;
         }
         // Update is called once per frame
         void Update()
         {
-            bool isPressingNitro = _playerInputActions.Player.Nitro.ReadValue<float>() > 0.1f;
+            bool isPressingNitro = _inputManager.Actions.Player.Nitro.ReadValue<float>() > 0.1f;
             bool hasSuffientAmountOfFuel = nitroFuelCurrent > 0;
             doingNitro = isPressingNitro && hasSuffientAmountOfFuel;
             if (doingNitro)

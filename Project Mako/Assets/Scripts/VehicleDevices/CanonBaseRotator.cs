@@ -1,3 +1,4 @@
+using Mako.Input;
 using UnityEngine;
 namespace Mako.VehicleDevices
 {
@@ -9,12 +10,17 @@ namespace Mako.VehicleDevices
         [SerializeField] public Transform gun;
         [SerializeField] private float lowerXRotationLimit = -20f;
         [SerializeField] private float upperXRotationLimit = 90f;
+        private InputManager _inputManager;
         private Ray ray;
 
+        private void Start()
+        {
+            _inputManager = InputManager.Instance;
+        }
         // Update is called once per frame
         void Update()
         {
-            ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+            ray = playerCamera.ScreenPointToRay(_inputManager.Actions.Player.Aiming.ReadValue<Vector2>());
 
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {

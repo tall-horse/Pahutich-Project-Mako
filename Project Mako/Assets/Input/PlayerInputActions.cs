@@ -144,6 +144,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aiming"",
+                    ""type"": ""Value"",
+                    ""id"": ""aa2f55cd-32c9-4c00-a009-c50969dad293"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -278,6 +287,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""SecondaryShooting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25fe54a6-2dde-4d30-8277-cce096f587b4"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aiming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -320,6 +340,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Nitro = m_Player.FindAction("Nitro", throwIfNotFound: true);
         m_Player_SecondaryShooting = m_Player.FindAction("SecondaryShooting", throwIfNotFound: true);
+        m_Player_Aiming = m_Player.FindAction("Aiming", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -406,6 +427,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Nitro;
     private readonly InputAction m_Player_SecondaryShooting;
+    private readonly InputAction m_Player_Aiming;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -441,6 +463,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/SecondaryShooting".
         /// </summary>
         public InputAction @SecondaryShooting => m_Wrapper.m_Player_SecondaryShooting;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Aiming".
+        /// </summary>
+        public InputAction @Aiming => m_Wrapper.m_Player_Aiming;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -485,6 +511,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SecondaryShooting.started += instance.OnSecondaryShooting;
             @SecondaryShooting.performed += instance.OnSecondaryShooting;
             @SecondaryShooting.canceled += instance.OnSecondaryShooting;
+            @Aiming.started += instance.OnAiming;
+            @Aiming.performed += instance.OnAiming;
+            @Aiming.canceled += instance.OnAiming;
         }
 
         /// <summary>
@@ -514,6 +543,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SecondaryShooting.started -= instance.OnSecondaryShooting;
             @SecondaryShooting.performed -= instance.OnSecondaryShooting;
             @SecondaryShooting.canceled -= instance.OnSecondaryShooting;
+            @Aiming.started -= instance.OnAiming;
+            @Aiming.performed -= instance.OnAiming;
+            @Aiming.canceled -= instance.OnAiming;
         }
 
         /// <summary>
@@ -622,5 +654,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSecondaryShooting(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Aiming" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAiming(InputAction.CallbackContext context);
     }
 }

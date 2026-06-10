@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using Mako.Miscellaneous;
 using UnityEngine.InputSystem;
+using Mako.Input;
 
 namespace Mako.Movement
 {
@@ -26,14 +27,10 @@ namespace Mako.Movement
         private AudioSource audioSource;
         //private OverheatBar overheatBar;
         Vector2 inputVector = Vector2.zero;
-        private PlayerInput _playerInput;
-        private static PlayerInputActions _playerInputActions;
+        private InputManager _inputManager;
         //public event Action <Shooter> OnOverheatableWeaponSet;
         private void Awake()
         {
-            _playerInput = GetComponent<PlayerInput>();
-            _playerInputActions = new PlayerInputActions();
-            _playerInputActions.Player.Enable();
             playerRigidbody = GetComponent<Rigidbody>();
             cameraFollow = FindObjectOfType<CameraFollow>();
             audioSource = GetComponent<AudioSource>();
@@ -55,11 +52,12 @@ namespace Mako.Movement
         // }
         private void Start()
         {
+            _inputManager = InputManager.Instance;
             playerRigidbody.centerOfMass = centerOfMass.transform.localPosition;
         }
         private void Update()
         {
-            inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
+            inputVector = _inputManager.Actions.Player.Movement.ReadValue<Vector2>();
             if (playerRigidbody != null)
             {
                 speed = playerRigidbody.velocity.magnitude * 3.6f;
@@ -74,23 +72,6 @@ namespace Mako.Movement
                 audioSource.Stop();
             ClampPosition();
         }
-        void OnEnable()
-        {
-            _playerInput.enabled = false;
-            _playerInputActions.Enable();
-        }
-        private void OnDisable()
-        {
-            _playerInput.enabled = false;
-            _playerInputActions.Disable();
-        }
-        private void OnDestroy()
-        {
-            _playerInput.enabled = false;
-            _playerInputActions.Disable();
-            _playerInputActions = null;
-        }
-
         private void ClampPosition()
         {
             float clampedX = Mathf.Clamp(transform.position.x, min.x, max.x);
@@ -197,7 +178,5 @@ namespace Mako.Movement
             }
             return false;
         }
-
-        public static PlayerInputActions GetPlayerInputActions() => _playerInputActions;
     }
 }
