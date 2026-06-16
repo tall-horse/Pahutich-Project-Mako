@@ -29,7 +29,7 @@ namespace Mako.State
             _player = player;
             _playerHealth = playerHealth;
         }
-        void OnEnable()
+        void Start()
         {
             _playerHealth.GetHealthSystem().OnDead += GameOver;
         }

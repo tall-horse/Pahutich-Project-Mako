@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,7 +8,7 @@ namespace Mako.AI
         public Pursue(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player) : base(_npc, _agent, _anim, _player)
         {
             name = STATE.PURSUE;
-            agent.speed = 10;
+            agent.speed = 7.5f;
             agent.isStopped = false;
         }
 

@@ -16,7 +16,7 @@ namespace Mako.Health
         public void Initialize(AudioSource audioSource)
         {
             if (_healthSystem == null)
-                _healthSystem = new HealthSystem(health, healthHolderName);
+                SetupHealthObject();
 
             _audioSource = audioSource;
             _hitBox = GetComponent<Collider>();
