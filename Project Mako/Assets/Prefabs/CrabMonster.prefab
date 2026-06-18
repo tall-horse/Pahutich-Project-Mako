@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858e8550d92bca14c8baeb1a505bee37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackPower: 8
   targetTransform: {fileID: 0}
 --- !u!114 &6184636867864027780
 MonoBehaviour:
@@ -1122,8 +1123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1b1d8102fcdf0e88d87e44a530aff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  healthHolderName: Crab Monster
+  _healthMax: 50
+  _healthHolder: Crab Monster
   respectiveAudioImpact: {fileID: 9102765509606559572}
 --- !u!1 &3328290116296841903
 GameObject:

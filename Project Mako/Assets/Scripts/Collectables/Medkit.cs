@@ -20,7 +20,7 @@ namespace Mako.Collectables
         }
         public void Collect()
         {
-            playerHealth.GetHealthSystem().Heal(amountToHeal);
+            playerHealth.Heal(amountToHeal);
             audioSource.Play();
             meshRenderer.enabled = false;
             hitBox.enabled = false;

@@ -1,4 +1,5 @@
 using System;
+using Mako.HealthNamespace;
 using UnityEngine;
 
 namespace Mako.VehicleDevices
@@ -12,9 +13,9 @@ namespace Mako.VehicleDevices
         [SerializeField] private float regenerationSpeed;
         [SerializeField] private float timeSinceLastHit;
         private AudioSource _respectiveSoundEffect;
-        private HealthNamespace.Health _playerHealth;
+        private Health _playerHealth;
         public event Action OnShieldCapacityChanged;
-        public void Initialize(HealthNamespace.Health playerHealth, AudioSource audioSource)
+        public void Initialize(Health playerHealth, AudioSource audioSource)
         {
             _playerHealth = playerHealth;
             _respectiveSoundEffect = audioSource;
@@ -59,7 +60,7 @@ namespace Mako.VehicleDevices
             OnShieldCapacityChanged?.Invoke();
             timeSinceLastHit = 0;
             if (damageAmount > shieldCapacity)
-                _playerHealth.GetHealthSystem().Damage((int)damageAmount - (int)shieldCapacityBeforeHit);
+                _playerHealth.Damage((int)damageAmount - (int)shieldCapacityBeforeHit);
             else
             {
                 _respectiveSoundEffect.Play();

@@ -31,11 +31,11 @@ namespace Mako.State
         }
         void Start()
         {
-            _playerHealth.GetHealthSystem().OnDead += GameOver;
+            _playerHealth.OnDead += GameOver;
         }
         private void OnDisable()
         {
-            _playerHealth.GetHealthSystem().OnDead -= GameOver;
+            _playerHealth.OnDead -= GameOver;
         }
 
         // Update is called once per frame

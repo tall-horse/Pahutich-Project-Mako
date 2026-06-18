@@ -61,7 +61,7 @@ namespace Mako.Shooting
             }
             if (health != null && shields == null || shields != null && shields.GetShieldCapacity() <= 0)
             {
-                health.GetHealthSystem().Damage(damageToDeal);
+                health.Damage(damageToDeal);
                 health.PlayImpactSound();
             }
             StartCoroutine(SelfDestroy());

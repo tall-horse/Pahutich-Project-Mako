@@ -15,7 +15,7 @@ namespace Mako
         protected override void OnEnable()
         {
             base.OnEnable();
-            _healthSystem.OnDead += StartCorSelfDestroy;
+            OnDead += StartCorSelfDestroy;
         }
         private void StartCorSelfDestroy()
         {

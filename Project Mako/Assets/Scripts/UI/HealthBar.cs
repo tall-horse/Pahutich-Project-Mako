@@ -7,28 +7,27 @@ namespace Mako.UI
 
     public class HealthBar : MonoBehaviour
     {
-        private HealthSystem healthSystem;
         [SerializeField] private Image healthBarImage;
         [SerializeField] private GameObject? player;
+        private Health _health;
         private void Start()
         {
             if (player != null)
             {
-                healthSystem = player.GetComponent<HealthNamespace.Health>().GetHealthSystem();
-                healthSystem.OnHealthChanged += UpdateHealthStatus;
+                _health = player.GetComponent<Health>();
+                _health.OnHealthChanged += UpdateHealthStatus;
             }
         }
 
-        private void UpdateHealthStatus(HealthSystem hs)
+        private void UpdateHealthStatus(Health health)
         {
-            healthBarImage.fillAmount = hs.GetPercent();
+            healthBarImage.fillAmount = health.GetPercent();
         }
-        public void ReconfigureHealthHolder(HealthNamespace.Health holder)
+        public void ReconfigureHealthHolder(Health health)
         {
-            healthSystem = holder.GetHealthSystem();
-            UpdateHealthStatus(healthSystem);
-            healthSystem.OnHealthChanged -= UpdateHealthStatus;
-            healthSystem.OnHealthChanged += UpdateHealthStatus;
+            UpdateHealthStatus(health);
+            health.OnHealthChanged -= UpdateHealthStatus;
+            health.OnHealthChanged += UpdateHealthStatus;
         }
     }
 }

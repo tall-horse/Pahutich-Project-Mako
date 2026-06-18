@@ -16,14 +16,15 @@ namespace Mako.HealthNamespace
         }
         protected override void OnEnable()
         {
-            _healthSystem.OnGotDamaged += RespondToFire;
-            _healthSystem.OnDead += StartDestructionProcess;
+            base.OnEnable();
+            OnGotDamaged += RespondToFire;
+            OnDead += StartDestructionProcess;
         }
 
         private void OnDisable()
         {
-            _healthSystem.OnGotDamaged -= RespondToFire;
-            _healthSystem.OnDead -= StartDestructionProcess;
+            OnGotDamaged -= RespondToFire;
+            OnDead -= StartDestructionProcess;
         }
 
         private void RespondToFire()
@@ -32,7 +33,7 @@ namespace Mako.HealthNamespace
         }
         private void StartDestructionProcess()
         {
-            if (_healthSystem.GetHealth() <= 0)
+            if (_currentHealth <= 0)
             {
                 _crabMonsterAI.SetDeadState();
                 StartCoroutine(SelfDestroy());

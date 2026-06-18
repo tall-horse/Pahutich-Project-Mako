@@ -21,7 +21,7 @@ namespace Mako.Shooting
             }
             if (health != null && shields == null || shields != null && shields.GetShieldCapacity() <= 0)
             {
-                health.GetHealthSystem().Damage(_attackPower);
+                health.Damage(_attackPower);
                 health.PlayImpactSound();
             }
         }

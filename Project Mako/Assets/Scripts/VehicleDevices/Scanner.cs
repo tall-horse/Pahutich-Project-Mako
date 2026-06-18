@@ -36,7 +36,7 @@ namespace Mako.VehicleDevices
                 ScannedEnemy = hit.collider.gameObject.GetComponentInParent<Health>();
                 if (hit.collider.gameObject.GetComponentInParent<Health>() != null)
                 {
-                    enemyName.text = ScannedEnemy.GetHealthSystem().GetHolder();
+                    enemyName.text = ScannedEnemy.GetHolder();
                     healthBarOfScannedEnemy.ReconfigureHealthHolder(ScannedEnemy);
                     scannerPanel.SetActive(true);
                 }

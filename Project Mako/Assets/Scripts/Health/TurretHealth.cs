@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Mako.HealthNamespace;
 using Mako.Shooting;
 using UnityEngine;
@@ -20,19 +19,25 @@ namespace Mako
         protected override void OnEnable()
         {
             base.OnEnable();
-            _healthSystem.OnGotDamaged += RespondToFire;
+            OnGotDamaged += RespondToFire;
+            OnDead += StartCorSelfDestroy;
             _turretVisuals = _turret.GetTurretVisuals();
         }
 
         private void OnDisable()
         {
-            _healthSystem.OnGotDamaged -= RespondToFire;
+            OnGotDamaged -= RespondToFire;
+            OnDead -= StartCorSelfDestroy;
         }
 
         private void RespondToFire()
         {
             _turret.playerInRange = true;
             _turret.ExtendRange();
+        }
+        private void StartCorSelfDestroy()
+        {
+            StartCoroutine(SelfDestroy());
         }
 
         public IEnumerator SelfDestroy()
