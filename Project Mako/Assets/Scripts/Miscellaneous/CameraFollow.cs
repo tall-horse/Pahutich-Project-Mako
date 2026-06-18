@@ -4,15 +4,27 @@ namespace Mako.Miscellaneous
 {
     public class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private Transform target;
-        [SerializeField] private Vector3 offset;
-        [SerializeField] private float smoothness;
+        [Header("Setup")]
+        [SerializeField] private Transform _target;
+        [SerializeField] private Vector3 _offset;
+        [Header("Smoothing")]
+        [SerializeField] private bool _smoothing;
+        [SerializeField] private float _smoothTime = 0.15f;
 
-        // Update is called once per frame
-        public void Update()
+        private Vector3 _velocity;
+
+        private void LateUpdate()
         {
-            if (target != null)
-                transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothness);
+            Vector3 desired = _target.position + _offset;
+
+            if (_smoothing == false)
+            {
+                transform.position = desired;
+                _velocity = Vector3.zero;
+                return;
+            }
+
+            transform.position = Vector3.SmoothDamp(transform.position, desired, ref _velocity, _smoothTime);
         }
     }
 }

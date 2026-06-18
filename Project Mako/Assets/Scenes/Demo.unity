@@ -4955,9 +4955,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7951002352de32eaf81a325119a90e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 5883057705004049406}
-  offset: {x: 0, y: 50, z: 0}
-  smoothness: 1
+  _target: {fileID: 5883057705004049406}
+  _offset: {x: 0, y: 0, z: 0}
+  _smoothing: 0
+  _smoothTime: 0.15
 --- !u!114 &1046228450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10159,6 +10160,26 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 5883057705004049406}
+    - target: {fileID: 4178242064449056334, guid: b82d99f65955a6c98a38cb0f193320ef, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 5883057705004049406}
+    - target: {fileID: 4178242064449056334, guid: b82d99f65955a6c98a38cb0f193320ef, type: 3}
+      propertyPath: _offset.y
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178242064449056334, guid: b82d99f65955a6c98a38cb0f193320ef, type: 3}
+      propertyPath: _offset.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178242064449056334, guid: b82d99f65955a6c98a38cb0f193320ef, type: 3}
+      propertyPath: _smoothing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178242064449056334, guid: b82d99f65955a6c98a38cb0f193320ef, type: 3}
+      propertyPath: _smoothTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6199684709975903567, guid: b82d99f65955a6c98a38cb0f193320ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.669
