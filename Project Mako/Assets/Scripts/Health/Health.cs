@@ -1,24 +1,27 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Mako.Health
+namespace Mako.HealthNamespace
 {
 
-    public abstract class BasicHealth : MonoBehaviour
+    public abstract class Health : MonoBehaviour
     {
         protected Collider _hitBox;
-        protected AudioSource _audioSource;
+        protected AudioSource _destructionAudioSource;
         protected MeshRenderer _meshRenderer;
         protected HealthSystem _healthSystem;
         [SerializeField] protected int health;
         [SerializeField] protected string healthHolderName;
         [SerializeField] protected AudioSource respectiveAudioImpact;
+        public event Action OnPlayDestructionSound;
+        public Action OnDamageTaken;
         public void Initialize(AudioSource audioSource)
         {
             if (_healthSystem == null)
                 SetupHealthObject();
 
-            _audioSource = audioSource;
+            _destructionAudioSource = audioSource;
             _hitBox = GetComponent<Collider>();
             _meshRenderer = GetComponent<MeshRenderer>();
         }
@@ -29,26 +32,8 @@ namespace Mako.Health
 
         protected virtual void OnEnable()
         {
-            SubscribeEvents();
-        }
-
-        protected virtual void SubscribeEvents()
-        {
             if (_healthSystem == null)
                 SetupHealthObject();
-            _healthSystem.OnHealthChanged += StartDestructionProcess;
-            _healthSystem.OnDead += StartCorSelfDestroy;
-        }
-
-        protected virtual void OnDisable()
-        {
-            UnsubscribeEvents();
-        }
-
-        protected virtual void UnsubscribeEvents()
-        {
-            _healthSystem.OnHealthChanged -= StartDestructionProcess;
-            _healthSystem.OnDead -= StartCorSelfDestroy;
         }
 
         public void SetupHealthObject()
@@ -60,20 +45,10 @@ namespace Mako.Health
         {
             return _healthSystem;
         }
-        protected virtual void StartDestructionProcess(HealthSystem hs)
-        {
-            if (hs.GetHealth() <= 0)
-                StartCoroutine(SelfDestroy());
-        }
         public void PlayImpactSound()
         {
             respectiveAudioImpact.Play();
         }
-        protected void StartCorSelfDestroy()
-        {
-            StartCoroutine(SelfDestroy());
-        }
-        protected abstract IEnumerator SelfDestroy();
     }
 
 }

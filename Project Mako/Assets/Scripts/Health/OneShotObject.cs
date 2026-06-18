@@ -1,22 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Mako.Health
+namespace Mako.HealthNamespace
 {
-    public class OneShotObject : BasicHealth
+    public class OneShotObject : Health, ISelfDesctructable
     {
-        protected override IEnumerator SelfDestroy()
+        public IEnumerator SelfDestroy()
         {
             throw new System.NotImplementedException();
         }
 
-        private void Awake()
-        {
-            base.SetupHealthObject();
-        }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<Mako.Shooting.Projectile>())
+            if (other.GetComponent<Shooting.Projectile>())
             {
                 StartCoroutine(SelfDestroy());
             }

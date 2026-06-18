@@ -52,7 +52,7 @@ namespace Mako.Shooting
         {
             if (other == null)
                 return;
-            Health.BasicHealth health = other.gameObject.GetComponent<Health.BasicHealth>();
+            HealthNamespace.Health health = other.gameObject.GetComponent<HealthNamespace.Health>();
             Shields shields = other.gameObject.GetComponent<Shields>();
             if (shields != null)
             {

@@ -25,7 +25,7 @@ namespace Mako.AI
             currentState = currentState.Process();
             _currentStatename = currentState.name.ToString();
         }
-        public void GoOnSound()
+        public void SetPlayerTarget()
         {
             currentState.heardPlayer = true;
         }

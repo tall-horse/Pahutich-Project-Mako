@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Mako.Health;
+using Mako.HealthNamespace;
 
 namespace Mako.UI
 {
@@ -14,7 +14,7 @@ namespace Mako.UI
         {
             if (player != null)
             {
-                healthSystem = player.GetComponent<Health.BasicHealth>().GetHealthSystem();
+                healthSystem = player.GetComponent<HealthNamespace.Health>().GetHealthSystem();
                 healthSystem.OnHealthChanged += UpdateHealthStatus;
             }
         }
@@ -23,7 +23,7 @@ namespace Mako.UI
         {
             healthBarImage.fillAmount = hs.GetPercent();
         }
-        public void ReconfigureHealthHolder(Health.BasicHealth holder)
+        public void ReconfigureHealthHolder(HealthNamespace.Health holder)
         {
             healthSystem = holder.GetHealthSystem();
             UpdateHealthStatus(healthSystem);

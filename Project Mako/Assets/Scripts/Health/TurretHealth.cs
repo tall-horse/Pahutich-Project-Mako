@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Mako.Health;
+using Mako.HealthNamespace;
 using Mako.Shooting;
 using UnityEngine;
 
 namespace Mako
 {
-    public class TurretHealth : BasicHealth
+    public sealed class TurretHealth : Health, ISelfDesctructable
     {
         private Turret _turret;
         private IEnumerable _turretVisuals;
@@ -14,20 +14,19 @@ namespace Mako
         {
             base.Awake();
             _turret = GetComponent<Turret>();
-            _audioSource = GetComponentInChildren<AudioSource>();
+            _destructionAudioSource = GetComponentInChildren<AudioSource>();
             _hitBox = GetComponent<Collider>();
         }
         protected override void OnEnable()
         {
-            base.SubscribeEvents();
-            _healthSystem.OnRespondToFire += RespondToFire;
+            base.OnEnable();
+            _healthSystem.OnGotDamaged += RespondToFire;
             _turretVisuals = _turret.GetTurretVisuals();
         }
 
-        protected override void OnDisable()
+        private void OnDisable()
         {
-            base.UnsubscribeEvents();
-            _healthSystem.OnRespondToFire -= RespondToFire;
+            _healthSystem.OnGotDamaged -= RespondToFire;
         }
 
         private void RespondToFire()
@@ -36,9 +35,9 @@ namespace Mako
             _turret.ExtendRange();
         }
 
-        protected override IEnumerator SelfDestroy()
+        public IEnumerator SelfDestroy()
         {
-            _audioSource.Play();
+            _destructionAudioSource.Play();
             _turret.dead = true;
             _hitBox.enabled = false;
             foreach (MeshRenderer t in _turretVisuals)

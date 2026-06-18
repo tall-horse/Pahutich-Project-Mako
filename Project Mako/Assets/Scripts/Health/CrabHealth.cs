@@ -1,58 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using Mako.AI;
-using Mako.Health;
 using UnityEngine;
 
-namespace Mako
+namespace Mako.HealthNamespace
 {
-    public class CrabHealth : BasicHealth
+    public class CrabHealth : Health, ISelfDesctructable
     {
         private CrabMonsterAI _crabMonsterAI;
         protected override void Awake()
         {
             base.Awake();
             _crabMonsterAI = GetComponent<CrabMonsterAI>();
-            _audioSource = GetComponentInChildren<AudioSource>();
+            _destructionAudioSource = GetComponentInChildren<AudioSource>();
             _hitBox = GetComponent<Collider>();
         }
         protected override void OnEnable()
         {
-            base.SubscribeEvents();
-            _healthSystem.OnRespondToFire += RespondToFire;
+            _healthSystem.OnGotDamaged += RespondToFire;
+            _healthSystem.OnDead += StartDestructionProcess;
         }
 
-        protected override void OnDisable()
+        private void OnDisable()
         {
-            base.UnsubscribeEvents();
-            _healthSystem.OnRespondToFire -= RespondToFire;
+            _healthSystem.OnGotDamaged -= RespondToFire;
+            _healthSystem.OnDead -= StartDestructionProcess;
         }
 
         private void RespondToFire()
         {
-            _crabMonsterAI.GoOnSound();
+            _crabMonsterAI.SetPlayerTarget();
         }
-        protected override void StartDestructionProcess(HealthSystem hs)
+        private void StartDestructionProcess()
         {
-            if (hs.GetHealth() <= 0)
+            if (_healthSystem.GetHealth() <= 0)
             {
                 _crabMonsterAI.SetDeadState();
                 StartCoroutine(SelfDestroy());
             }
         }
 
-        protected override IEnumerator SelfDestroy()
+        public IEnumerator SelfDestroy()
         {
-            _audioSource.Play();
-            //animator.enabled = false;
+            _destructionAudioSource.Play();
             yield return new WaitForSeconds(1f);
-            //_meshRenderer.enabled = false;
             _hitBox.enabled = false;
-            // foreach (Transform item in transform)
-            // {
-            //     Destroy(item.gameObject);
-            // }
-            // Destroy(gameObject);
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Mako.VehicleDevices
         [SerializeField] private float regenerationSpeed;
         [SerializeField] private float timeSinceLastHit;
         private AudioSource _respectiveSoundEffect;
-        private Health.BasicHealth _playerHealth;
+        private HealthNamespace.Health _playerHealth;
         public event Action OnShieldCapacityChanged;
-        public void Initialize(Health.BasicHealth playerHealth, AudioSource audioSource)
+        public void Initialize(HealthNamespace.Health playerHealth, AudioSource audioSource)
         {
             _playerHealth = playerHealth;
             _respectiveSoundEffect = audioSource;

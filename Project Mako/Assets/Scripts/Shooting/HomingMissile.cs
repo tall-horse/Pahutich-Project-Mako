@@ -19,7 +19,7 @@ namespace Mako.Shooting
         [Header("DEVIATION")]
         [SerializeField] private float deviationAmount = 50;
         [SerializeField] private float deviationSpeed = 2;
-        private Health.BasicHealth target;
+        private HealthNamespace.Health target;
         protected override void Awake()
         {
             base.Awake();
@@ -47,12 +47,12 @@ namespace Mako.Shooting
             isFlying = true;
         }
 
-        private Health.BasicHealth FindTarget()
+        private HealthNamespace.Health FindTarget()
         {
-            var potentialTargets = GameObject.FindObjectsOfType<Health.BasicHealth>().ToList().Where(
-              h => h != GameObject.FindGameObjectWithTag("Player").GetComponent<Health.BasicHealth>());
+            var potentialTargets = GameObject.FindObjectsOfType<HealthNamespace.Health>().ToList().Where(
+              h => h != GameObject.FindGameObjectWithTag("Player").GetComponent<HealthNamespace.Health>());
             float minDist = Mathf.Infinity;
-            Health.BasicHealth candidateTarget = null;
+            HealthNamespace.Health candidateTarget = null;
             foreach (var pTarget in potentialTargets)
             {
                 float dist = Vector3.Distance(transform.position, pTarget.transform.position);

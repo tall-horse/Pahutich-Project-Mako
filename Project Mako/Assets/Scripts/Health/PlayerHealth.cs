@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
-using Mako.Health;
-using UnityEngine;
+using Mako.HealthNamespace;
 
 namespace Mako
 {
-    public class PlayerHealth : BasicHealth
+    public class PlayerHealth : Health, ISelfDesctructable
     {
-        protected override IEnumerator SelfDestroy()
+        public IEnumerator SelfDestroy()
         {
             yield return null;
         }

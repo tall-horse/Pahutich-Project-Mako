@@ -12,7 +12,7 @@ namespace Mako.Shooting
         public void DealDamage()
         {
             Debug.Log("dealing damage");
-            Health.BasicHealth health = targetTransform.gameObject.GetComponent<Health.BasicHealth>();
+            HealthNamespace.Health health = targetTransform.gameObject.GetComponent<HealthNamespace.Health>();
             Shields shields = targetTransform.gameObject.GetComponent<Shields>();
             if (shields != null)
             {

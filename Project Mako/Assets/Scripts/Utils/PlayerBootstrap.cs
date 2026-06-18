@@ -13,7 +13,7 @@ namespace Mako
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private GameObject _player;
         [SerializeField] private AudioSource _healthImpactSound;
-        [SerializeField] private Health.BasicHealth _playerHealth;
+        [SerializeField] private HealthNamespace.Health _playerHealth;
         [SerializeField] private Shields _playerShields;
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private PlayerController _playerController;

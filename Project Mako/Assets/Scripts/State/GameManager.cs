@@ -10,7 +10,7 @@ namespace Mako.State
         private bool gameOver = false;
         public bool GameIsPaused { get; private set; } = false;
         private GameObject _player;
-        private Health.BasicHealth _playerHealth;
+        private HealthNamespace.Health _playerHealth;
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private TextMeshProUGUI pauseOrLossText;
         [SerializeField] private Button _resumeButton;
@@ -23,7 +23,7 @@ namespace Mako.State
             gameOverPanel.SetActive(false);
         }
         // Start is called before the first frame update
-        public void Initialize(InputManager inputManager, GameObject player, Health.BasicHealth playerHealth)
+        public void Initialize(InputManager inputManager, GameObject player, HealthNamespace.Health playerHealth)
         {
             _inputManager = inputManager;
             _player = player;
