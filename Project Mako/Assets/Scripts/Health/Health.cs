@@ -21,7 +21,7 @@ namespace Mako.HealthNamespace
         protected MeshRenderer _meshRenderer;
         [SerializeField] protected AudioSource respectiveAudioImpact;
         public event Action OnPlayDestructionSound;
-        public Action OnDamageTaken;
+        //public Action OnDamageTaken;
         public void Initialize(AudioSource audioSource)
         {
             _destructionAudioSource = audioSource;
