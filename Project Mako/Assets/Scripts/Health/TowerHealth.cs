@@ -10,6 +10,7 @@ namespace Mako
         protected override void Awake()
         {
             base.Awake();
+            base.Initialize();
             //meshRenderer = GetComponentInChildren<MeshRenderer>();
         }
         protected override void OnEnable()

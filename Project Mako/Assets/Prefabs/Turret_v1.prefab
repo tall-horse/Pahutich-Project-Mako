@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 33000012573083880}
   - component: {fileID: 3385953204133499566}
   - component: {fileID: 3601768209506317522}
+  - component: {fileID: 4865102310676911587}
   m_Layer: 6
   m_Name: Turret_v1_tower
   m_TagString: Untagged
@@ -696,6 +697,30 @@ MonoBehaviour:
   _healthMax: 50
   _healthHolder: Turret J-46
   respectiveAudioImpact: {fileID: 1882130100503437142}
+--- !u!114 &4865102310676911587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898974128436714510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91292b2c45a2c903994999aa6c11ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 3601768209506317522}
+  _renderers:
+  - {fileID: 8875955157552417836}
+  - {fileID: 8875955156305936358}
+  - {fileID: 8875955157368593084}
+  - {fileID: 8875955157888103904}
+  - {fileID: 8875955159465737380}
+  - {fileID: 8875955156240222424}
+  _enabled: 1
+  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashCount: 3
+  _totalDuration: 0.2
 --- !u!1 &8898974130094118354
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,12 @@ namespace Mako.HealthNamespace
             _hitBox = GetComponent<Collider>();
             _meshRenderer = GetComponent<MeshRenderer>();
         }
+        public void Initialize()
+        {
+            _destructionAudioSource = GetComponent<AudioSource>();
+            _hitBox = GetComponent<Collider>();
+            _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        }
         protected virtual void Awake()
         {
             _currentHealth = _healthMax;
@@ -43,9 +49,9 @@ namespace Mako.HealthNamespace
         }
         public void Damage(int damageAmount)
         {
-            if (_currentHealth == _healthMax)
-                OnGotDamaged?.Invoke();
+            // if (_currentHealth == _healthMax)
             _currentHealth -= damageAmount;
+            OnGotDamaged?.Invoke();
             OnHealthChanged?.Invoke(this);
             if (_currentHealth <= 0)
             {

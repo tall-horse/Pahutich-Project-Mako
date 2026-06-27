@@ -799,6 +799,7 @@ GameObject:
   - component: {fileID: 8008771724123116558}
   - component: {fileID: 6069102001118439334}
   - component: {fileID: 6657651805336528065}
+  - component: {fileID: 5140203894055846751}
   m_Layer: 6
   m_Name: CrabMonster
   m_TagString: Untagged
@@ -1126,6 +1127,26 @@ MonoBehaviour:
   _healthMax: 50
   _healthHolder: Crab Monster
   respectiveAudioImpact: {fileID: 9102765509606559572}
+--- !u!114 &5140203894055846751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328286910605114547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91292b2c45a2c903994999aa6c11ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 6657651805336528065}
+  _renderers:
+  - {fileID: 3445552265105695631}
+  - {fileID: 3445641223678821587}
+  _enabled: 1
+  _flashColor: {r: 1, g: 0, b: 0.84357405, a: 1}
+  _flashCount: 3
+  _totalDuration: 0.2
 --- !u!1 &3328290116296841903
 GameObject:
   m_ObjectHideFlags: 0

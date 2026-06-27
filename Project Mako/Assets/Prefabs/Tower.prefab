@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 919132148574488136}
   - component: {fileID: 2002749757815518920}
   - component: {fileID: 5613369321415094822}
+  - component: {fileID: 8880189360045572963}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -158,7 +159,7 @@ CapsuleCollider:
   m_Radius: 2.0174026
   m_Height: 13.073979
   m_Direction: 1
-  m_Center: {x: 0.45519257, y: 6.0369897, z: 0.14897156}
+  m_Center: {x: 0, y: 6.0369897, z: 0.14897156}
 --- !u!82 &919132148574488136
 AudioSource:
   m_ObjectHideFlags: 0
@@ -267,8 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbab2c1e2fba2159e95cfd3649d87257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 70
-  healthHolderName: Tower
+  _healthMax: 10
+  _healthHolder: Signal Tower
   respectiveAudioImpact: {fileID: 7280348263377921488}
   _timeToRestoreSignal: 1
 --- !u!54 &5613369321415094822
@@ -298,6 +299,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8880189360045572963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7863362867839766463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91292b2c45a2c903994999aa6c11ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 2002749757815518920}
+  _renderers:
+  - {fileID: 8640498102402972035}
+  _enabled: 1
+  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashCount: 3
+  _totalDuration: 0.2
 --- !u!1 &8995180066931982771
 GameObject:
   m_ObjectHideFlags: 0
