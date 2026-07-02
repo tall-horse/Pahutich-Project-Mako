@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4098383224710190112}
   - component: {fileID: 4428276559004640837}
   - component: {fileID: 4178242064449056334}
+  - component: {fileID: 5450725411922962830}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2448843980678664689}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.44294938, y: -0, z: -0, w: 0.8965466}
+  m_LocalRotation: {x: 0.442946, y: 0, z: 0, w: 0.89654833}
   m_LocalPosition: {x: 1.669, y: 2.32, z: -0.931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -105,6 +106,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7951002352de32eaf81a325119a90e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 17, z: -10}
-  smoothness: 1
+  _target: {fileID: 0}
+  _scanner: {fileID: 0}
+  _offset: {x: 0, y: 17, z: -10}
+  _smoothing: 1
+  _smoothTime: 0.1
+  _lookAhead: 1
+  _lookAheadStrength: 0.15
+  _lookAheadMaxDistance: 1.25
+--- !u!114 &5450725411922962830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448843980678664689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
