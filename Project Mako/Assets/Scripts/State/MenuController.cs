@@ -50,6 +50,11 @@ namespace Mako.State
             Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        public void RestartSceneAsync()
+        {
+            Time.timeScale = 1;
+            StartCoroutine(LoadAsync(SceneManager.GetActiveScene().buildIndex));
+        }
         public void GoToScene(int sceneIndex)
         {
             Time.timeScale = 1;
@@ -57,6 +62,7 @@ namespace Mako.State
         }
         public void GoToSceneAsync(int sceneIndex)
         {
+            Time.timeScale = 1;
             StartCoroutine(LoadAsync(sceneIndex));
         }
 

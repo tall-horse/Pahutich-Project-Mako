@@ -40,6 +40,7 @@ Transform:
   - {fileID: 1055639492959949368}
   - {fileID: 985930801957749584}
   - {fileID: 5749586771445027932}
+  - {fileID: 7148357149071003608}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &673695222859693981
@@ -277,6 +278,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c37ad1df06f4c97c8808faf9edcda64, type: 3}
+--- !u!114 &2433965922840934553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3250782791021295402, guid: 4c37ad1df06f4c97c8808faf9edcda64, type: 3}
+  m_PrefabInstance: {fileID: 926112759677980595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3230635f1043ee2d4aeaeb4c5faffb2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4402980362365300775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3585060922728513428, guid: 4c37ad1df06f4c97c8808faf9edcda64, type: 3}
@@ -397,6 +409,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1920922061422876681, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 1920922061422876681, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 1920922061422876681, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920922061422876681, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1932188367733763461, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: m_Name
       value: Player UI
@@ -405,6 +433,22 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 868644613072143444}
+    - target: {fileID: 2927849482072362701, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2927849482072362701, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7279894910525058950}
+    - target: {fileID: 2927849482072362701, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2927849482072362701, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3456615244904495135, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -420,11 +464,59 @@ PrefabInstance:
     - target: {fileID: 3456615244904495135, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704987823951438022, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 3704987823951438022, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 3704987823951438022, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704987823951438022, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4003543947909044251, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: radarCamera
       value: 
       objectReference: {fileID: 6604678162938650961}
+    - target: {fileID: 4849626069840194753, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849626069840194753, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2433965922840934553}
+    - target: {fileID: 4849626069840194753, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToSceneAsync
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849626069840194753, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.State.MenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921874667020653521, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 4921874667020653521, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 4921874667020653521, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921874667020653521, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5045108874038860097, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -441,6 +533,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5120918375214509235, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2433965922840934553}
+    - target: {fileID: 5120918375214509235, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToSceneAsync
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120918375214509235, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.State.MenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5329829006515546720, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -456,6 +560,22 @@ PrefabInstance:
     - target: {fileID: 5329829006515546720, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584406374350796819, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 5584406374350796819, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 5584406374350796819, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584406374350796819, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5599311155695603416, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: overheatableWeapon
@@ -557,6 +677,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6494655282326557207, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2433965922840934553}
+    - target: {fileID: 7086373784701199104, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 7086373784701199104, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4462332764898736957}
+    - target: {fileID: 7086373784701199104, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086373784701199104, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.Miscellaneous.ButtonSoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8099119710764257937, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -588,6 +728,18 @@ PrefabInstance:
     - target: {fileID: 8386811586414981661, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831247063852182885, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2433965922840934553}
+    - target: {fileID: 8831247063852182885, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mako.State.MenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831247063852182885, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8846057938221915655, guid: 6596f60fd40990c4b84f3bc0a6c11b5d, type: 3}
       propertyPath: player
@@ -1521,3 +1673,76 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1001 &8961787231812754559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7247262918453336832}
+    m_Modifications:
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 832.8365
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 193.057
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 795.17566
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262459179943597810, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+      propertyPath: m_Name
+      value: Button sound effects
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+--- !u!114 &4462332764898736957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4734354135404816194, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+  m_PrefabInstance: {fileID: 8961787231812754559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6caefb8aec268799b3ea5fb5e792df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &7148357149071003608 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2263827325996290983, guid: 5da74c01a442cfd16a751779145689a8, type: 3}
+  m_PrefabInstance: {fileID: 8961787231812754559}
+  m_PrefabAsset: {fileID: 0}
