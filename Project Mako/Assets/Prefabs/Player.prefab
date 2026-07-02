@@ -20697,7 +20697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838881766591890f7a3abf11670480a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthMax: 0
+  _healthMax: 100
   _healthHolder: 
   respectiveAudioImpact: {fileID: 8889543809207438422}
 --- !u!1 &4919193154983469130
