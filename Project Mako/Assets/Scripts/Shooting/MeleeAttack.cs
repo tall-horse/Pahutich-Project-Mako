@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Mako.VehicleDevices;
 using UnityEngine;
 
@@ -11,7 +9,6 @@ namespace Mako.Shooting
         [SerializeField] private Transform targetTransform;
         public void DealDamage()
         {
-            Debug.Log("dealing damage");
             HealthNamespace.Health health = targetTransform.gameObject.GetComponent<HealthNamespace.Health>();
             Shields shields = targetTransform.gameObject.GetComponent<Shields>();
             if (shields != null)

@@ -16,50 +16,29 @@ namespace Mako
     [RequireComponent(typeof(Health))]
     public class HitFlash : MonoBehaviour
     {
-        /* ------------------------------------------------------------------ */
-        /*  Inspector fields                                                   */
-        /* ------------------------------------------------------------------ */
-
         [Header("Setup")]
-        [SerializeField] private Health _health;          // optional – will be auto‑found if null
-        [SerializeField] private Renderer[] _renderers;   // optional – will be auto‑filled
+        [SerializeField] private Health _health;
+        [SerializeField] private Renderer[] _renderers;
 
         [Header("Flash")]
         [SerializeField] private bool _enabled = true;
         [SerializeField] private Color _flashColor = Color.white;
-        [SerializeField] private int _flashCount = 3;     // number of flashes (Yoyo → *2 steps)
+        [SerializeField] private int _flashCount = 3;
         [SerializeField] private float _totalDuration = 0.2f;
 
-        /* ------------------------------------------------------------------ */
-        /*  Internal data                                                      */
-        /* ------------------------------------------------------------------ */
-
-        /// <summary>Information for a single material that has a colour channel.</summary>
         private struct MatInfo
         {
             public Material mat;
-            public int colorPropId;   // -1 if no colour property found
-            public Color baseColor;     // original colour to tween from
+            public int colorPropId;
+            public Color baseColor;
         }
-
-        /// <summary>All materials that will be animated.</summary>
         private readonly System.Collections.Generic.List<MatInfo> _matInfos = new();
-
-        /* ------------------------------------------------------------------ */
-        /*  Unity callbacks                                                    */
-        /* ------------------------------------------------------------------ */
 
         private void Awake()
         {
-            // --------------------------------------------------------------
-            // 1️⃣ Auto‑find Health if you didn’t assign it.
-            // --------------------------------------------------------------
             if (_health == null)
                 _health = GetComponent<Health>();
 
-            // --------------------------------------------------------------
-            // 2️⃣ Auto‑fill the renderer array (all Renderers in this GameObject & children).
-            // --------------------------------------------------------------
             if (_renderers == null || _renderers.Length == 0)
             {
                 var rendList = new System.Collections.Generic.List<Renderer>();
@@ -68,26 +47,21 @@ namespace Mako
             }
             else
             {
-                // Remove any accidental null entries.
                 var nonNull = new System.Collections.Generic.List<Renderer>();
                 foreach (var r in _renderers)
                     if (r != null) nonNull.Add(r);
                 _renderers = nonNull.ToArray();
             }
 
-            // --------------------------------------------------------------
-            // 3️⃣ Build the material‑info list.
-            // --------------------------------------------------------------
             foreach (var rend in _renderers)
             {
                 if (rend == null) continue;
 
-                var mats = rend.materials;   // creates *instances* for all sub‑materials
+                var mats = rend.materials;
                 foreach (var mat in mats)
                 {
                     int propId = -1;
 
-                    // Find the first Color property in this shader.
                     for (int p = 0; p < mat.shader.GetPropertyCount(); p++)
                     {
                         if (mat.shader.GetPropertyType(p) == UnityEngine.Rendering.ShaderPropertyType.Color)
@@ -126,17 +100,12 @@ namespace Mako
                 _health.OnDead -= OnHit;
             }
         }
-
-        /* ------------------------------------------------------------------ */
-        /*  Event handler                                                      */
-        /* ------------------------------------------------------------------ */
-
         private void OnHit()
         {
             if (!_enabled) return;
-            Debug.Log("hit");
-            int cycles = _flashCount * 2;          // Yoyo → two steps per flash
-            float halfDur = _totalDuration / cycles; // duration of one step
+
+            int cycles = _flashCount * 2;
+            float halfDur = _totalDuration / cycles;
 
             foreach (var info in _matInfos)
             {
@@ -151,7 +120,7 @@ namespace Mako
                 Tween.MaterialColor(
                     info.mat,
                     info.colorPropId,
-                    info.baseColor,   // start from the original colour
+                    info.baseColor,
                     _flashColor,
                     halfDur,
                     Ease.Linear,
