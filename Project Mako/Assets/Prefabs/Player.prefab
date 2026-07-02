@@ -124,7 +124,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860680293729036735}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 20
   stopAction: 0
   cullingMode: 0
@@ -4963,7 +4963,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481785818414438619}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 20
   stopAction: 0
   cullingMode: 0
@@ -9802,7 +9802,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816590322450535989}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 20
   stopAction: 0
   cullingMode: 0
@@ -14595,15 +14595,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356b13afccb332e2eb8dc03fd2dfb08e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 175
-  jumpFuelMax: 15
-  fuelRegenerationAbility: 10
-  jumpFuelCurrent: 0
+  _desiredJumpHeight: 5
+  _jumpCooldown: 1
+  _chargeDuration: 0
+  _jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveDuration: 0.2
+  _jumForce: 2750000
+  _jumpFuelCurrent: 0
+  _jumpFuelMax: 100
+  _fuelRegenerationRate: 50
+  _fuelConsumptionPerJump: 100
   enginesVisuals:
   - {fileID: 2440962937055706804}
   - {fileID: 4788693265636843779}
   - {fileID: 1630980548648701188}
   - {fileID: 3187894436168678071}
+  _audioSource: {fileID: 492607184304746956}
 --- !u!82 &492607184304746956
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14614,7 +14644,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2809109909086129387, guid: 868b4a7f7b9b31b28a929d1a61ec3ed9, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3dbac5b7a302fb6c7bd0bb719e4f3fcd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7556d8417391ae739b2d5441e46019bf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14824,7 +14854,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2447971967116289977}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 20
   stopAction: 0
   cullingMode: 0
@@ -19614,6 +19644,7 @@ MonoBehaviour:
   enemyName: {fileID: 0}
   scannerPanel: {fileID: 0}
   <ScannedEnemy>k__BackingField: {fileID: 0}
+  AimPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &3453318456709561541
 GameObject:
   m_ObjectHideFlags: 0
@@ -20487,11 +20518,9 @@ MonoBehaviour:
   steerAngle: 60
   centerOfMass: {fileID: 3453318458727711433}
   speedText: {fileID: 0}
-  airSteeringForce: 0.2
   turnCarAfterXSeconds: 3
   min: {x: 0, y: -1, z: 0}
   max: {x: 300, y: 25, z: 400}
-  weaponHolder: {fileID: 3049075961595187435}
   wheelColliders:
   - {fileID: 3453318456709561531}
   - {fileID: 3453318458762625469}
@@ -20546,8 +20575,6 @@ MonoBehaviour:
   timeToStartRegenerating: 5
   regenerationSpeed: 2
   timeSinceLastHit: 0
-  respectiveSoundEffect: {fileID: 7060883549678552148}
-  health: {fileID: 5883399244261074447}
 --- !u!114 &3375649022148996000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20670,8 +20697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838881766591890f7a3abf11670480a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  healthHolderName: Mako
+  _healthMax: 0
+  _healthHolder: 
   respectiveAudioImpact: {fileID: 8889543809207438422}
 --- !u!1 &4919193154983469130
 GameObject:
@@ -20887,7 +20914,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5419072404463398736}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 20
   stopAction: 0
   cullingMode: 0
@@ -26033,7 +26060,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6875042650661309475}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 20
   stopAction: 0
   cullingMode: 0
@@ -31138,7 +31165,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1714672261109056386, guid: 2336054a68fb4eb4fa10db8e844a0e34, type: 3}
       propertyPath: m_Name
-      value: Standart missile launcher 1
+      value: Standard missile launcher 1
       objectReference: {fileID: 0}
     - target: {fileID: 3732221035555990195, guid: 2336054a68fb4eb4fa10db8e844a0e34, type: 3}
       propertyPath: m_LocalScale.x
@@ -31268,7 +31295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4524803223407858836, guid: 5ca59010204aa45a1beff9468378c41a, type: 3}
       propertyPath: m_Name
-      value: Standart laser
+      value: Standard laser
       objectReference: {fileID: 0}
     - target: {fileID: 7440641470042681270, guid: 5ca59010204aa45a1beff9468378c41a, type: 3}
       propertyPath: projectilePrefab
