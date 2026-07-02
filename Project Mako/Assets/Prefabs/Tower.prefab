@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbab2c1e2fba2159e95cfd3649d87257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthMax: 10
+  _healthMax: 75
   _healthHolder: Signal Tower
   respectiveAudioImpact: {fileID: 7280348263377921488}
   _timeToRestoreSignal: 1
