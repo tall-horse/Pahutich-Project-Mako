@@ -26,7 +26,6 @@ namespace Mako.HealthNamespace
             OnGotDamaged -= RespondToFire;
             OnDead -= StartDestructionProcess;
         }
-
         private void RespondToFire()
         {
             _crabMonsterAI.SetPlayerTarget();
@@ -42,6 +41,7 @@ namespace Mako.HealthNamespace
 
         public IEnumerator SelfDestroy()
         {
+            _crabMonsterAI.GetEnemyManager().Deregister(_crabMonsterAI);
             _destructionAudioSource.Play();
             yield return new WaitForSeconds(1f);
             _hitBox.enabled = false;

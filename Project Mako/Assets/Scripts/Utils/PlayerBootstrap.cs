@@ -12,6 +12,7 @@ namespace Mako
     {
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private GameObject _player;
+        [SerializeField] private EnemyManager _enemyManager;
         [SerializeField] private AudioSource _healthImpactSound;
         [SerializeField] private HealthNamespace.Health _playerHealth;
         [SerializeField] private Shields _playerShields;
@@ -40,6 +41,7 @@ namespace Mako
         {
             _inputManager = Require.Component(_inputManager, nameof(_inputManager));
             _player = Require.Component(_player, nameof(_player));
+            _enemyManager = Require.Component(_enemyManager, nameof(_enemyManager));
             _playerRigidbody = Require.Component(_playerRigidbody, nameof(_playerRigidbody));
             _healthImpactSound = Require.Component(_healthImpactSound, nameof(_healthImpactSound));
             _playerHealth = Require.Component(_playerHealth, nameof(_playerHealth));
@@ -69,6 +71,7 @@ namespace Mako
             _primaryProjectilesPool == null || _secondaryProjectilesPool == null)
                 throw new System.Exception("Missing critical components");
 
+            _enemyManager.Initialize(_player.transform);
             _playerHealth?.Initialize(_healthImpactSound);
             _playerShields.Initialize(_playerHealth, _shieldsAudioSource);
             _gameManager?.Initialize(_inputManager, _player, _playerHealth);

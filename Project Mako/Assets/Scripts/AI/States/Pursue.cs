@@ -20,6 +20,7 @@ namespace Mako.AI
         }
         public override void Update()
         {
+            if (player == null) return;
             agent.SetDestination(player.position);
             if (agent.hasPath)
             {

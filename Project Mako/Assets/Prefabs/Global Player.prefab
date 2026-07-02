@@ -39,6 +39,7 @@ Transform:
   - {fileID: 1501619418212776782}
   - {fileID: 1055639492959949368}
   - {fileID: 985930801957749584}
+  - {fileID: 5749586771445027932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &673695222859693981
@@ -77,6 +78,10 @@ PrefabInstance:
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 1793296021013527294}
+    - target: {fileID: 916582454246546256, guid: e5a328ff476e4c012b7521df4d0006d8, type: 3}
+      propertyPath: _enemyManager
+      value: 
+      objectReference: {fileID: 7492964678852525886}
     - target: {fileID: 916582454246546256, guid: e5a328ff476e4c012b7521df4d0006d8, type: 3}
       propertyPath: _inputManager
       value: 
@@ -692,6 +697,79 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &2054297628159524793
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7247262918453336832}
+    m_Modifications:
+    - target: {fileID: 326759639954174186, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_Name
+      value: Enemy Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+--- !u!4 &5749586771445027932 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6001317514701974501, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+  m_PrefabInstance: {fileID: 2054297628159524793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7492964678852525886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8898566827461673095, guid: 6b1f67cd8c344c917b41626af4cbf382, type: 3}
+  m_PrefabInstance: {fileID: 2054297628159524793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b0cdab0795c26aaa82f594808eacc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2134282795216607091

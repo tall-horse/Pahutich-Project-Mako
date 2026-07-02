@@ -1,3 +1,4 @@
+using Mako.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,16 +11,18 @@ namespace Mako.AI
         private State currentState;
         [SerializeField] private string _currentStatename;
         public Transform player;
-        // Start is called before the first frame update
+        private EnemyManager _enemyManager;
+
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
             currentState = new Idle(gameObject, agent, anim, player);
             _currentStatename = currentState.name.ToString();
+            _enemyManager = FindObjectOfType<EnemyManager>();
+            _enemyManager.Register(this);
         }
 
-        // Update is called once per frame
         void Update()
         {
             currentState = currentState.Process();
@@ -33,6 +36,10 @@ namespace Mako.AI
         {
             var nextState = new Dead(gameObject, agent, anim, player);
             currentState = nextState;
+        }
+        public EnemyManager GetEnemyManager()
+        {
+            return _enemyManager;
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mako.AI
@@ -57,6 +55,7 @@ namespace Mako.AI
 
         public bool CanSeePlayer()
         {
+            if (player == null) return false;
             Vector3 direction = player.position - npc.transform.position;
             float angle = Vector3.Angle(direction, npc.transform.forward);
 
@@ -69,6 +68,7 @@ namespace Mako.AI
 
         public bool CanAttackPlayer()
         {
+            if (player == null) return false;
             Vector3 direction = player.position - npc.transform.position;
             if (direction.magnitude < attackDist)
             {
