@@ -40,6 +40,7 @@ namespace Mako
         {
             _inputManager = Require.Component(_inputManager, nameof(_inputManager));
             _player = Require.Component(_player, nameof(_player));
+            _playerRigidbody = Require.Component(_playerRigidbody, nameof(_playerRigidbody));
             _healthImpactSound = Require.Component(_healthImpactSound, nameof(_healthImpactSound));
             _playerHealth = Require.Component(_playerHealth, nameof(_playerHealth));
             _playerShields = Require.Component(_playerShields, nameof(_playerShields));
@@ -57,7 +58,6 @@ namespace Mako
             _stabilizer = Require.Component(_stabilizer, nameof(_stabilizer));
             _nitro = Require.Component(_nitro, nameof(_nitro));
             _jumper = Require.Component(_jumper, nameof(_jumper));
-            _playerRigidbody = Require.Component(_playerRigidbody, nameof(_playerRigidbody));
             _playerAudioSource = Require.Component(_playerAudioSource, nameof(_playerAudioSource));
             _nitroAudioSource = Require.Component(_nitroAudioSource, nameof(_nitroAudioSource));
             _jumperAudioSource = Require.Component(_jumperAudioSource, nameof(_jumperAudioSource));

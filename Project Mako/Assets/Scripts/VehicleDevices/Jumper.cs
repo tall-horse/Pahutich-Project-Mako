@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Mako.Input;
 using Mako.Movement;
@@ -7,78 +8,157 @@ namespace Mako.VehicleDevices
 {
     public class Jumper : MonoBehaviour
     {
-        private bool isJumping = false;
-        private Rigidbody _jumpingRigidbody;
-        private AudioSource _audioSource;
-        private PlayerController _playerController;
-        private InputManager _inputManager;
-        [SerializeField] private float jumpForce = 10f;
-        [SerializeField] private float jumpFuelMax;
-        [SerializeField] private float fuelRegenerationAbility;
-        [SerializeField] private float jumpFuelCurrent;
+        [Header("Jump")]
+        [SerializeField] private float _desiredJumpHeight = 5f;
+        [SerializeField] private float _jumpCooldown = 1f;
+        [SerializeField] private float _chargeDuration = 0.2f;
+        [SerializeField] private AnimationCurve _jumpCurve;
+        [SerializeField] private float _curveDuration = 0.2f;
+        [SerializeField] private float _jumForce = 2500000f;
+
+        [Header("Fuel")]
+        [SerializeField] private float _jumpFuelCurrent;
+        [SerializeField] private float _jumpFuelMax = 100f;
+        [SerializeField] private float _fuelRegenerationRate = 10f;
+        [SerializeField] private float _fuelConsumptionPerJump = 20f;
+
+        [Header("Effects")]
         [SerializeField] private List<ParticleSystem> enginesVisuals;
-        private void Awake()
+        [SerializeField] private AudioSource _audioSource;
+
+        private Rigidbody _jumpingRigidbody;
+        private InputManager _inputManager;
+        private PlayerController _playerController;
+
+        private float _cooldownTimer = 0f;
+        private bool _wasJumpPressed = false;
+        private bool _isCharging = false;
+
+        void Awake()
         {
-            jumpFuelCurrent = jumpFuelMax;
+            if (_jumpingRigidbody == null)
+                _jumpingRigidbody = GetComponent<Rigidbody>();
+
+            if (_jumpingRigidbody == null)
+            {
+                Debug.LogError("Jumper: No Rigidbody found. Please attach one or assign it in the inspector.");
+                return;
+            }
+
+            if (_jumpingRigidbody.isKinematic)
+            {
+                Debug.LogWarning("Jumper: Rigidbody is kinematic; disabling for jump.");
+                _jumpingRigidbody.isKinematic = false;
+            }
+            if (!_jumpingRigidbody.useGravity)
+            {
+                Debug.LogWarning("Jumper: Rigidbody useGravity is off. Enabling it.");
+                _jumpingRigidbody.useGravity = true;
+            }
+            _jumpFuelCurrent = _jumpFuelMax;
             enginesVisuals.ForEach(e => e.Stop());
         }
-        public void Initialize(InputManager inputManager, PlayerController playerController, Rigidbody rigidbody, AudioSource audioSource)
+
+        /// <summary>
+        /// Call this from your vehicle controller after you have wired up the components.
+        /// </summary>
+        public void Initialize(InputManager input, PlayerController player,
+                               Rigidbody rb, AudioSource audio)
         {
-            _inputManager = inputManager;
-            _playerController = playerController;
-            _jumpingRigidbody = rigidbody;
-            _audioSource = audioSource;
+            _inputManager = input;
+            _playerController = player;
+            _jumpingRigidbody = rb ?? _jumpingRigidbody;
+            _audioSource = audio;
+
+            if (_jumpingRigidbody != null)
+            {
+                if (_jumpingRigidbody.isKinematic) _jumpingRigidbody.isKinematic = false;
+                if (!_jumpingRigidbody.useGravity) _jumpingRigidbody.useGravity = true;
+            }
         }
 
-        // Update is called once per frame
         void Update()
         {
-            bool jumpInputActivated = _inputManager.Actions.Player.Jump.ReadValue<float>() > 0.1f;
-            bool hasSufficientAmountOfFuel = jumpFuelCurrent > 0;
+            if (_cooldownTimer > 0f) _cooldownTimer -= Time.deltaTime;
 
-            if (jumpInputActivated && hasSufficientAmountOfFuel)
+            bool jumpPressed = _inputManager.Actions.Player.Jump.ReadValue<float>() > 0.1f;
+
+            if (jumpPressed && !_wasJumpPressed)
             {
-                isJumping = true;
-            }
-            else
-            {
-                isJumping = false;
+                bool canJump = _cooldownTimer <= 0f &&
+                               _jumpFuelCurrent >= _fuelConsumptionPerJump &&
+                               _playerController.IsGrounded() &&
+                               !_isCharging;
+
+                if (canJump)
+                {
+                    _isCharging = true;
+                    StartCoroutine(ChargeAndJump());
+                }
             }
 
-            if (jumpFuelCurrent > jumpFuelMax)
-                jumpFuelCurrent = jumpFuelMax;
-            if (jumpFuelCurrent < 0)
-                jumpFuelCurrent = 0;
+            _wasJumpPressed = jumpPressed;
         }
-        private void FixedUpdate()
+
+        /// <summary>
+        /// Optional charge delay, then perform the actual jump.
+        /// </summary>
+        private IEnumerator ChargeAndJump()
         {
-            if (isJumping)
+            if (_chargeDuration > 0f)
             {
-                ActivateJump();
+                float t = 0f;
+                while (t < _chargeDuration)
+                {
+                    enginesVisuals.ForEach(e => e.Play());
+                    t += Time.deltaTime;
+                    yield return null;
+                }
             }
-            else
-            {
-                DeactivateJump();
-            }
+
+            ActivateJump();
+
+            _isCharging = false;
         }
+
         private void ActivateJump()
         {
-            Vector3 jumpVector = transform.up * jumpForce;
-            _jumpingRigidbody.AddForce(jumpVector, ForceMode.Impulse);
+            float gravity = Mathf.Abs(Physics.gravity.y);
+            float initSpeed = Mathf.Sqrt(2f * gravity * _desiredJumpHeight);
+
+            if (_jumpCurve != null && _jumpCurve.length > 0)
+                StartCoroutine(ApplyJumpForceOverTime(_jumForce));
+            else
+                _jumpingRigidbody.AddForce(Vector3.up * _jumForce, ForceMode.Impulse);
+
             enginesVisuals.ForEach(e => e.Play());
-            jumpFuelCurrent -= Time.deltaTime * fuelRegenerationAbility;
-            if (!_audioSource.isPlaying)
-                _audioSource.Play();
+            if (!_audioSource.isPlaying) _audioSource.Play();
+
+            _jumpFuelCurrent -= _fuelConsumptionPerJump;
+            _jumpFuelCurrent = Mathf.Max(0f, _jumpFuelCurrent);
+            _cooldownTimer = _jumpCooldown;
         }
 
-        private void DeactivateJump()
+        private IEnumerator ApplyJumpForceOverTime(float impulse)
         {
-            isJumping = false;
+            float t = 0f;
+            while (t < _curveDuration)
+            {
+                float factor = _jumpCurve.Evaluate(t / _curveDuration);
+                Vector3 force = Vector3.up * impulse * factor;
+                _jumpingRigidbody.AddForce(force, ForceMode.Force);
+                t += Time.deltaTime;
+                yield return null;
+            }
+            yield return new WaitForSeconds(0.75f);
             enginesVisuals.ForEach(e => e.Stop());
-            if (_playerController.IsGrounded())
-                jumpFuelCurrent += Time.deltaTime * fuelRegenerationAbility;
-            if (_audioSource.isPlaying)
-                _audioSource.Stop();
+        }
+
+        void FixedUpdate()
+        {
+            if (_playerController.IsGrounded() && !_isCharging)
+                _jumpFuelCurrent = Mathf.Min(_jumpFuelMax,
+                                             _jumpFuelCurrent + Time.fixedDeltaTime * _fuelRegenerationRate);
         }
     }
 }
