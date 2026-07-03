@@ -73,6 +73,7 @@ namespace Mako.State
         }
         public void TransitToNewScene(int index)
         {
+            Time.timeScale = 1;
             _coroutinePerformer.StartCoroutine(ProcessSwitchScene(index));
         }
         private IEnumerator ProcessSwitchScene(int sceneIndex)
