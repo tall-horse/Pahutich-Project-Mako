@@ -1171,6 +1171,22 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 5291949701637893242}
+    - target: {fileID: 3453318456927427485, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: m_Size.y
+      value: 0.58749866
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453318456927427485, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: m_Size.z
+      value: 2.543213
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453318456927427485, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: m_Center.y
+      value: 0.7494626
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453318456927427485, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      propertyPath: m_Center.z
+      value: -0.046463013
+      objectReference: {fileID: 0}
     - target: {fileID: 3453318456927427487, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
       propertyPath: speedText
       value: 
@@ -1238,7 +1254,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4725599791394527282, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4763332198036553528}
   m_SourcePrefab: {fileID: 100100000, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
 --- !u!4 &352888792079852331 stripped
 Transform:
@@ -1255,6 +1274,29 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4725599791394527282, guid: ab3f916bafc15008da60a0139f348d72, type: 3}
   m_PrefabInstance: {fileID: 5591984563795778662}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &4763332198036553528
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868644613072143444}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.44
+  m_Height: 3.6030188
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.9, z: -0.09481382}
 --- !u!82 &1318605155438896269 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 6905733683163756779, guid: ab3f916bafc15008da60a0139f348d72, type: 3}

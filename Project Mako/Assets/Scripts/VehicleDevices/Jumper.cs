@@ -153,8 +153,6 @@ namespace Mako.VehicleDevices
 
         private void ActivateJump()
         {
-            Debug.Log("ActivateJump() called");
-
             if (_jumpingRigidbody == null)
             {
                 Debug.LogError("Jumper: No Rigidbody assigned – jump aborted.");
@@ -189,7 +187,7 @@ namespace Mako.VehicleDevices
             _jumpFuelCurrent = Mathf.Max(0f, _jumpFuelCurrent);
             _cooldownTimer = _jumpCooldown;
 
-            Debug.Log($"[Jumper] Mass={_jumpingRigidbody.mass:F2}  Δv={deltaV:F2}  Height≈{Mathf.Pow(deltaV, 2) / (2f * gravity):F2} m");
+            //Debug.Log($"[Jumper] Mass={_jumpingRigidbody.mass:F2}  Δv={deltaV:F2}  Height≈{Mathf.Pow(deltaV, 2) / (2f * gravity):F2} m");
 
             StartCoroutine(StopParticlesAfterDelay(_particleStopDelay));
         }
