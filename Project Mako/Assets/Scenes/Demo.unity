@@ -4210,6 +4210,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4421754992477624530, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
+      propertyPath: _jumpForceMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5895291749865419802, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
