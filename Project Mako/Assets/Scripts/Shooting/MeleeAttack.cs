@@ -6,11 +6,15 @@ namespace Mako.Shooting
     public class MeleeAttack : MonoBehaviour
     {
         [SerializeField] private int _attackPower = 8;
-        [SerializeField] private Transform targetTransform;
+        [SerializeField] private Transform _targetTransform;
+        public void Initialize(Transform targetTransform)
+        {
+            _targetTransform = targetTransform;
+        }
         public void DealDamage()
         {
-            HealthNamespace.Health health = targetTransform.gameObject.GetComponent<HealthNamespace.Health>();
-            Shields shields = targetTransform.gameObject.GetComponent<Shields>();
+            HealthNamespace.Health health = _targetTransform.gameObject.GetComponent<HealthNamespace.Health>();
+            Shields shields = _targetTransform.gameObject.GetComponent<Shields>();
             if (shields != null)
             {
                 if (shields.GetShieldCapacity() >= 0)
