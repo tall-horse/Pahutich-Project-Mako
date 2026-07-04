@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Mako.Input;
+using UnityEngine.InputSystem;
 
 namespace Mako.State
 {
@@ -28,26 +29,19 @@ namespace Mako.State
         }
         void Start()
         {
+            InputManager.Instance.actions.Player.Pause.canceled += Pause;
             _playerHealth.OnDead += GameOver;
         }
         private void OnDisable()
         {
+            InputManager.Instance.actions.Player.Pause.canceled -= Pause;
             _playerHealth.OnDead -= GameOver;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Pause(InputAction.CallbackContext obj)
         {
             if (gameOver) return;
-            // bool pauseTime = _inputManager.Actions.Player.Pause.triggered;
-            // if (pauseTime)
-            // {
-            //     Pause();
-            // }
-        }
 
-        public void Pause()
-        {
             if (!GameIsPaused)
             {
                 GameIsPaused = true;

@@ -74,18 +74,6 @@ namespace Mako.VehicleDevices
 
         void Awake()
         {
-            if (_jumpingRigidbody == null)
-                _jumpingRigidbody = GetComponent<Rigidbody>();
-
-            if (_jumpingRigidbody == null)
-            {
-                Debug.LogError("Jumper: No Rigidbody found. Attach one or assign it in the inspector.");
-                return;
-            }
-
-            if (_jumpingRigidbody.isKinematic) _jumpingRigidbody.isKinematic = false;
-            if (!_jumpingRigidbody.useGravity) _jumpingRigidbody.useGravity = true;
-
             _jumpFuelCurrent = _jumpFuelMax;
             enginesVisuals.ForEach(e => e.Stop());
         }
