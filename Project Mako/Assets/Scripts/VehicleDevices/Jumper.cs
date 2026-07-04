@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mako.Input;
 using Mako.Movement;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Mako.VehicleDevices
 {
@@ -88,14 +89,20 @@ namespace Mako.VehicleDevices
             _jumpFuelCurrent = _jumpFuelMax;
             enginesVisuals.ForEach(e => e.Stop());
         }
+        private void OnEnable()
+        {
+            InputManager.Instance.actions.Player.Jump.started += ControlJump;
+        }
+        private void OnDisable()
+        {
 
+        }
         /// <summary>
         /// Call this from your vehicle controller after you have wired up the components.
         /// </summary>
-        public void Initialize(InputManager input, PlayerController player,
+        public void Initialize(PlayerController player,
                                Rigidbody rb, AudioSource audio)
         {
-            _inputManager = input;
             _playerController = player;
             _jumpingRigidbody = rb ?? _jumpingRigidbody;
             _audioSource = audio;
@@ -110,10 +117,11 @@ namespace Mako.VehicleDevices
         void Update()
         {
             if (_cooldownTimer > 0f) _cooldownTimer -= Time.deltaTime;
+        }
 
-            bool jumpPressed = _inputManager.Actions.Player.Jump.ReadValue<float>() > 0.1f;
-
-            if (jumpPressed && !_wasJumpPressed)
+        private void ControlJump(InputAction.CallbackContext obj)
+        {
+            if (!_wasJumpPressed)
             {
                 bool canJump = _cooldownTimer <= 0f &&
                                _jumpFuelCurrent >= _fuelConsumptionPerJump &&
@@ -126,8 +134,6 @@ namespace Mako.VehicleDevices
                     StartCoroutine(ChargeAndJump());
                 }
             }
-
-            _wasJumpPressed = jumpPressed;
         }
 
         /// <summary>

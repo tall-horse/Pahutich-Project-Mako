@@ -10,16 +10,10 @@ namespace Mako.VehicleDevices
         [SerializeField] public Transform gun;
         [SerializeField] private float lowerXRotationLimit = -20f;
         [SerializeField] private float upperXRotationLimit = 90f;
-        private InputManager _inputManager;
         private Ray ray;
-        public void Initialize(InputManager inputManager)
-        {
-            _inputManager = inputManager;
-        }
-        // Update is called once per frame
         void Update()
         {
-            ray = playerCamera.ScreenPointToRay(_inputManager.Actions.Player.Aiming.ReadValue<Vector2>());
+            ray = playerCamera.ScreenPointToRay(InputManager.Instance.actions.Player.Aiming.ReadValue<Vector2>());
 
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask))
             {

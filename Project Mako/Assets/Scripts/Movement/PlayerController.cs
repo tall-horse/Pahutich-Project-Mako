@@ -21,10 +21,8 @@ namespace Mako.Movement
         private Rigidbody _playerRigidbody;
         private AudioSource _audioSource;
         private Vector2 inputVector = Vector2.zero;
-        private InputManager _inputManager;
-        public void Initialize(InputManager inputManager, Rigidbody rigidbody, AudioSource audioSource)
+        public void Initialize(Rigidbody rigidbody, AudioSource audioSource)
         {
-            _inputManager = inputManager;
             _playerRigidbody = rigidbody;
             _audioSource = audioSource;
         }
@@ -32,9 +30,13 @@ namespace Mako.Movement
         {
             _playerRigidbody.centerOfMass = centerOfMass.transform.localPosition;
         }
+        private void OnEnable()
+        {
+            //InputManager.Instance.actions.Player.Movement
+        }
         private void Update()
         {
-            inputVector = _inputManager.Actions.Player.Movement.ReadValue<Vector2>();
+            inputVector = InputManager.Instance.actions.Player.Movement.ReadValue<Vector2>();
             if (_playerRigidbody != null)
             {
                 speed = _playerRigidbody.velocity.magnitude * 3.6f;

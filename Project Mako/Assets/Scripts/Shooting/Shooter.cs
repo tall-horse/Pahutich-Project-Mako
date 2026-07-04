@@ -3,6 +3,7 @@ using Mako.Input;
 using Mako.State;
 using Mako.VehicleDevices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace Mako.Shooting
 {
     public enum WeaponType
@@ -18,7 +19,6 @@ namespace Mako.Shooting
         private float _cooldownTimer;
         private Vector3 _mouseWorldPosition;
         private AudioSource _audioSource;
-        private InputManager _inputManager;
         private CanonBaseRotator _canonBaseRotator;
         private ProjectilesPool _projectilesPool;
         private GameManager _gameManager;
@@ -33,11 +33,10 @@ namespace Mako.Shooting
         [field: SerializeField] public WeaponType WeaponType { get; private set; } = WeaponType.PRIMARY;
         public float currentOverheat = 0;
         public Action OnOverheatChanged;
-        public void Initialize(InputManager inputManager, GameManager gameManager,
+        public void Initialize(GameManager gameManager,
         CanonBaseRotator canonBaseRotator, Transform projectileSpawnPosition, ProjectilesPool projectilesPool,
         AudioSource audioSource, ParticleSystem flash)
         {
-            _inputManager = inputManager;
             _gameManager = gameManager;
             _canonBaseRotator = canonBaseRotator;
             _projectileSpawnPosition = projectileSpawnPosition;
@@ -45,38 +44,45 @@ namespace Mako.Shooting
             _audioSource = audioSource;
             _flash = flash;
         }
-        void Start()
+        private void Start()
         {
             _cooldownTimer = cooldown;
         }
-
         void Update()
         {
             ManageShootingCapability();
-            float shootInputValue = WeaponType == WeaponType.PRIMARY ? _inputManager.Actions.Player.Shooting.ReadValue<float>() :
-            _inputManager.Actions.Player.SecondaryShooting.ReadValue<float>();
 
-            if (shootInputValue == 1)
+            bool shootPressed = WeaponType == WeaponType.PRIMARY ?
+                InputManager.Instance.actions.Player.Shooting.ReadValue<float>() > 0 :
+                InputManager.Instance.actions.Player.SecondaryShooting.ReadValue<float>() > 0;
+
+            if (shootPressed)
             {
-                _mouseWorldPosition = Vector3.zero;
-                Ray ray = Camera.main.ScreenPointToRay(_inputManager.Actions.Player.Aiming.ReadValue<Vector2>());
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, aimColliderLayerMask))
+                InitiateShoot();
+            }
+        }
+
+        private void InitiateShoot()
+        {
+            _mouseWorldPosition = Vector3.zero;
+            Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.actions.Player.Aiming.ReadValue<Vector2>());
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, aimColliderLayerMask))
+            {
+                int layerNR = hit.transform.gameObject.layer;
+                bool aimingTooClose = layerNR == 3 || layerNR == 9;
+                if (aimingTooClose)
                 {
-                    int layerNR = hit.transform.gameObject.layer;
-                    bool aimingTooClose = layerNR == 3 || layerNR == 9;
-                    if (aimingTooClose)
-                    {
-                        Shoot(_canonBaseRotator.transform.forward, true);
-                    }
-                    else
-                    {
-                        _mouseWorldPosition = hit.point;
-                        Shoot(_mouseWorldPosition, false); // Shoot at aim point
-                    }
+                    Shoot(_canonBaseRotator.transform.forward, true);
+                }
+                else
+                {
+                    _mouseWorldPosition = hit.point;
+                    Shoot(_mouseWorldPosition, false);
                 }
             }
         }
+
         public float GetOverheatPercent()
         {
             return (float)currentOverheat / overheatThreshold;

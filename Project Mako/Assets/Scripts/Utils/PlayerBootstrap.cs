@@ -10,7 +10,6 @@ namespace Mako
 {
     public class PlayerBootstrap : MonoBehaviour
     {
-        [SerializeField] private InputManager _inputManager;
         [SerializeField] private GameObject _player;
         [SerializeField] private EnemyManager _enemyManager;
         [SerializeField] private AudioSource _healthImpactSound;
@@ -39,7 +38,6 @@ namespace Mako
         [SerializeField] private AudioSource _secondaryShooterAudioSource;
         private void Awake()
         {
-            _inputManager = Require.Component(_inputManager, nameof(_inputManager));
             _player = Require.Component(_player, nameof(_player));
             _enemyManager = Require.Component(_enemyManager, nameof(_enemyManager));
             _playerRigidbody = Require.Component(_playerRigidbody, nameof(_playerRigidbody));
@@ -67,24 +65,22 @@ namespace Mako
             _primaryShooterAudioSource = Require.Component(_primaryShooterAudioSource, nameof(_primaryShooterAudioSource));
             _secondaryShooterAudioSource = Require.Component(_secondaryShooterAudioSource, nameof(_secondaryShooterAudioSource));
 
-            if (_inputManager == null || _player == null || _playerController == null || _playerRigidbody == null || _projectileSpawnPosition == null ||
+            if (_player == null || _playerController == null || _playerRigidbody == null || _projectileSpawnPosition == null ||
             _primaryProjectilesPool == null || _secondaryProjectilesPool == null)
                 throw new System.Exception("Missing critical components");
 
             _enemyManager.Initialize(_player.transform);
             _playerHealth?.Initialize(_healthImpactSound);
             _playerShields.Initialize(_playerHealth, _shieldsAudioSource);
-            _gameManager?.Initialize(_inputManager, _player, _playerHealth);
-            _playerController.Initialize(_inputManager, _playerRigidbody, _playerAudioSource);
-            _canonBaseRotator.Initialize(_inputManager);
-            _primaryShooter.Initialize(_inputManager, _gameManager, _canonBaseRotator, _projectileSpawnPosition, _primaryProjectilesPool,
+            _gameManager?.Initialize(_player, _playerHealth);
+            _playerController.Initialize(_playerRigidbody, _playerAudioSource);
+            _primaryShooter.Initialize(_gameManager, _canonBaseRotator, _projectileSpawnPosition, _primaryProjectilesPool,
             _primaryShooterAudioSource, _primaryShooterFlash);
-            _secondaryShooter.Initialize(_inputManager, _gameManager, _canonBaseRotator, _projectileSpawnPosition, _secondaryProjectilesPool,
+            _secondaryShooter.Initialize(_gameManager, _canonBaseRotator, _projectileSpawnPosition, _secondaryProjectilesPool,
             _secondaryShooterAudioSource, _secondaryShooterFlash);
-            _scanner.Initialize(_inputManager);
             _stabilizer.Initialize(_playerController, _playerRigidbody);
-            _nitro.Initialize(_inputManager, _playerRigidbody, _nitroAudioSource);
-            _jumper.Initialize(_inputManager, _playerController, _playerRigidbody, _jumperAudioSource);
+            _nitro.Initialize(_playerRigidbody, _nitroAudioSource);
+            _jumper.Initialize(_playerController, _playerRigidbody, _jumperAudioSource);
         }
     }
 }

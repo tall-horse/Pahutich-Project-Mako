@@ -15,17 +15,14 @@ namespace Mako.State
         [SerializeField] private TextMeshProUGUI pauseOrLossText;
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _settingsButton;
-        private InputManager _inputManager;
         private const string PauseText = "Pause";
         private const string LossText = "You lost";
         private void Awake()
         {
             gameOverPanel.SetActive(false);
         }
-        // Start is called before the first frame update
-        public void Initialize(InputManager inputManager, GameObject player, HealthNamespace.Health playerHealth)
+        public void Initialize(GameObject player, HealthNamespace.Health playerHealth)
         {
-            _inputManager = inputManager;
             _player = player;
             _playerHealth = playerHealth;
         }
@@ -42,11 +39,11 @@ namespace Mako.State
         void Update()
         {
             if (gameOver) return;
-            bool pauseTime = _inputManager.Actions.Player.Pause.triggered;
-            if (pauseTime)
-            {
-                Pause();
-            }
+            // bool pauseTime = _inputManager.Actions.Player.Pause.triggered;
+            // if (pauseTime)
+            // {
+            //     Pause();
+            // }
         }
 
         public void Pause()

@@ -12,23 +12,18 @@ namespace Mako.VehicleDevices
         [SerializeField] private Mako.UI.HealthBar healthBarOfScannedEnemy;
         [SerializeField] private TextMeshProUGUI enemyName;
         [SerializeField] private GameObject scannerPanel;
-        private InputManager _inputManager;
         [field: SerializeField] public Health ScannedEnemy { get; private set; }
         public Vector3 AimPoint;
         private void Awake()
         {
             scannerPanel.SetActive(false);
         }
-        public void Initialize(InputManager inputManager)
-        {
-            _inputManager = inputManager;
-        }
 
         // Update is called once per frame
         void Update()
         {
             mouseWorldPosition = Vector3.zero;
-            Ray ray = Camera.main.ScreenPointToRay(_inputManager.Actions.Player.Aiming.ReadValue<Vector2>());
+            Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.actions.Player.Aiming.ReadValue<Vector2>());
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 999f, aimColliderLayerMask))
             {

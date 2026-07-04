@@ -9,7 +9,7 @@ namespace Mako.VehicleDevices
         private bool doingNitro = false;
         private Rigidbody _playerRigidbody;
         private AudioSource _audioSource;
-        private InputManager _inputManager;
+        private bool _isPressingNitro;
         [SerializeField] private float nitroForce = 10f;
         [SerializeField] private float nitroFuelMax;
         [SerializeField] private float nitroRegenerationAbility;
@@ -21,18 +21,17 @@ namespace Mako.VehicleDevices
             enginesVisuals.ForEach(e => e.Stop());
         }
 
-        public void Initialize(InputManager inputManager, Rigidbody rigidbody, AudioSource audioSource)
+        public void Initialize(Rigidbody rigidbody, AudioSource audioSource)
         {
-            _inputManager = inputManager;
             _playerRigidbody = rigidbody;
             _audioSource = audioSource;
         }
         // Update is called once per frame
         void Update()
         {
-            bool isPressingNitro = _inputManager.Actions.Player.Nitro.ReadValue<float>() > 0.1f;
+            _isPressingNitro = InputManager.Instance.actions.Player.Nitro.ReadValue<float>() > 0.1f;
             bool hasSuffientAmountOfFuel = nitroFuelCurrent > 0;
-            doingNitro = isPressingNitro && hasSuffientAmountOfFuel;
+            doingNitro = _isPressingNitro && hasSuffientAmountOfFuel;
             if (doingNitro)
             {
                 ActivateNitro();
@@ -51,7 +50,10 @@ namespace Mako.VehicleDevices
         private void DeactivateNitro()
         {
             enginesVisuals.ForEach(e => e.Stop());
-            nitroFuelCurrent += Time.deltaTime * nitroRegenerationAbility;
+            if (_isPressingNitro == false)
+            {
+                nitroFuelCurrent += Time.deltaTime * nitroRegenerationAbility;
+            }
             if (_audioSource.isPlaying)
                 _audioSource.Stop();
         }
