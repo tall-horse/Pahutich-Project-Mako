@@ -390,7 +390,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &4369242363973470953
 AudioSource:
@@ -501,6 +501,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountToCool: 20
+  collectDuration: 0.5
+  collectEase: 7
+  scaleToZero: {x: 0, y: 0, z: 0}
 --- !u!114 &3278284929892250623
 MonoBehaviour:
   m_ObjectHideFlags: 0
