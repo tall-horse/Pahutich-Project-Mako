@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mako.Shooting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,15 +8,20 @@ namespace Mako.AI
     {
         float rotationSpeed = 2.0f;
         AudioSource shoot;
+        private MeleeAttack _meleeAttack;
+        private int _attackIndex;
         public Attack(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player) : base(_npc, _agent, _anim, _player)
         {
             name = STATE.ATTACK;
+            _meleeAttack = npc.GetComponent<MeleeAttack>();
             shoot = npc.GetComponent<AudioSource>();
+            _meleeAttack.OnReloadAttack += GenerateAttackIndex;
         }
 
         public override void Enter()
         {
             anim.SetTrigger("isAttacking");
+            anim.SetFloat("Blend", _attackIndex);
             agent.isStopped = true;
             shoot.Play();
             base.Enter();
@@ -39,8 +43,14 @@ namespace Mako.AI
         public override void Exit()
         {
             anim.ResetTrigger("isAttacking");
+            anim.SetFloat("Blend", 0);
             shoot.Stop();
             base.Exit();
+        }
+        public void GenerateAttackIndex()
+        {
+            _attackIndex = UnityEngine.Random.Range(1, 4);
+            anim.SetFloat("Blend", _attackIndex);
         }
     }
 }

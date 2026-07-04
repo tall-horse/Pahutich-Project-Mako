@@ -23,7 +23,7 @@ namespace Mako.AI
         protected State nextState;
         protected UnityEngine.AI.NavMeshAgent agent;
 
-        float visDist = 18.0f;
+        float visDist = 30.0f;
         float attackDist = 5.0f;
 
         public State(GameObject _npc, UnityEngine.AI.NavMeshAgent _agent, Animator _anim, Transform _player)

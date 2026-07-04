@@ -1,3 +1,4 @@
+using System;
 using Mako.VehicleDevices;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Mako.Shooting
     {
         [SerializeField] private int _attackPower = 8;
         [SerializeField] private Transform _targetTransform;
+        public event Action OnReloadAttack;
         public void Initialize(Transform targetTransform)
         {
             _targetTransform = targetTransform;
@@ -25,6 +27,10 @@ namespace Mako.Shooting
                 health.Damage(_attackPower);
                 health.PlayImpactSound();
             }
+        }
+        public void ReloadAttack()
+        {
+            OnReloadAttack?.Invoke();
         }
     }
 }
