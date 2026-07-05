@@ -44,6 +44,7 @@ namespace Mako.HealthNamespace
             _crabMonsterAI.GetEnemyManager().Deregister(_crabMonsterAI);
             _destructionAudioSource.Play();
             yield return new WaitForSeconds(1f);
+            _radarPoint.SetActive(false);
             _hitBox.enabled = false;
         }
     }

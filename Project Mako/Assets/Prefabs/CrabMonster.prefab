@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackPower: 8
-  _targetTransform: {fileID: 0}
+  _targetTransform: {fileID: 9102765509755305662}
 --- !u!114 &6184636867864027780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1127,7 @@ MonoBehaviour:
   _healthMax: 50
   _healthHolder: Crab Monster
   respectiveAudioImpact: {fileID: 9102765509606559572}
+  _radarPoint: {fileID: 9102765509755305661}
 --- !u!114 &5140203894055846751
 MonoBehaviour:
   m_ObjectHideFlags: 0

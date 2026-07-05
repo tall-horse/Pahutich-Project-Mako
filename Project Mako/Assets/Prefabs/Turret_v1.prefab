@@ -697,6 +697,7 @@ MonoBehaviour:
   _healthMax: 50
   _healthHolder: Turret J-46
   respectiveAudioImpact: {fileID: 1882130100503437142}
+  _radarPoint: {fileID: 1443551888300129003}
 --- !u!114 &4865102310676911587
 MonoBehaviour:
   m_ObjectHideFlags: 0

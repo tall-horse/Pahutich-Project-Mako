@@ -45,6 +45,7 @@ namespace Mako
             _destructionAudioSource.Play();
             _turret.dead = true;
             _hitBox.enabled = false;
+            _radarPoint.SetActive(false);
             foreach (MeshRenderer t in _turretVisuals)
             {
                 t.enabled = false;
