@@ -1299,17 +1299,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c50583bcc71a5ee6a423484e29f35fb, type: 3}
---- !u!114 &362091748 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1793296021013527294, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
-  m_PrefabInstance: {fileID: 1317876903}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7453e604e613260bba791d84a35986ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &377575521 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 30419079441646402, guid: d606ac60b5a50acfcb4717e29668a0de, type: 3}
@@ -4192,10 +4181,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Global Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3407850860923886755, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
-      propertyPath: nitroForce
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 3719034346148053727, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4211,26 +4196,6 @@ PrefabInstance:
     - target: {fileID: 3719034346148053727, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802507993743275021, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802507993743275021, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 362091748}
-    - target: {fileID: 3802507993743275021, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Pause
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802507993743275021, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Mako.State.GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5291949701637893242, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 1279
       objectReference: {fileID: 0}
     - target: {fileID: 5895291749865419802, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
       propertyPath: m_AnchorMax.y

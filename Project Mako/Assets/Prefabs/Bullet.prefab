@@ -152,7 +152,7 @@ MonoBehaviour:
   debuggingAiming: 0
   speed: 5
   timeToDisappear: 3
-  damageToDeal: 5
+  damageToDeal: 4
   collisonDebugPrefab: {fileID: 0}
 --- !u!96 &6284999634370291304
 TrailRenderer:

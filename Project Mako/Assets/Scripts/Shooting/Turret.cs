@@ -26,6 +26,7 @@ namespace Mako.Shooting
         public bool dead = false;
         [SerializeField] private List<MeshRenderer> _turretVisuals;
         [SerializeField] private Transform firePoint;
+        [SerializeField] private Transform firePoint2;
         private ProjectilesPool projectilesPool;
         private void Awake()
         {
@@ -87,6 +88,22 @@ namespace Mako.Shooting
             if (spawnedProjectile)
             {
                 spawnedProjectile.transform.position = firePoint.position;
+                spawnedProjectile.transform.rotation = Quaternion.identity;
+                spawnedProjectile.SetActive(true);
+                //workaround for bullet having children
+                if (spawnedProjectile.transform.childCount > 0)
+                {
+                    foreach (Transform child in spawnedProjectile.transform)
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+                }
+                spawnedProjectile.GetComponent<Projectile>().OnShot(player.transform.position - transform.position);
+            }
+            spawnedProjectile = projectilesPool.GetPooledProjectiles();
+            if (spawnedProjectile)
+            {
+                spawnedProjectile.transform.position = firePoint2.position;
                 spawnedProjectile.transform.rotation = Quaternion.identity;
                 spawnedProjectile.SetActive(true);
                 //workaround for bullet having children
