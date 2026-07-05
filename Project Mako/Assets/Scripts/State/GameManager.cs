@@ -29,16 +29,20 @@ namespace Mako.State
         }
         void Start()
         {
-            InputManager.Instance.actions.Player.Pause.canceled += Pause;
+            InputManager.Instance.actions.Player.Pause.canceled += CallPauseFormInput;
             _playerHealth.OnDead += GameOver;
         }
         private void OnDisable()
         {
-            InputManager.Instance.actions.Player.Pause.canceled -= Pause;
+            InputManager.Instance.actions.Player.Pause.canceled -= CallPauseFormInput;
             _playerHealth.OnDead -= GameOver;
         }
 
-        public void Pause(InputAction.CallbackContext obj)
+        public void CallPauseFormInput(InputAction.CallbackContext obj)
+        {
+            Pause();
+        }
+        public void Pause()
         {
             if (gameOver) return;
 
@@ -60,7 +64,6 @@ namespace Mako.State
         }
         private void GameOver()
         {
-            Debug.Log("game over");
             Time.timeScale = 0;
             pauseOrLossText.text = LossText;
             pauseOrLossText.color = Color.red;
