@@ -699,8 +699,9 @@ MonoBehaviour:
   - {fileID: 8875955156305936358}
   - {fileID: 8875955157552417836}
   - {fileID: 8875955156240222424}
-  firePoint: {fileID: 5980376292191133310}
-  firePoint2: {fileID: 8774262114903143592}
+  firePoints:
+  - {fileID: 5980376292191133310}
+  - {fileID: 8774262114903143592}
 --- !u!114 &3385953204133499566
 MonoBehaviour:
   m_ObjectHideFlags: 0

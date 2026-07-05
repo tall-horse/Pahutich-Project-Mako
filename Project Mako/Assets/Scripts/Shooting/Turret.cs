@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Mako.Shooting
@@ -25,8 +26,7 @@ namespace Mako.Shooting
         public bool playerInRange = false;
         public bool dead = false;
         [SerializeField] private List<MeshRenderer> _turretVisuals;
-        [SerializeField] private Transform firePoint;
-        [SerializeField] private Transform firePoint2;
+        [SerializeField] private Transform[] firePoints;
         private ProjectilesPool projectilesPool;
         private void Awake()
         {
@@ -84,37 +84,24 @@ namespace Mako.Shooting
         private void Shoot()
         {
             if (dead) return;
-            var spawnedProjectile = projectilesPool.GetPooledProjectiles();
-            if (spawnedProjectile)
+            for (int i = 0; i < firePoints.Length; i++)
             {
-                spawnedProjectile.transform.position = firePoint.position;
-                spawnedProjectile.transform.rotation = Quaternion.identity;
-                spawnedProjectile.SetActive(true);
-                //workaround for bullet having children
-                if (spawnedProjectile.transform.childCount > 0)
+                var spawnedProjectile = projectilesPool.GetPooledProjectiles();
+                if (spawnedProjectile)
                 {
-                    foreach (Transform child in spawnedProjectile.transform)
+                    spawnedProjectile.transform.position = firePoints[i].position;
+                    spawnedProjectile.transform.rotation = Quaternion.identity;
+                    spawnedProjectile.SetActive(true);
+                    //workaround for bullet having children
+                    if (spawnedProjectile.transform.childCount > 0)
                     {
-                        child.gameObject.SetActive(true);
+                        foreach (Transform child in spawnedProjectile.transform)
+                        {
+                            child.gameObject.SetActive(true);
+                        }
                     }
+                    spawnedProjectile.GetComponent<Projectile>().OnShot(player.transform.position - transform.position);
                 }
-                spawnedProjectile.GetComponent<Projectile>().OnShot(player.transform.position - transform.position);
-            }
-            spawnedProjectile = projectilesPool.GetPooledProjectiles();
-            if (spawnedProjectile)
-            {
-                spawnedProjectile.transform.position = firePoint2.position;
-                spawnedProjectile.transform.rotation = Quaternion.identity;
-                spawnedProjectile.SetActive(true);
-                //workaround for bullet having children
-                if (spawnedProjectile.transform.childCount > 0)
-                {
-                    foreach (Transform child in spawnedProjectile.transform)
-                    {
-                        child.gameObject.SetActive(true);
-                    }
-                }
-                spawnedProjectile.GetComponent<Projectile>().OnShot(player.transform.position - transform.position);
             }
         }
 
