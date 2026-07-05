@@ -26,7 +26,7 @@ namespace Mako.Shooting
         public bool playerInRange = false;
         public bool dead = false;
         [SerializeField] private List<MeshRenderer> _turretVisuals;
-        [SerializeField] private Transform[] firePoints;
+        [SerializeField] private AudioSource[] firePoints;
         private ProjectilesPool projectilesPool;
         private void Awake()
         {
@@ -89,7 +89,7 @@ namespace Mako.Shooting
                 var spawnedProjectile = projectilesPool.GetPooledProjectiles();
                 if (spawnedProjectile)
                 {
-                    spawnedProjectile.transform.position = firePoints[i].position;
+                    spawnedProjectile.transform.position = firePoints[i].transform.position;
                     spawnedProjectile.transform.rotation = Quaternion.identity;
                     spawnedProjectile.SetActive(true);
                     //workaround for bullet having children
@@ -100,6 +100,7 @@ namespace Mako.Shooting
                             child.gameObject.SetActive(true);
                         }
                     }
+                    firePoints[i].Play();
                     spawnedProjectile.GetComponent<Projectile>().OnShot(player.transform.position - transform.position);
                 }
             }
