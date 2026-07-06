@@ -26,13 +26,20 @@ namespace Mako.Shooting
         public bool playerInRange = false;
         public bool dead = false;
         [SerializeField] private List<MeshRenderer> _turretVisuals;
-        [SerializeField] private AudioSource[] firePoints;
+        [SerializeField] private AudioSource[] _firePoints;
+        [SerializeField] private ParticleSystem[] _gunParticles;
         private ProjectilesPool projectilesPool;
+        [SerializeField] private Transform _gunsMesh;
+        private Vector3 _shootingDirection;
         private void Awake()
         {
             player = GameObject.FindGameObjectWithTag(PLAYERTAG);
             projectilesPool = GetComponent<ProjectilesPool>();
             initialRange = range;
+            // for (int i = 0; i < _firePoints.Length; i++)
+            // {
+            //     _gunParticles.AddRange(_firePoints[i].GetComponentsInChildren<ParticleSystem>());
+            // }
         }
         // Start is called before the first frame update
         void Start()
@@ -71,6 +78,11 @@ namespace Mako.Shooting
                 Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
                 transform.rotation = Quaternion.Euler(0, rotation.y, 0);
 
+                _shootingDirection = player.transform.position - transform.position;
+                Vector3 euler = Quaternion.LookRotation(dir, Vector3.up).eulerAngles;
+                float pitch = Mathf.Clamp(Mathf.DeltaAngle(0f, euler.x), -90f, 40f);
+                _gunsMesh.transform.rotation = Quaternion.Euler(pitch, euler.y, euler.z);
+
                 if (fireCountdown <= 0f)
                 {
                     Shoot();
@@ -84,27 +96,26 @@ namespace Mako.Shooting
         private void Shoot()
         {
             if (dead) return;
-            for (int i = 0; i < firePoints.Length; i++)
+
+            for (int i = 0; i < _firePoints.Length; i++)
             {
+                // --- projectile ----------------------------------------------------
                 var spawnedProjectile = projectilesPool.GetPooledProjectiles();
-                if (spawnedProjectile)
-                {
-                    spawnedProjectile.transform.position = firePoints[i].transform.position;
-                    spawnedProjectile.transform.rotation = Quaternion.identity;
-                    spawnedProjectile.SetActive(true);
-                    //workaround for bullet having children
-                    if (spawnedProjectile.transform.childCount > 0)
-                    {
-                        foreach (Transform child in spawnedProjectile.transform)
-                        {
-                            child.gameObject.SetActive(true);
-                        }
-                    }
-                    firePoints[i].Play();
-                    spawnedProjectile.GetComponent<Projectile>().OnShot(player.transform.position - transform.position);
-                }
+                if (!spawnedProjectile) continue;
+                spawnedProjectile.transform.position = _firePoints[i].transform.position;
+                spawnedProjectile.transform.rotation = _gunsMesh.transform.rotation;
+                spawnedProjectile.SetActive(true);
+                spawnedProjectile.GetComponent<Projectile>().OnShot(_shootingDirection);
+
+                // --- muzzle‑flash --------------------------------------------------
+                var ps = _gunParticles[i];
+                ps.transform.position = _firePoints[i].transform.position;          // world pos
+                ps.transform.rotation = Quaternion.LookRotation(_shootingDirection);  // face player
+                _firePoints[i].Play();
+                ps.Play();
             }
         }
+
 
         public void ExtendRange()
         {

@@ -12,6 +12,7 @@ namespace Mako.Shooting
         protected Rigidbody projectileRigidbody;
         private Collider hitBox;
         private MeshRenderer meshRenderer;
+        private ParticleSystem _particleSystem;
         private TrailRenderer trailRenderer;
         [SerializeField] private bool debuggingAiming = false;
         [SerializeField] protected float speed;
@@ -23,6 +24,7 @@ namespace Mako.Shooting
             projectileRigidbody = GetComponentInChildren<Rigidbody>();
             hitBox = GetComponentInChildren<Collider>();
             meshRenderer = GetComponentInChildren<MeshRenderer>();
+            _particleSystem = GetComponent<ParticleSystem>();
             trailRenderer = GetComponentInChildren<TrailRenderer>();
             drag = projectileRigidbody.drag;
             angularDrag = projectileRigidbody.angularDrag;
@@ -52,6 +54,10 @@ namespace Mako.Shooting
         {
             if (other == null)
                 return;
+            if (_particleSystem != null)
+            {
+                _particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            }
             HealthNamespace.Health health = other.gameObject.GetComponent<HealthNamespace.Health>();
             Shields shields = other.gameObject.GetComponent<Shields>();
             if (shields != null)
