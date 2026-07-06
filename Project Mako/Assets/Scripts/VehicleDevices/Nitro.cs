@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Mako.Input;
+using Mako.State;
 using UnityEngine;
 
 namespace Mako.VehicleDevices
@@ -29,6 +30,8 @@ namespace Mako.VehicleDevices
         // Update is called once per frame
         void Update()
         {
+            if (GameManager.GameIsPaused == true) return;
+
             _isPressingNitro = InputManager.Instance.actions.Player.Nitro.ReadValue<float>() > 0.1f;
             bool hasSuffientAmountOfFuel = nitroFuelCurrent > 0;
             doingNitro = _isPressingNitro && hasSuffientAmountOfFuel;

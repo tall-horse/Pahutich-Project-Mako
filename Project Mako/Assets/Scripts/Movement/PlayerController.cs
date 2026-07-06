@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using TMPro;
 using Mako.Input;
+using Mako.State;
 
 namespace Mako.Movement
 {
@@ -36,6 +37,8 @@ namespace Mako.Movement
         }
         private void Update()
         {
+            if (GameManager.GameIsPaused == true) return;
+
             inputVector = InputManager.Instance.actions.Player.Movement.ReadValue<Vector2>();
             if (_playerRigidbody != null)
             {

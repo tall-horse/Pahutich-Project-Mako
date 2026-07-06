@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mako.Input;
 using Mako.Movement;
+using Mako.State;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -109,6 +110,8 @@ namespace Mako.VehicleDevices
 
         private void ControlJump(InputAction.CallbackContext obj)
         {
+            if (GameManager.GameIsPaused == true) return;
+
             if (!_wasJumpPressed)
             {
                 bool canJump = _cooldownTimer <= 0f &&
