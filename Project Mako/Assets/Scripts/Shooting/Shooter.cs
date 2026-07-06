@@ -89,7 +89,7 @@ namespace Mako.Shooting
         }
         private void ManageShootingCapability()
         {
-            if (_gameManager.GameIsPaused)
+            if (GameManager.GameIsPaused)
             {
                 _canShoot = false;
                 return;

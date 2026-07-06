@@ -9,7 +9,7 @@ namespace Mako.State
     public class GameManager : MonoBehaviour
     {
         private bool gameOver = false;
-        public bool GameIsPaused { get; private set; } = false;
+        public static bool GameIsPaused { get; private set; } = false;
         private GameObject _player;
         private HealthNamespace.Health _playerHealth;
         [SerializeField] private GameObject gameOverPanel;

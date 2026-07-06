@@ -1,5 +1,6 @@
 using Mako.HealthNamespace;
 using Mako.Input;
+using Mako.State;
 using TMPro;
 using UnityEngine;
 
@@ -22,6 +23,8 @@ namespace Mako.VehicleDevices
         // Update is called once per frame
         void Update()
         {
+            if (GameManager.GameIsPaused == true)
+                return;
             mouseWorldPosition = Vector3.zero;
             Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.actions.Player.Aiming.ReadValue<Vector2>());
             RaycastHit hit;
