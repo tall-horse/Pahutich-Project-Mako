@@ -52,14 +52,12 @@ namespace Mako.State
                 Time.timeScale = 0;
                 gameOverPanel.SetActive(true);
                 pauseOrLossText.text = PauseText;
-                //Cursor.visible = true;
             }
             else
             {
                 GameIsPaused = false;
                 Time.timeScale = 1;
                 gameOverPanel.SetActive(false);
-                //Cursor.visible = false;
             }
         }
         private void GameOver()
