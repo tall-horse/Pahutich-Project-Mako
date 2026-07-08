@@ -1042,6 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPower: 8
   _targetTransform: {fileID: 9102765509755305662}
+  _attackDistanceSquare: 25
 --- !u!114 &6184636867864027780
 MonoBehaviour:
   m_ObjectHideFlags: 0
