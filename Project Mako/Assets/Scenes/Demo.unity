@@ -4183,7 +4183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407850860923886755, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
       propertyPath: nitroForce
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3719034346148053727, guid: c00dfbf94dff9cbb293e82d859452f53, type: 3}
       propertyPath: m_AnchorMax.y
