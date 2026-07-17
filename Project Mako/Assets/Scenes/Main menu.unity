@@ -1111,9 +1111,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1800452516}
     m_Modifications:
+    - target: {fileID: 1043187789521496628, guid: 26a6d7fa0a744be729783397ff72bd93, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043187789521496628, guid: 26a6d7fa0a744be729783397ff72bd93, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2701340106469395892, guid: 26a6d7fa0a744be729783397ff72bd93, type: 3}
       propertyPath: m_Name
       value: Crosshair
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701340106469395892, guid: 26a6d7fa0a744be729783397ff72bd93, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7026906398243402734, guid: 26a6d7fa0a744be729783397ff72bd93, type: 3}
       propertyPath: m_Pivot.x
@@ -1215,6 +1227,10 @@ PrefabInstance:
       propertyPath: _combatSprite
       value: 
       objectReference: {fileID: 21300000, guid: 57ff8e0f1826a7367b45548764d155d0, type: 3}
+    - target: {fileID: 8344721852333204954, guid: 26a6d7fa0a744be729783397ff72bd93, type: 3}
+      propertyPath: _isCursorVisible
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
