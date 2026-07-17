@@ -24905,8 +24905,6 @@ MonoBehaviour:
   playerInRange: 0
   dead: 0
   _turretVisuals:
-  - {fileID: 8875955157368593084}
-  - {fileID: 8875955156305936358}
   - {fileID: 8875955157552417836}
   - {fileID: 8875955156240222424}
   _firePoints:
