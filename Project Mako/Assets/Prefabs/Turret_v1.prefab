@@ -24517,7 +24517,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235635787738388}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!33 &8865671240524229920
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24685,7 +24685,7 @@ Transform:
   m_GameObject: {fileID: 8898974128436714510}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.5, z: 0.00000018799308}
+  m_LocalPosition: {x: -0, y: -2.79, z: 0.00000018799308}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24898,9 +24898,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b016ad411c0c3e0afb2013551f50adf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _turretState: 0
   range: 15
   rangeExtensinIndex: 1.5
   fireRate: 1
+  _timeToHide: 3
   turnSpeed: 10
   playerInRange: 0
   dead: 0
@@ -24977,6 +24979,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8895235633644621504}
+  - component: {fileID: 7906482667188761080}
+  - component: {fileID: 3413118181958547940}
   m_Layer: 6
   m_Name: Turret_v1
   m_TagString: Untagged
@@ -25003,6 +25007,39 @@ Transform:
   - {fileID: 444104721002928435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7906482667188761080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898974130094118354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986f5b518e044abc39a8fdc3ed33bf3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &3413118181958547940
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898974130094118354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8457fbda990ffab4fb4020816c88df2a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8898974130458897082
 GameObject:
   m_ObjectHideFlags: 0
@@ -25037,7 +25074,7 @@ Transform:
   - {fileID: 5980376292191133310}
   - {fileID: 8774262114903143592}
   m_Father: {fileID: 8895235637266966552}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.000002861023, y: 0, z: 0}
 --- !u!33 &8865671239336512356
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -25120,7 +25157,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8895235635787738388}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &8865671239405733832
 MeshFilter:
   m_ObjectHideFlags: 0
